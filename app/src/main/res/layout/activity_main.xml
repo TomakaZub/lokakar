@@ -8,80 +8,76 @@
     android:orientation="vertical"
     tools:context="com.example.taguirregabiria2016.loc44.MainActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <Button
+            android:id="@+id/button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="#fde83b"
+            android:text="Gerer mon parcking"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:onClick="Click_gererParking"/>
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/a"
-                android:textColor="#FFF"
-                android:textSize="20sp"
-                android:text="Gerer mon parcking" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/a"
-                android:textColor="#FFF"
-                android:textSize="15sp"
-                android:text="Véhicules a louer" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/a"
-                android:textColor="#FFF"
-                android:textSize="15sp"
-                android:text="Véhicules  louer" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/a"
-                android:textColor="#FFF"
-                android:textSize="20sp"
-                android:text="Rechercher un véhicule" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/a"
-                android:text="Afficher mon chiffre d'affaire" />
-        </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#e33f3f"
+            android:text="Véhicules a louer"
+            android:textColor="#FFF"
+            android:textSize="15sp"
+            android:onClick="Click_alouer"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#e33f3f"
+            android:text="Véhicules  louer"
+            android:textColor="#FFF"
+            android:textSize="15sp"
+            android:onClick="Click_louer"/>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#01bbd2"
+        android:text="Rechercher un véhicule"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:onClick="Click_search"/>
+
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#8ac14a"
+        android:text="Afficher mon chiffre d'affaire"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:onClick="Click_ca"/>
 
 
 </LinearLayout>

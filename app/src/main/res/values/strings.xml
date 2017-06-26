@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">loc44</string>
+    <string name="app_name">LokaCar</string>
     <string name="title_activity_login">Se connecter a LokaCar</string>
 
     <!-- Strings related to login -->

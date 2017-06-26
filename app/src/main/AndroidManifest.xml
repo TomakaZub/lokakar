@@ -14,17 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-        </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login">
+        <activity android:name=".MainActivity" android:label="Accueuil"/>
+        <activity android:name=".Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".GererParkingActivity" android:label="Gerer le parking"/>
+        <activity android:name=".searchActivity" android:label="Chercher un véhicule"/>
+        <activity android:name=".caActivity" android:label="Chiffre d'affaire" />
+        <activity android:name=".louerActivity" android:label="Véhicules en cours de location"/>
+        <activity android:name=".alouerActivity" android:label="Véhicules prêts a etre louer"></activity>
     </application>
 
 </manifest>
