@@ -23,7 +23,7 @@ import java.util.List;
 
 public class BaseDAO extends SQLiteOpenHelper {
 
-    public final static String DATABASE_NAME = "lokakardb";
+    public final static String DATABASE_NAME = "lokakar.db";
     public final static int DATABASE_VERSION = 1;
 
     private final static String QUERY_DELETE_TABLE_ADRESSE = "drop table if exists agences";
@@ -31,8 +31,8 @@ public class BaseDAO extends SQLiteOpenHelper {
     private final static String QUERY_DELETE_TABLE_CLIENT = "drop table if exists agences";
     private final static String QUERY_DELETE_TABLE_GERANT = "drop table if exists agences";
     private final static String QUERY_DELETE_TABLE_LOCATION = "drop table if exists agences";
-    private final static String QUERY_DELETE_TABLE_PERSONNE = "drop table if exists agences";
-    private final static String QUERY_DELETE_TABLE_UTILISATION = "drop table if exists agences";
+//  private final static String QUERY_DELETE_TABLE_PERSONNE = "drop table if exists agences";
+//  private final static String QUERY_DELETE_TABLE_UTILISATION = "drop table if exists agences";
     private final static String QUERY_DELETE_TABLE_VEHICULE = "drop table if exists agences";
 
     private static SQLiteDatabase db;
@@ -41,6 +41,7 @@ public class BaseDAO extends SQLiteOpenHelper {
     private static BaseDAO mInstance = null;
 
     public static BaseDAO getInstance(Context context) {
+
         if (context == null) {
             throw new IllegalArgumentException(
                     "Context is null ! Databases can't be initialized with null context");
@@ -88,6 +89,10 @@ public class BaseDAO extends SQLiteOpenHelper {
 
         if (db == null) {
             db = mInstance.getWritableDatabase();
+
+//            if (isDBEmpty()) {
+//                generateData();
+//            }
         }
     }
 
@@ -104,10 +109,11 @@ public class BaseDAO extends SQLiteOpenHelper {
     public static SQLiteDatabase getDB() {
         return db;
     }
-    public boolean isDBEmpty () {
 
-        Cursor c = db.query("agence",
-                new String[]{"id", "gerantId", "adresseId"}, null, null, null, null, null);
+    public static boolean isDBEmpty () {
+
+        Cursor c = db.query("agences",
+                new String[]{"id", "gerant_id"}, null, null, null, null, null);
 
         if (c.getCount() == 0) {
 
@@ -116,7 +122,8 @@ public class BaseDAO extends SQLiteOpenHelper {
         return false;
     }
 
-    public void generateData() {
+    public static void generateData() {
+
 
         Adresse[]adresses = {
                 new Adresse ("3", "rue", "des aciéries", "4e étage", "42000", "Saint-Etienne", "France"),
@@ -157,10 +164,11 @@ public class BaseDAO extends SQLiteOpenHelper {
         GerantDAO.insertGerant(gerant);
         for (Client item:clients) ClientDAO.insertClient(item);
 
-        AgenceDAO.insertAgence(agence);
+        //TODO: check agenceId
+        long agenceID = AgenceDAO.insertAgence(agence);
     }
 
-    protected List<String>array2List(String[]tab) {
+    protected static List<String>array2List(String[]tab) {
 
         List<String>list = new ArrayList<>();
 
@@ -170,7 +178,7 @@ public class BaseDAO extends SQLiteOpenHelper {
         return list;
     }
 
-    protected List<Vehicule>array2List(Vehicule[]tab) {
+    protected static List<Vehicule>array2List(Vehicule[]tab) {
 
         List<Vehicule>list = new ArrayList<>();
 
