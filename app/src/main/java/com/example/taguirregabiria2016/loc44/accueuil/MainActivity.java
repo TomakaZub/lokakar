@@ -1,9 +1,16 @@
-package com.example.taguirregabiria2016.loc44;
+package com.example.taguirregabiria2016.loc44.accueuil;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.taguirregabiria2016.loc44.gererParking.GererParkingActivity;
+import com.example.taguirregabiria2016.loc44.R;
+import com.example.taguirregabiria2016.loc44.location.alouerActivity;
+import com.example.taguirregabiria2016.loc44.chiffreAffaire.caActivity;
+import com.example.taguirregabiria2016.loc44.location.louerActivity;
+import com.example.taguirregabiria2016.loc44.search.searchActivity;
 
 public class MainActivity extends AppCompatActivity {
 

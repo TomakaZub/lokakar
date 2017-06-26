@@ -1,7 +1,9 @@
-package com.example.taguirregabiria2016.loc44;
+package com.example.taguirregabiria2016.loc44.location;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.taguirregabiria2016.loc44.R;
 
 public class alouerActivity extends AppCompatActivity {
 
