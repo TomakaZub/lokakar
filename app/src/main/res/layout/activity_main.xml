@@ -32,14 +32,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Véhicules a louer"
-            android:background="@drawable/b"/>
+            android:background="@drawable/a"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Véhicule louer"
-            android:background="@drawable/c"/>
+            android:background="@drawable/a"/>
     </LinearLayout>
 
 
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rechercher un véhicule"
-            android:background="@drawable/d"/>
+            android:background="@drawable/a"/>
     </LinearLayout>
 
 
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Afficher mon chiffre d'affaire"
-            android:background="@drawable/e"/>
+            android:background="@drawable/a"/>
     </LinearLayout>
 
 </LinearLayout>
