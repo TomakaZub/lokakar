@@ -1,0 +1,43 @@
+package com.example.taguirregabiria2016.loc44.model;
+
+import java.util.List;
+
+/**
+ * Created by ojeanmarie2016 on 26/06/2017.
+ */
+
+public class Client extends Personne {
+
+    private Adresse adresse;
+    private List<Location>locationList;
+
+    public Client(Personne personne, Adresse adresse, List<Location> locationList) {
+        super(personne);
+        this.adresse = adresse;
+        this.locationList = locationList;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
+    public List<Location> getLocationList() {
+        return locationList;
+    }
+
+    public void setLocationList(List<Location> locationList) {
+        this.locationList = locationList;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "adresse=" + adresse +
+                ", locationList=" + locationList +
+                '}';
+    }
+}
