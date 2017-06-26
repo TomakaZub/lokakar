@@ -3,6 +3,7 @@ package com.example.taguirregabiria2016.loc44;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -33,6 +34,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.Manifest.permission.INTERNET;
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -75,6 +77,8 @@ public class LoginActivity extends AppCompatActivity {
         {
             isCorrect = true;
             Toast.makeText(LoginActivity.this,"EST CONNECTER",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
         }
         return isCorrect;
     }
@@ -86,7 +90,8 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean isEmailValid(String email) {
         boolean result = false;
-        if (mEmailView.equals("admin@hotmail.fr")) {
+        String mEmail = mEmailView.getText().toString();
+        if (mEmail.equals("admin@hotmail.fr")) {
             result = true;
         }
         else
@@ -104,7 +109,8 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean isPasswordValid(String password) {
         boolean result = false;
-        if (mPasswordView.length() > 4 && mPasswordView.equals("admin"))
+        String mPassword = mPasswordView.getText().toString();
+        if (mPassword.length() > 4 && mPassword.equals("admin"))
         {
             result = true;
         }
