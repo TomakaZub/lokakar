@@ -12,11 +12,11 @@ public class Vehicule {
     private String marque;
     private String modele;
     private String immatriculation;
-    private Utilisation utilisation;
+    private int utilisation;
     private List<String> album;
     private double prixJour;
 
-    public Vehicule(String marque, String modele, String immatriculation, Utilisation utilisation, List<String> album, double prixJour) {
+    public Vehicule(String marque, String modele, String immatriculation, int utilisation, List<String> album, double prixJour) {
         this.marque = marque;
         this.modele = modele;
         this.immatriculation = immatriculation;
@@ -25,7 +25,7 @@ public class Vehicule {
         this.prixJour = prixJour;
     }
 
-    public Vehicule(int id, String marque, String modele, String immatriculation, Utilisation utilisation, List<String> album, double prixJour) {
+    public Vehicule(int id, String marque, String modele, String immatriculation, int utilisation, List<String> album, double prixJour) {
         this.id = id;
         this.marque = marque;
         this.modele = modele;
@@ -67,11 +67,11 @@ public class Vehicule {
         this.immatriculation = immatriculation;
     }
 
-    public Utilisation getUtilisation() {
+    public int getUtilisation() {
         return utilisation;
     }
 
-    public void setUtilisation(Utilisation utilisation) {
+    public void setUtilisation(int utilisation) {
         this.utilisation = utilisation;
     }
 
