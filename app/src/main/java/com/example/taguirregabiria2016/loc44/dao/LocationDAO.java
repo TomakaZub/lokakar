@@ -18,13 +18,6 @@ import java.util.List;
 
 public class LocationDAO {
 
-//    private int id;
-//    private Vehicule vehicule;
-//    private String debut;
-//    private String fin;
-//    private Client client;
-//    private List<String> albumEdL;
-
     private final static String QUERY_CREATE_TABLE_VEHICULE = "create table if not exists "
             + "locations ("
             + "id integer primary key autoincrement, "
@@ -32,7 +25,8 @@ public class LocationDAO {
             + "debut text, "
             + "fin text, "
             + "client_id integer, "
-            + "album text)";
+            + "album text, "
+            + "rendu integer)";
 
     private final static String TABLE_NAME = "locations";
 
@@ -58,6 +52,7 @@ public class LocationDAO {
         values.put("fin", l.getFin());
         values.put("client_id", l.getClient().getId());
         values.put("album", album);
+        values.put("rendu", l.getRendu());
 
         return BaseDAO.getDB().insert(TABLE_NAME, null, values);
     }
@@ -82,6 +77,7 @@ public class LocationDAO {
         values.put("fin", l.getFin());
         values.put("client_id", l.getClient().getId());
         values.put("album", album);
+        values.put("rendu", l.getRendu());
 
         return BaseDAO.getDB().update(TABLE_NAME, values, "id=?", args);
     }
@@ -92,7 +88,7 @@ public class LocationDAO {
     public static Location getLocation(int id) {
 
         Cursor c = BaseDAO.getDB().query(TABLE_NAME,
-                new String[]{"id", "vehicule_id", "debut", "fin", "client_id", "album"},
+                new String[]{"id", "vehicule_id", "debut", "fin", "client_id", "album", "rendu"},
                 "id=" + id, null, null, null, null);
 
         if (c.getCount() == 0) {
@@ -106,6 +102,7 @@ public class LocationDAO {
         String fin = c.getString(3);
         int clientID = c.getInt(4);
         String photos = c.getString(5);
+        int rendu = c.getInt(6);
 
         String[] tmp = photos.split(";");
         List<String> album= new ArrayList<>();
@@ -116,16 +113,16 @@ public class LocationDAO {
         Vehicule vehicule = VehiculeDAO.getVehicule(vehiculeId);
         Client client = ClientDAO.getClient(clientID);
 
-        return new Location(id, vehicule, debut, fin, client, album);
+        return new Location(id, vehicule, debut, fin, client, album, rendu);
     }
 
-    public List<Location> isRenting()
+    public static List<Location> getAllLocations()
     {
         SQLiteDatabase db = BaseDAO.getDB();
         // recuperer la liste de toutes les location qui on le statut rendu
 
         Cursor c = db.query(TABLE_NAME,
-                new String[]{"id"," vehicule"," debut"," fin"," client"},
+                new String[]{"id", "vehicule_id", "debut", "fin", "client_id", "album", "rendu"},
                 null, null, null, null, null);
         List<Location> locations = new ArrayList<>();
 
@@ -137,22 +134,25 @@ public class LocationDAO {
         while (c.moveToNext()) {
 
             int id = c.getInt(0);
-            String marque = c.getString(1);
-            String modele = c.getString(2);
-            String immatriculation = c.getString(3);
-            int utilisation = c.getInt(4);
+            int vehiculeId = c.getInt(1);
+            String debut = c.getString(2);
+            String fin = c.getString(3);
+            int clientId = c.getInt(4);
             String album = c.getString(5);
-            Double prixJour = c.getDouble(6);
+            int rendu = c.getInt(6);
 
             List<String>photos = new ArrayList<>();
             String[]dummy = album.split(";");
             for (String item:dummy) {
                 photos.add(item);
             }
-//            locations.add(new Location(id, marque, modele, immatriculation, utilisation, photos, prixJour));
+            Vehicule vehicule = VehiculeDAO.getVehicule(vehiculeId);
+            Client client = ClientDAO.getClient(clientId);
+            locations.add(new Location(id, vehicule, debut, fin, client, photos, rendu));
         }
         c.close();
 
+        return locations;
     }
 
 }

@@ -14,22 +14,25 @@ public class Location {
     private String fin;
     private Client client;
     private List<String> albumEdL;
+    private int rendu;
 
-    public Location(Vehicule vehicule, String debut, String fin, Client client, List<String> albumEdL) {
+    public Location(Vehicule vehicule, String debut, String fin, Client client, List<String> albumEdL, int rendu) {
         this.vehicule = vehicule;
         this.debut = debut;
         this.fin = fin;
         this.client = client;
         this.albumEdL = albumEdL;
+        this.rendu = rendu;
     }
 
-    public Location(int id, Vehicule vehicule, String debut, String fin, Client client, List<String> albumEdL) {
+    public Location(int id, Vehicule vehicule, String debut, String fin, Client client, List<String> albumEdL, int rendu) {
         this.id = id;
         this.vehicule = vehicule;
         this.debut = debut;
         this.fin = fin;
         this.client = client;
         this.albumEdL = albumEdL;
+        this.rendu = rendu;
     }
 
     public int getId() {
@@ -78,6 +81,14 @@ public class Location {
 
     public void setAlbum(List<String> album) {
         this.albumEdL = album;
+    }
+
+    public int getRendu() {
+        return rendu;
+    }
+
+    public void setRendu(int rendu) {
+        this.rendu = rendu;
     }
 
     @Override
