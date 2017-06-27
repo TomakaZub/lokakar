@@ -9,6 +9,9 @@ import com.example.taguirregabiria2016.loc44.model.Adresse;
 import com.example.taguirregabiria2016.loc44.model.Gerant;
 import com.example.taguirregabiria2016.loc44.model.Personne;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by ojeanmarie2016 on 26/06/2017.
  */
@@ -39,13 +42,13 @@ public class GerantDAO {
         ContentValues values = new ContentValues();
 
         values.put("nom", g.getNom());
-        values.put("prenom", g.getNom());
-        values.put("telephone", g.getNom());
-        values.put("email", g.getNom());
+        values.put("prenom", g.getPrenom());
+        values.put("telephone", g.getTelephone());
+        values.put("email", g.getEmail());
         values.put("adresse_id", g.getAdresse().getId());//AdresseDAO.insertAdresse(g.getAdresse()));
-        values.put("tel_pro", g.getNom());
-        values.put("email_pro", g.getNom());
-        values.put("mot_de_passe", g.getNom());
+        values.put("tel_pro", g.getTelPro());
+        values.put("email_pro", g.getEmailPro());
+        values.put("mot_de_passe", g.getMotDePasse());
 
         return BaseDAO.getDB().insert(TABLE_NAME, null, values);
     }
@@ -114,7 +117,7 @@ public class GerantDAO {
 
         Cursor c = db.query(TABLE_NAME,
                 new String[]{"id", "nom", "prenom", "telephone", "email", "adresse_id", "tel_pro", "email_pro", "mot_de_passe"},
-                "email_pro like ? and mot_de_passe like ?",
+                "email_pro=? and mot_de_passe=?",
                 new String[]{emailPro, motDePasse}, null, null, null);
         Gerant g;
 
@@ -140,5 +143,43 @@ public class GerantDAO {
 
         return g;
     }
+    public static List<Gerant> getAllGerants() {
+
+        //query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy)
+
+        SQLiteDatabase db = BaseDAO.getDB();
+
+        Cursor c = db.query(TABLE_NAME,
+                new String[]{"id", "nom", "prenom", "telephone", "email", "adresse_id", "tel_pro", "email_pro", "mot_de_passe"},
+                null, null, null, null, null);
+        List<Gerant> gs = new ArrayList<>();
+
+        if (c.getCount() == 0) {
+            c.close();
+            return gs;
+        }
+
+
+        while (c.moveToNext()) {
+
+            int id = c.getInt(0);
+            String nom = c.getString(1);
+            String prenom = c.getString(2);
+            String email = c.getString(3);
+            String telephone = c.getString(4);
+            int adresseId = c.getInt(5);
+            String telPro = c.getString(6);
+            String emailPro = c.getString(7);
+            String motDePasse = c.getString(8);
+
+            Adresse adresse = AdresseDAO.getAdresse(adresseId);
+            Personne p = new Personne(id, nom, prenom, telephone, email, adresse);
+            gs.add(new Gerant(p, telPro, emailPro, motDePasse));
+        }
+        c.close();
+
+        return gs;
+    }
+
 
 }

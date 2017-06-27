@@ -159,25 +159,30 @@ public class BaseDAO extends SQLiteOpenHelper {
 
         Agence agence = new Agence(gerant, array2List(vehicules), locationList, adresses[0]);
 
-        Long r;
+        long r;
         for (Adresse item : adresses) {
             r = AdresseDAO.insertAdresse(item);
+            item.setId((int) r);
             Log.d("*** New Data ***", "Inserted Adresse's id : " + r);
         }
         for (Vehicule item : vehicules) {
             r = VehiculeDAO.insertVehicule(item);
+            item.setId((int) r);
             Log.d("*** New Data ***", "Inserted Vehicule's id : " + r);
         }
 
         r = GerantDAO.insertGerant(gerant);
+        gerant.setId((int) r);
         Log.d("*** New Data ***", "Inserted Gerant's id : " + r);
         for (Client item : clients) {
             r = ClientDAO.insertClient(item);
+            item.setId((int) r);
             Log.d("*** New Data ***", "Inserted Client's id : " + r);
         }
 
         //TODO: check agenceId
         r = AgenceDAO.insertAgence(agence);
+        agence.setId((int) r);
         Log.d("*** New Data ***", "Inserted Agence's id : " + r);
     }
 

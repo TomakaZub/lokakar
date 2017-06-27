@@ -60,7 +60,10 @@ public class LoginActivity extends AppCompatActivity {
         Log.d("*** Login email ***", email);
         Log.d("*** Login mdp ***", mdp);
 
+        Log.d("*** Login gérants ***", GerantDAO.getAllGerants().toString());
+
         if (BaseDAO.isDBEmpty()) {
+            Log.d("*** Login ***", "Génération BDD");
             BaseDAO.generateData();
         }
 
