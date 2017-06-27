@@ -112,6 +112,7 @@ public class VehiculeDAO {
         return new Vehicule(id, marque, modele, immatriculation, utilisation, album, prixJour);
     }
 
+
     public static List<Vehicule> getAllVehicules() {
 
        SQLiteDatabase db = BaseDAO.getDB();

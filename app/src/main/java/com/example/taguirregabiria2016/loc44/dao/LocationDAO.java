@@ -89,7 +89,6 @@ public class LocationDAO {
 
         return BaseDAO.getDB().delete(TABLE_NAME, "id=" + l.getId(), null);
     }
-
     public static Location getLocation(int id) {
 
         Cursor c = BaseDAO.getDB().query(TABLE_NAME,
@@ -118,6 +117,42 @@ public class LocationDAO {
         Client client = ClientDAO.getClient(clientID);
 
         return new Location(id, vehicule, debut, fin, client, album);
+    }
+
+    public List<Location> isRenting()
+    {
+        SQLiteDatabase db = BaseDAO.getDB();
+        // recuperer la liste de toutes les location qui on le statut rendu
+
+        Cursor c = db.query(TABLE_NAME,
+                new String[]{"id"," vehicule"," debut"," fin"," client"},
+                null, null, null, null, null);
+        List<Location> locations = new ArrayList<>();
+
+        if (c.getCount() == 0) {
+            c.close();
+            return locations;
+        }
+
+        while (c.moveToNext()) {
+
+            int id = c.getInt(0);
+            String marque = c.getString(1);
+            String modele = c.getString(2);
+            String immatriculation = c.getString(3);
+            int utilisation = c.getInt(4);
+            String album = c.getString(5);
+            Double prixJour = c.getDouble(6);
+
+            List<String>photos = new ArrayList<>();
+            String[]dummy = album.split(";");
+            for (String item:dummy) {
+                photos.add(item);
+            }
+//            locations.add(new Location(id, marque, modele, immatriculation, utilisation, photos, prixJour));
+        }
+        c.close();
+
     }
 
 }

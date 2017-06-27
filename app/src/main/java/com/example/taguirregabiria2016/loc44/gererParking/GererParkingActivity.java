@@ -21,11 +21,9 @@ import java.util.List;
 
 public class GererParkingActivity extends AppCompatActivity {
 
-    private static final String TAG = "Gerer";
     ArrayAdapter adapter;
     private  List<Vehicule> liste_vehicule;
     VehiculeDAO dao;
-    Vehicule v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
