@@ -126,9 +126,10 @@ public class BaseDAO extends SQLiteOpenHelper {
     public static void generateData() {
 
         Adresse[] adresses = {
-                new Adresse("3", "rue", "des aciéries", "4e étage", "42000", "Saint-Etienne", "France"),
-                new Adresse("15", "rue", "Jules Ledin", "4e étage", "42000", "Saint-Etienne", "France"),
                 new Adresse("45", "rue", "Charles de Gaule", "Agence Lokakar", "42000", "Saint-Etienne", "France"),
+                new Adresse("3", "rue", "des aciéries", "", "42000", "Saint-Etienne", "France"),
+                new Adresse("15", "rue", "Jules Ledin", "4e étage", "42000", "Saint-Etienne", "France"),
+                new Adresse("7", "avenue", "François Mitterand", "", "32000", "Auch", "France"),
                 new Adresse("2", "rue", "Inkermann", "", "59000", "Lille", "France")};
 
         String[] photos_peugeot1 = {"peugeot_208_1_exterieur", "peugeot_208_1_interieur"};
@@ -138,25 +139,37 @@ public class BaseDAO extends SQLiteOpenHelper {
         Vehicule[] vehicules = {
                 new Vehicule("Peugeot", "208", "BH-KJE-FY", Utilisation.ROUTIERE, array2List(photos_peugeot1), 45.0),
                 new Vehicule("Volkswagen", "Polo", "DS-CSR-AS", Utilisation.CITADINE, array2List(photos_polo1), 50.0),
+                new Vehicule("Volkswagen", "Golf", "AC-DFR-FJ", Utilisation.CITADINE+Utilisation.ROUTIERE+Utilisation.FAMILIALE, array2List(photos_polo1), 65.0),
+                new Vehicule("Citroën", "C3", "AQS-PAB-LR", Utilisation.CITADINE+Utilisation.ROUTIERE+Utilisation.FAMILIALE, array2List(photos_polo1), 60.0),
                 new Vehicule("Ford", "Galaxy", "BD-KLM-QS", Utilisation.FAMILIALE, array2List(photos_fordgalaxy1), 60.0)
         };
 
         Personne[] p = {
                 new Personne("Maujean", "Benoit", "0645782345", "bmaujean@free.fr", adresses[1]),
                 new Personne("Lux", "Guy", "0423568912", "glux@laposte.fr", adresses[2]),
+                new Personne("Sevestre", "Sébastien", "0614658437", "ssevestre@orange.fr", adresses[2]),
                 new Personne("Aubry", "Martine", "0645789412", "maubry@orange.fr", adresses[3])
         };
 
         Gerant gerant = new Gerant(p[0], "0620547894", "bmaujean@lokakar.fr", "1234");
 
         Client[] clients = {
-                new Client(p[1], null),
-                new Client(p[2], null)
+                new Client(p[1], new ArrayList<Location>()),
+                new Client(p[2], new ArrayList<Location>()),
+                new Client(p[3], new ArrayList<Location>())
         };
 
-        List<Location> locationList = new ArrayList<>();
+        Location [] locations = {
+                new Location(vehicules[0], "05/03/2017 09:00", "08/03/2017 18:00", clients[0], new ArrayList<String>(), 1),
+                new Location(vehicules[1], "19/06/2017 09:00", "23/06/2017 18:00", clients[0], new ArrayList<String>(), 1),
+                new Location(vehicules[2], "24/06/2017 12:00", "30/06/2017 12:00", clients[1], new ArrayList<String>(), 0)
+        };
+        // Archivage des locations effectuées et terminées
+//        clients[0].getLocationList().add(locations[0]);
+//        clients[0].getLocationList().add(locations[1]);
 
-        Agence agence = new Agence(gerant, array2List(vehicules), locationList, adresses[0]);
+        Agence agence = new Agence(gerant, array2List(vehicules), array2List(locations), adresses[0]);
+        Log.d("*** Agence ***", agence.toString());
 
         long r;
         for (Adresse item : adresses) {
@@ -179,7 +192,6 @@ public class BaseDAO extends SQLiteOpenHelper {
             Log.d("*** New Data ***", "Inserted Client's id : " + r);
         }
 
-        //TODO: check agenceId
         r = AgenceDAO.insertAgence(agence);
         agence.setId((int) r);
         Log.d("*** New Data ***", "Inserted Agence's id : " + r);
@@ -204,4 +216,15 @@ public class BaseDAO extends SQLiteOpenHelper {
         }
         return list;
     }
+
+    protected static List<Location> array2List(Location[] tab) {
+
+        List<Location> list = new ArrayList<>();
+
+        for (Location item : tab) {
+            list.add(item);
+        }
+        return list;
+    }
 }
+

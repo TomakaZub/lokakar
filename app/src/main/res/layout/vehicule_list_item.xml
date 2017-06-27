@@ -50,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#230A0A"
+            android:typeface="monospace"
             android:layout_weight="1" />
 
     </LinearLayout>

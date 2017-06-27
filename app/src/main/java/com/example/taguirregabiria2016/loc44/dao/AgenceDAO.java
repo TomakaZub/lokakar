@@ -77,9 +77,9 @@ public class AgenceDAO {
 
         Gerant gerant = GerantDAO.getGerant(gerantId);
         Adresse adresse = AdresseDAO.getAdresse(adresseId);
-        //TODO: Récupérer la liste des véhicules et des locations
-        List<Vehicule> vehiculeList = null;
-        List<Location>locationList = null;
+
+        List<Vehicule> vehiculeList = VehiculeDAO.getAllVehicules();
+        List<Location>locationList = LocationDAO.getAllLocations();
 
         a = new Agence(id, gerant, vehiculeList, locationList, adresse);
         c.close();

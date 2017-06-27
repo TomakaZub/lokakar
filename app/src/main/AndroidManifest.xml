@@ -42,7 +42,8 @@
         <activity android:name=".ui.UserFormActivity" />
         <activity android:name=".ui.UserListActivity" />
         <activity android:name=".ui.VehiculeFormActivity" />
-        <activity android:name=".ui.VehiculeListActivity"></activity>
+        <activity android:name=".ui.VehiculeListActivity" />
+        <activity android:name=".location.LocationActivity"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +15,7 @@ import android.widget.Toast;
 import com.example.taguirregabiria2016.loc44.R;
 import com.example.taguirregabiria2016.loc44.dao.VehiculeDAO;
 import com.example.taguirregabiria2016.loc44.model.Vehicule;
+import com.example.taguirregabiria2016.loc44.ui.VehiculeFormActivity;
 
 import java.util.List;
 
@@ -63,7 +63,7 @@ public class GererParkingActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 dao.removeVehicule(vehicule);
-                Toast.makeText(GererParkingActivity.this, "Véhicule supprimer", Toast.LENGTH_LONG).show();
+                Toast.makeText(GererParkingActivity.this, "Véhicule supprimé", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
@@ -81,7 +81,7 @@ public class GererParkingActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_liste_article, menu);
+        getMenuInflater().inflate(R.menu.menu_liste, menu);
         return true;
     }
 
@@ -94,7 +94,8 @@ public class GererParkingActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.action_Ajouter:
-              Toast.makeText(GererParkingActivity.this, "Ajouter",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(GererParkingActivity.this, VehiculeFormActivity.class);
+                startActivity(intent);
                 break;
             case android.R.id.home:
                 Toast.makeText(GererParkingActivity.this, "Home",Toast.LENGTH_SHORT).show();
