@@ -8,6 +8,7 @@ import android.view.View;
 import com.example.taguirregabiria2016.loc44.Login.LoginActivity;
 import com.example.taguirregabiria2016.loc44.R;
 import com.example.taguirregabiria2016.loc44.accueuil.MainActivity;
+import com.example.taguirregabiria2016.loc44.location.LocationActivity;
 import com.example.taguirregabiria2016.loc44.ui.UserFormActivity;
 import com.example.taguirregabiria2016.loc44.ui.UserListActivity;
 import com.example.taguirregabiria2016.loc44.ui.VehiculeFormActivity;
@@ -39,5 +40,13 @@ public class caActivity extends AppCompatActivity {
     public void listerLesVehicules(View view) {
         Intent intent = new Intent(caActivity.this, VehiculeListActivity.class);
         startActivity(intent);
+    }
+
+    public void ajouterUneLocation(View view) {
+        Intent intent = new Intent(caActivity.this, LocationActivity.class);
+        startActivity(intent);
+    }
+
+    public void listerLesLocations(View view) {
     }
 }

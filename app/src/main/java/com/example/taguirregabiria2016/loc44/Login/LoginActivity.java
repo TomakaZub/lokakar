@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("*** Login Gerant ***", g.toString());
                 isCorrect = true;
 
-                showToast(LoginActivity.this, "Bonjour\n" + g.getPrenom() + " " + g.getNom());
+                showToast(LoginActivity.this, "Bienvenue\n" + g.getPrenom() + " " + g.getNom());
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             } else {

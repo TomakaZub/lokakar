@@ -9,7 +9,7 @@ import java.util.List;
 public class Client extends Personne {
 
     private Adresse adresse;
-    private List<Location>locationList;
+    private List<Location> locationList;
 
     public Client(Personne personne, List<Location> locationList) {
         super(personne);
@@ -30,5 +30,10 @@ public class Client extends Personne {
                 "adresse=" + adresse +
                 ", locationList=" + locationList +
                 '}';
+    }
+
+    public String toSpinnerItem() {
+
+        return getPrenom() + " " + getNom() + " (" + getEmail() + " / " + getTelephone() + ")";
     }
 }

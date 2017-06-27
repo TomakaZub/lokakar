@@ -38,7 +38,7 @@
             android:label="Véhicules en cours de location" />
         <activity
             android:name=".location.alouerActivity"
-            android:label="Véhicules prêts a etre louer" />
+            android:label="Véhicules prêts à être loué" />
         <activity android:name=".ui.UserFormActivity" />
         <activity android:name=".ui.UserListActivity" />
         <activity android:name=".ui.VehiculeFormActivity" />

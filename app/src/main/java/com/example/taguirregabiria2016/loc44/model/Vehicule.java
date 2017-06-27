@@ -103,4 +103,9 @@ public class Vehicule {
                 ", prixJour=" + prixJour +
                 '}';
     }
+
+    public String toSpinnerItem () {
+
+        return marque + " " + modele + " (" + immatriculation + ") - " + String.valueOf(prixJour) + "€/jour";
+    }
 }
