@@ -17,15 +17,15 @@ public class AdresseDAO {
     private final static String QUERY_CREATE_TABLE_ADRESSE = "create table if not exists "
             + "adresses ("
             + "id integer primary key autoincrement, "
-            + "numero text"
-            + "type text"
-            + "voie text"
-            + "supplement text"
-            + "code_postal text"
-            + "ville text"
+            + "numero text, "
+            + "type text, "
+            + "voie text, "
+            + "supplement text, "
+            + "code_postal text ,"
+            + "ville text ,"
             + "pays text)";
 
-    private final static String TABLE_NAME = "gerants";
+    private final static String TABLE_NAME = "adresses";
 
     public static void createTable(SQLiteDatabase db) {
 

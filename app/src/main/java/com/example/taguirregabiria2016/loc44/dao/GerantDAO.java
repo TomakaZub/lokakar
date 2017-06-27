@@ -42,7 +42,7 @@ public class GerantDAO {
         values.put("prenom", g.getNom());
         values.put("telephone", g.getNom());
         values.put("email", g.getNom());
-        values.put("adresse_id", AdresseDAO.insertAdresse(g.getAdresse()));
+        values.put("adresse_id", g.getAdresse().getId());//AdresseDAO.insertAdresse(g.getAdresse()));
         values.put("tel_pro", g.getNom());
         values.put("email_pro", g.getNom());
         values.put("mot_de_passe", g.getNom());
@@ -61,7 +61,7 @@ public class GerantDAO {
         values.put("prenom", g.getNom());
         values.put("telephone", g.getNom());
         values.put("email", g.getNom());
-        values.put("adresse_id", AdresseDAO.updateAdresse(g.getAdresse()));
+        values.put("adresse_id", g.getAdresse().getId());//AdresseDAO.updateAdresse(g.getAdresse()));
         values.put("tel_pro", g.getNom());
         values.put("email_pro", g.getNom());
         values.put("mot_de_passe", g.getNom());
@@ -114,7 +114,7 @@ public class GerantDAO {
 
         Cursor c = db.query(TABLE_NAME,
                 new String[]{"id", "nom", "prenom", "telephone", "email", "adresse_id", "tel_pro", "email_pro", "mot_de_passe"},
-                "email_pro=? and mot_de_passe=?",
+                "email_pro like ? and mot_de_passe like ?",
                 new String[]{emailPro, motDePasse}, null, null, null);
         Gerant g;
 

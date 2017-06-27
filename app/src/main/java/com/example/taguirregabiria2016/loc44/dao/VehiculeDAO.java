@@ -25,7 +25,7 @@ public class VehiculeDAO {
             + "album text, "
             + "prix_jour real)";
 
-    private final static String TABLE_NAME = "VEHICULES";
+    private final static String TABLE_NAME = "vehicules";
 
     public static void createTable(SQLiteDatabase db) {
 

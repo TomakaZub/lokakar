@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -56,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
         email = mEmailView.getText().toString();
         mdp = mPasswordView.getText().toString();
 
+        Log.d("*** Login email ***", email);
+        Log.d("*** Login mdp ***", mdp);
+
         if (BaseDAO.isDBEmpty()) {
             BaseDAO.generateData();
         }
@@ -64,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
             Gerant g = GerantDAO.verifGerant(email, mdp);
 
             if (g != null) {
+                Log.d("*** Login Gerant ***", g.toString());
                 isCorrect = true;
                 Toast.makeText(LoginActivity.this, "Bonjour " + g.getPrenom() + " " + g.getNom(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);

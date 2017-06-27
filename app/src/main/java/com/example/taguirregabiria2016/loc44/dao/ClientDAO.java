@@ -18,7 +18,7 @@ import java.util.List;
 public class ClientDAO {
 
     private final static String QUERY_CREATE_TABLE_CLIENT = "create table if not exists "
-            + "client ("
+            + "clients ("
             + "id integer primary key autoincrement, "
             + "nom text, "
             + "prenom text, "
@@ -41,7 +41,7 @@ public class ClientDAO {
         values.put("prenom", c.getNom());
         values.put("telephone", c.getNom());
         values.put("email", c.getNom());
-        values.put("adresse_id", AdresseDAO.insertAdresse(c.getAdresse()));
+        values.put("adresse_id", c.getAdresse().getId());//AdresseDAO.insertAdresse(c.getAdresse()));
 
         return BaseDAO.getDB().insert(TABLE_NAME, null, values);
     }

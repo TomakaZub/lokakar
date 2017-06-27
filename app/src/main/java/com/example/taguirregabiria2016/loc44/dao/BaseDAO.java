@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.taguirregabiria2016.loc44.model.Adresse;
 import com.example.taguirregabiria2016.loc44.model.Agence;
@@ -31,7 +32,7 @@ public class BaseDAO extends SQLiteOpenHelper {
     private final static String QUERY_DELETE_TABLE_CLIENT = "drop table if exists agences";
     private final static String QUERY_DELETE_TABLE_GERANT = "drop table if exists agences";
     private final static String QUERY_DELETE_TABLE_LOCATION = "drop table if exists agences";
-//  private final static String QUERY_DELETE_TABLE_PERSONNE = "drop table if exists agences";
+    //  private final static String QUERY_DELETE_TABLE_PERSONNE = "drop table if exists agences";
 //  private final static String QUERY_DELETE_TABLE_UTILISATION = "drop table if exists agences";
     private final static String QUERY_DELETE_TABLE_VEHICULE = "drop table if exists agences";
 
@@ -110,7 +111,7 @@ public class BaseDAO extends SQLiteOpenHelper {
         return db;
     }
 
-    public static boolean isDBEmpty () {
+    public static boolean isDBEmpty() {
 
         Cursor c = db.query("agences",
                 new String[]{"id", "gerant_id"}, null, null, null, null, null);
@@ -125,23 +126,23 @@ public class BaseDAO extends SQLiteOpenHelper {
     public static void generateData() {
 
 
-        Adresse[]adresses = {
-                new Adresse ("3", "rue", "des aciéries", "4e étage", "42000", "Saint-Etienne", "France"),
-                new Adresse ("15", "rue", "Jules Ledin", "4e étage", "42000", "Saint-Etienne", "France"),
-                new Adresse ("45", "rue", "Charles de Gaule", "Agence Lokakar", "42000", "Saint-Etienne", "France"),
-                new Adresse ("2", "rue", "Inkermann", "", "59000", "Lille", "France")};
+        Adresse[] adresses = {
+                new Adresse("3", "rue", "des aciéries", "4e étage", "42000", "Saint-Etienne", "France"),
+                new Adresse("15", "rue", "Jules Ledin", "4e étage", "42000", "Saint-Etienne", "France"),
+                new Adresse("45", "rue", "Charles de Gaule", "Agence Lokakar", "42000", "Saint-Etienne", "France"),
+                new Adresse("2", "rue", "Inkermann", "", "59000", "Lille", "France")};
 
         String[] photos_peugeot1 = {"peugeot_208_1_exterieur", "peugeot_208_1_interieur"};
         String[] photos_polo1 = {"polo_1_exterieur", "polo_1_interieur"};
         String[] photos_fordgalaxy1 = {"ford_galaxy_1_exterieur", "ford_galaxy_1_coffre"};
 
-        Vehicule[]vehicules = {
+        Vehicule[] vehicules = {
                 new Vehicule("Peugeot", "208", "BH-KJE-FY", Utilisation.ROUTIERE, array2List(photos_peugeot1), 45.0),
                 new Vehicule("Volkswagen", "Polo", "DS-CSR-AS", Utilisation.CITADINE, array2List(photos_polo1), 50.0),
                 new Vehicule("Ford", "Galaxy", "BD-KLM-QS", Utilisation.FAMILIALE, array2List(photos_fordgalaxy1), 60.0)
         };
 
-        Personne[]p = {
+        Personne[] p = {
                 new Personne("Maujean", "Benoit", "0645782345", "bmaujean@free.fr", adresses[1]),
                 new Personne("Lux", "Guy", "0423568912", "glux@laposte.fr", adresses[2]),
                 new Personne("Aubry", "Martine", "0645789412", "maubry@orange.fr", adresses[3])
@@ -154,35 +155,47 @@ public class BaseDAO extends SQLiteOpenHelper {
                 new Client(p[2], null)
         };
 
-        List<Location>locationList = new ArrayList<>();
+        List<Location> locationList = new ArrayList<>();
 
         Agence agence = new Agence(gerant, array2List(vehicules), locationList, adresses[0]);
 
-        for (Adresse item: adresses) AdresseDAO.insertAdresse(item);
-        for (Vehicule item:vehicules) VehiculeDAO.insertVehicule(item);
+        Long r;
+        for (Adresse item : adresses) {
+            r = AdresseDAO.insertAdresse(item);
+            Log.d("*** New Data ***", "Inserted Adresse's id : " + r);
+        }
+        for (Vehicule item : vehicules) {
+            r = VehiculeDAO.insertVehicule(item);
+            Log.d("*** New Data ***", "Inserted Vehicule's id : " + r);
+        }
 
-        GerantDAO.insertGerant(gerant);
-        for (Client item:clients) ClientDAO.insertClient(item);
+        r = GerantDAO.insertGerant(gerant);
+        Log.d("*** New Data ***", "Inserted Gerant's id : " + r);
+        for (Client item : clients) {
+            r = ClientDAO.insertClient(item);
+            Log.d("*** New Data ***", "Inserted Client's id : " + r);
+        }
 
         //TODO: check agenceId
-        long agenceID = AgenceDAO.insertAgence(agence);
+        r = AgenceDAO.insertAgence(agence);
+        Log.d("*** New Data ***", "Inserted Agence's id : " + r);
     }
 
-    protected static List<String>array2List(String[]tab) {
+    protected static List<String> array2List(String[] tab) {
 
-        List<String>list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
 
-        for (String item:tab) {
+        for (String item : tab) {
             list.add(item);
         }
         return list;
     }
 
-    protected static List<Vehicule>array2List(Vehicule[]tab) {
+    protected static List<Vehicule> array2List(Vehicule[] tab) {
 
-        List<Vehicule>list = new ArrayList<>();
+        List<Vehicule> list = new ArrayList<>();
 
-        for (Vehicule item:tab) {
+        for (Vehicule item : tab) {
             list.add(item);
         }
         return list;
