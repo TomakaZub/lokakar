@@ -87,15 +87,8 @@ public class LoginActivity extends AppCompatActivity {
      * @return
      */
     private boolean isEmailValid(String email) {
-//        boolean result = false;
-//        String mEmail = mEmailView.getText().toString();
-//        if (mEmail.equals("admin@hotmail.fr")) {
-//            result = true;
-//        } else {
-//            mEmailView.setError("Email invalide !");
-//        }
+
           return email.contains("@");
-//        return result;
     }
 
     /***
@@ -104,14 +97,7 @@ public class LoginActivity extends AppCompatActivity {
      * @return
      */
     private boolean isPasswordValid(String password) {
-//        boolean result = false;
-//        String mPassword = mPasswordView.getText().toString();
-//        if (mPassword.length() > 4 && mPassword.equals("admin")) {
-//            result = true;
-//        } else {
-//            mPasswordView.setError("Mot de passe invalide !");
-//        }
-//        return result;
+
         return (password.length()>=4);
     }
 

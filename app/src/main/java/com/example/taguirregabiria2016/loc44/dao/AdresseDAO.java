@@ -4,9 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.taguirregabiria2016.loc44.Login.LoginActivity;
 import com.example.taguirregabiria2016.loc44.model.Adresse;
-import com.example.taguirregabiria2016.loc44.model.Gerant;
 
 /**
  * Created by ojeanmarie2016 on 26/06/2017.
