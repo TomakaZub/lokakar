@@ -89,7 +89,6 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isEmailValid(String email) {
 
           return email.contains("@");
-
     }
 
     /***
