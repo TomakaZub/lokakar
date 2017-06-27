@@ -112,4 +112,41 @@ public class VehiculeDAO {
         return new Vehicule(id, marque, modele, immatriculation, utilisation, album, prixJour);
     }
 
+    public static List<Vehicule> getAllVehicules() {
+
+       SQLiteDatabase db = BaseDAO.getDB();
+
+        Cursor c = db.query(TABLE_NAME,
+                new String[]{"id", "marque", "modele", "immatriculation", "utilisation", "album", "prix_jour"},
+                null, null, null, null, null);
+        List<Vehicule> vehicules = new ArrayList<>();
+
+        if (c.getCount() == 0) {
+            c.close();
+            return vehicules;
+        }
+
+        while (c.moveToNext()) {
+
+            int id = c.getInt(0);
+            String marque = c.getString(1);
+            String modele = c.getString(2);
+            String immatriculation = c.getString(3);
+            int utilisation = c.getInt(4);
+            String album = c.getString(5);
+            Double prixJour = c.getDouble(6);
+
+            List<String>photos = new ArrayList<>();
+            String[]dummy = album.split(";");
+            for (String item:dummy) {
+                photos.add(item);
+            }
+            vehicules.add(new Vehicule(id, marque, modele, immatriculation, utilisation, photos, prixJour));
+        }
+        c.close();
+
+        return vehicules;
+    }
+
+
 }
