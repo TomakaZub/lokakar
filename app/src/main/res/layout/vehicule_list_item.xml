@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fond"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFB3B3"
+    android:orientation="vertical"
+    android:paddingLeft="8dp">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/vehiculeBrand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#230A0A"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/vehiculeRegistration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#230A0A"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/vehiculeModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#230A0A"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/vehiculeUtilisation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#230A0A"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</LinearLayout>

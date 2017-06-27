@@ -9,6 +9,7 @@ import com.example.taguirregabiria2016.loc44.model.Client;
 import com.example.taguirregabiria2016.loc44.model.Location;
 import com.example.taguirregabiria2016.loc44.model.Personne;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,9 +39,9 @@ public class ClientDAO {
         ContentValues values = new ContentValues();
 
         values.put("nom", c.getNom());
-        values.put("prenom", c.getNom());
-        values.put("telephone", c.getNom());
-        values.put("email", c.getNom());
+        values.put("prenom", c.getPrenom());
+        values.put("telephone", c.getTelephone());
+        values.put("email", c.getEmail());
         values.put("adresse_id", c.getAdresse().getId());//AdresseDAO.insertAdresse(c.getAdresse()));
 
         return BaseDAO.getDB().insert(TABLE_NAME, null, values);
@@ -54,9 +55,9 @@ public class ClientDAO {
         args[0] = String.valueOf(c.getId());
 
         values.put("nom", c.getNom());
-        values.put("prenom", c.getNom());
-        values.put("telephone", c.getNom());
-        values.put("email", c.getNom());
+        values.put("prenom", c.getPrenom());
+        values.put("telephone", c.getTelephone());
+        values.put("email", c.getEmail());
         values.put("adresse_id", AdresseDAO.updateAdresse(c.getAdresse()));
 
         return BaseDAO.getDB().update(TABLE_NAME, values, "id=?", args);
@@ -98,6 +99,42 @@ public class ClientDAO {
         c.close();
 
         return client;
+    }
+
+    public static List<Client> getAllClients() {
+
+        SQLiteDatabase db = BaseDAO.getDB();
+
+        Cursor c = db.query(TABLE_NAME,
+                new String[]{"id", "nom", "prenom", "telephone", "email", "adresse_id"},
+                null, null, null, null, null);
+        List<Client> clients = new ArrayList<>();
+
+        if (c.getCount() == 0) {
+            c.close();
+            return clients;
+        }
+
+        while (c.moveToNext()) {
+
+            int id = c.getInt(0);
+            String nom = c.getString(1);
+            String prenom = c.getString(2);
+            String telephone = c.getString(3);
+            String email = c.getString(4);
+            int adresseId = c.getInt(5);
+
+            Adresse adresse = AdresseDAO.getAdresse(adresseId);
+            Personne p = new Personne(id, nom, prenom, telephone, email, adresse);
+
+            //TODO: Récupérer la liste des locations client
+            List<Location> locationList = null;
+
+            clients.add(new Client(p, locationList));
+        }
+        c.close();
+
+        return clients;
     }
 
 }

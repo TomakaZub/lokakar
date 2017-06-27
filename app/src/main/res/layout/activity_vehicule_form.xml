@@ -68,12 +68,14 @@
                 android:padding="8dp">
 
                 <CheckBox
+                    android:id="@+id/utilisationCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Citadine"/>
 
                 <CheckBox
+                    android:id="@+id/utilisationRoad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -88,12 +90,14 @@
                 android:padding="8dp">
 
                 <CheckBox
+                    android:id="@+id/utilisationFamily"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Familiale"/>
 
                 <CheckBox
+                    android:id="@+id/utilisationUtility"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -108,12 +112,14 @@
                 android:padding="8dp">
 
                 <CheckBox
+                    android:id="@+id/utilisationSport"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Sportive"/>
 
                 <CheckBox
+                    android:id="@+id/utilisationMonoSpace"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

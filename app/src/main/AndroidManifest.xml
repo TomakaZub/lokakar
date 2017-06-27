@@ -14,18 +14,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login.LoginActivity" android:label="Connexion">
+        <activity
+            android:name=".accueuil.MainActivity"
+            android:label="Accueuil" />
+        <activity android:name=".Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".accueuil.MainActivity" android:label="Accueuil"/>
-        <activity android:name=".gererParking.GererParkingActivity" android:label="Gerer le parking"/>
-        <activity android:name=".search.searchActivity" android:label="Chercher un véhicule"/>
-        <activity android:name=".chiffreAffaire.caActivity" android:label="Chiffre d'affaire" />
-        <activity android:name=".location.louerActivity" android:label="Véhicules en cours de location"/>
-        <activity android:name=".location.alouerActivity" android:label="Véhicules prêts a etre louer"></activity>
+        <activity
+            android:name=".gererParking.GererParkingActivity"
+            android:label="Gerer le parking" />
+        <activity
+            android:name=".search.searchActivity"
+            android:label="Chercher un véhicule" />
+        <activity
+            android:name=".chiffreAffaire.caActivity"
+            android:label="Chiffre d&apos;affaire" />
+        <activity
+            android:name=".location.louerActivity"
+            android:label="Véhicules en cours de location" />
+        <activity
+            android:name=".location.alouerActivity"
+            android:label="Véhicules prêts a etre louer" />
+        <activity android:name=".ui.UserFormActivity" />
+        <activity android:name=".ui.UserListActivity" />
+        <activity android:name=".ui.VehiculeFormActivity" />
+        <activity android:name=".ui.VehiculeListActivity"></activity>
     </application>
 
 </manifest>

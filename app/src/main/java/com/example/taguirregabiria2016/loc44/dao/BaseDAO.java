@@ -125,7 +125,6 @@ public class BaseDAO extends SQLiteOpenHelper {
 
     public static void generateData() {
 
-
         Adresse[] adresses = {
                 new Adresse("3", "rue", "des aciéries", "4e étage", "42000", "Saint-Etienne", "France"),
                 new Adresse("15", "rue", "Jules Ledin", "4e étage", "42000", "Saint-Etienne", "France"),

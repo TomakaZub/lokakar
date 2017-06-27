@@ -1,10 +1,13 @@
 package com.example.taguirregabiria2016.loc44.Login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -73,7 +76,8 @@ public class LoginActivity extends AppCompatActivity {
             if (g != null) {
                 Log.d("*** Login Gerant ***", g.toString());
                 isCorrect = true;
-                Toast.makeText(LoginActivity.this, "Bonjour " + g.getPrenom() + " " + g.getNom(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(LoginActivity.this, "Bonjour " + g.getPrenom() + " " + g.getNom(), Toast.LENGTH_SHORT).show();
+                showToast(LoginActivity.this, "Bonjour\n" + g.getPrenom() + " " + g.getNom());
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -106,5 +110,25 @@ public class LoginActivity extends AppCompatActivity {
         String mdp = mPasswordView.getText().toString();
         login(email, mdp);
     }
+
+    private void showToast(Context context, String message) {
+
+        // inflater
+        LayoutInflater inflater = LayoutInflater.from(context);
+
+        // view
+        View view = inflater.inflate(R.layout.accueil, null);
+
+        TextView tvMessage = (TextView)view.findViewById(R.id.message);
+        tvMessage.setText("« " + message + " »");
+
+        Toast toast = new Toast(context);
+        toast.setView(view);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0,0);
+
+        toast.show();
+    }
+
 }
 
