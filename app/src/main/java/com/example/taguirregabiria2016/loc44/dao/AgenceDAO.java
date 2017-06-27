@@ -21,7 +21,7 @@ public class AgenceDAO {
     private final static String QUERY_CREATE_TABLE_AGENCE = "create table if not exists "
             + "agences ("
             + "id integer primary key autoincrement, "
-            + "gerant_id integer"
+            + "gerant_id integer, "
             + "adresse_id integer)";
 
     private final static String TABLE_NAME = "agences";

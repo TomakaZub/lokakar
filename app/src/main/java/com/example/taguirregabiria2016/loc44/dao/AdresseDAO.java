@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.taguirregabiria2016.loc44.Login.LoginActivity;
 import com.example.taguirregabiria2016.loc44.model.Adresse;
 import com.example.taguirregabiria2016.loc44.model.Gerant;
 
@@ -16,15 +17,15 @@ public class AdresseDAO {
     private final static String QUERY_CREATE_TABLE_ADRESSE = "create table if not exists "
             + "adresses ("
             + "id integer primary key autoincrement, "
-            + "numero text"
-            + "type text"
-            + "voie text"
-            + "supplement text"
-            + "code_postal text"
-            + "ville text"
+            + "numero text, "
+            + "type text, "
+            + "voie text, "
+            + "supplement text, "
+            + "code_postal text ,"
+            + "ville text ,"
             + "pays text)";
 
-    private final static String TABLE_NAME = "gerants";
+    private final static String TABLE_NAME = "adresses";
 
     public static void createTable(SQLiteDatabase db) {
 
@@ -33,6 +34,7 @@ public class AdresseDAO {
 
     public static long insertAdresse(Adresse a) {
 
+        SQLiteDatabase db = BaseDAO.getDB();
         ContentValues values = new ContentValues();
 
         values.put("numero", a.getNumero());
@@ -43,11 +45,12 @@ public class AdresseDAO {
         values.put("ville", a.getVille());
         values.put("pays", a.getPays());
 
-        return BaseDAO.getDB().insert(TABLE_NAME, null, values);
+        return db.insert(TABLE_NAME, null, values);
     }
 
     public static long updateAdresse(Adresse a) {
 
+        SQLiteDatabase db = BaseDAO.getDB();
         String[] args = new String[1];
         ContentValues values = new ContentValues();
 
@@ -61,7 +64,7 @@ public class AdresseDAO {
         values.put("ville", a.getVille());
         values.put("pays", a.getPays());
 
-        return BaseDAO.getDB().update(TABLE_NAME, values, "id=?", args);
+        return db.update(TABLE_NAME, values, "id=?", args);
     }
 
     public static long removeAdresse(Adresse a) {
@@ -73,7 +76,9 @@ public class AdresseDAO {
 
         Cursor c = BaseDAO.getDB().query(TABLE_NAME,
                 new String[]{"id", "numero", "type", "voie", "supplement", "code_postal", "ville", "pays"},
-                "id=" + id, null, null, null, null);
+                "id=?",
+                new String[]{String.valueOf(id)},
+                null, null, null);
 
         if (c.getCount() == 0) {
             c.close();

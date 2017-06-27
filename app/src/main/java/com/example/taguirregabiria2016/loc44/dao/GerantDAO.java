@@ -1,6 +1,7 @@
 package com.example.taguirregabiria2016.loc44.dao;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -41,7 +42,7 @@ public class GerantDAO {
         values.put("prenom", g.getNom());
         values.put("telephone", g.getNom());
         values.put("email", g.getNom());
-        values.put("adresse_id", AdresseDAO.insertAdresse(g.getAdresse()));
+        values.put("adresse_id", g.getAdresse().getId());//AdresseDAO.insertAdresse(g.getAdresse()));
         values.put("tel_pro", g.getNom());
         values.put("email_pro", g.getNom());
         values.put("mot_de_passe", g.getNom());
@@ -60,7 +61,7 @@ public class GerantDAO {
         values.put("prenom", g.getNom());
         values.put("telephone", g.getNom());
         values.put("email", g.getNom());
-        values.put("adresse_id", AdresseDAO.updateAdresse(g.getAdresse()));
+        values.put("adresse_id", g.getAdresse().getId());//AdresseDAO.updateAdresse(g.getAdresse()));
         values.put("tel_pro", g.getNom());
         values.put("email_pro", g.getNom());
         values.put("mot_de_passe", g.getNom());
@@ -79,7 +80,7 @@ public class GerantDAO {
         Cursor c = BaseDAO.getDB().query(TABLE_NAME,
                 new String[]{"id", "nom", "prenom", "telephone", "email", "adresse_id", "tel_pro", "email_pro", "mot_de_passe"},
                 "id=" + id, null, null, null, null);
-        Gerant g = null;
+        Gerant g;
 
         if (c.getCount() == 0) {
             c.close();
@@ -95,6 +96,41 @@ public class GerantDAO {
         String telPro = c.getString(6);
         String emailPro = c.getString(7);
         String motDePasse = c.getString(8);
+
+        Adresse adresse = AdresseDAO.getAdresse(adresseId);
+        Personne p = new Personne(id, nom, prenom, telephone, email, adresse);
+        g = new Gerant(p, telPro, emailPro, motDePasse);
+
+        c.close();
+
+        return g;
+    }
+
+    public static Gerant verifGerant(String emailPro, String motDePasse) {
+
+        //query(String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy)
+
+        SQLiteDatabase db = BaseDAO.getDB();
+
+        Cursor c = db.query(TABLE_NAME,
+                new String[]{"id", "nom", "prenom", "telephone", "email", "adresse_id", "tel_pro", "email_pro", "mot_de_passe"},
+                "email_pro like ? and mot_de_passe like ?",
+                new String[]{emailPro, motDePasse}, null, null, null);
+        Gerant g;
+
+        if (c.getCount() == 0) {
+            c.close();
+            return null;
+        }
+        c.moveToFirst();
+
+        int id = c.getInt(0);
+        String nom = c.getString(1);
+        String prenom = c.getString(2);
+        String email = c.getString(3);
+        String telephone = c.getString(4);
+        int adresseId = c.getInt(5);
+        String telPro = c.getString(6);
 
         Adresse adresse = AdresseDAO.getAdresse(adresseId);
         Personne p = new Personne(id, nom, prenom, telephone, email, adresse);
