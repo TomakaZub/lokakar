@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f34236"
     tools:context="com.example.taguirregabiria2016.loc44.gererParking.GererParkingActivity">
+
     <ListView
         android:id="@+id/listeVehicule"
         android:layout_width="match_parent"

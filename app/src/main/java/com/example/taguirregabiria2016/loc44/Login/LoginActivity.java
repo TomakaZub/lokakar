@@ -81,6 +81,10 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
+            else
+            {
+                Toast.makeText(LoginActivity.this,"Identifiants incorrects !",Toast.LENGTH_SHORT).show();
+            }
         }
         return isCorrect;
     }
@@ -92,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean isEmailValid(String email) {
 
+        mEmailView.setError("Email non valide");
           return email.contains("@");
     }
 
@@ -102,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean isPasswordValid(String password) {
 
+        mEmailView.setError("Mot de passe non valide");
         return (password.length()>=4);
     }
 
