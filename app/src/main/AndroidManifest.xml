@@ -14,14 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login.LoginActivity" android:label="Connexion">
+        <activity android:name=".Login.LoginActivity" android:label="app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".accueuil.MainActivity" android:label="Accueuil"/>
-        <activity android:name=".gererParking.GererParkingActivity" android:label="Gerer le parking"/>
+        <activity android:name=".gererParking.GererParkingActivity" android:label="Gerer le parking" android:theme="@style/LoginTheme"/>
         <activity android:name=".search.searchActivity" android:label="Chercher un véhicule"/>
         <activity android:name=".chiffreAffaire.caActivity" android:label="Chiffre d'affaire" />
         <activity android:name=".location.louerActivity" android:label="Véhicules en cours de location"/>

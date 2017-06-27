@@ -2,28 +2,32 @@
 <com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
 
     <!-- Bottom View Start-->
     <LinearLayout
         android:id="@+id/bottom_wrapper"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="3">
+        android:orientation="horizontal">
         <!--What you want to show-->
         <Button
+            android:id="@+id/buttonModify"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="#2094f1"
             android:textColor="#FFF"
-            android:text="Modifier"/>
+            android:text="@string/modifier"
+            android:onClick="edit"/>
         <Button
+            android:id="@+id/buttonDelete"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="#f34236"
             android:textColor="#FFF"
-            android:text="Supprimer" />
+            android:text="@string/supprimer"
+            android:onClick="delete"/>
     </LinearLayout>
     <!-- Bottom View End-->
 

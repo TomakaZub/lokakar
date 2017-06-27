@@ -8,5 +8,7 @@
         <item name="colorAccent">#FFF</item>
         <item name="android:navigationBarColor" tools:targetApi="lollipop">#e33f3f</item>
     </style>
-
+    <style name="LoginTheme" parent="AppTheme">
+        <item name="colorAccent">#000</item>
+    </style>
 </resources>
