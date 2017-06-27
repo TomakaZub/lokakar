@@ -155,4 +155,25 @@ public class LocationDAO {
         return locations;
     }
 
+    public List<Vehicule> getVehicules_ALouer() {
+        List<Vehicule> vehicules_ALouer = new ArrayList<>();
+        SQLiteDatabase db = BaseDAO.getDB();
+
+        // Recuperer la liste de location avec rendu = true
+        String requette = "SELECT id, vehicule_id, debut, fin, client_id, rendu FROM locations WHERE rendu = 1";
+        Cursor c = db.rawQuery(requette,null);
+        if (c.getCount() == 0) {
+            c.close();
+            return vehicules_ALouer;
+        }
+
+        // Pour chaque élément de la liste recuperer l'ID du vehicule et faire un getVehiculebyid() et on l'ajoute a la liste
+        while (c.moveToNext()) {
+            int idVehicule = c.getColumnIndex("vehicule_id");
+            Vehicule vehicule = VehiculeDAO.getVehicule(idVehicule);
+            vehicules_ALouer.add(vehicule);
+        }
+        //retourner la liste
+        return vehicules_ALouer;
+    }
 }

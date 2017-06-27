@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.taguirregabiria2016.loc44.location.louerActivity">
 
+    <ListView
+        android:id="@+id/list_louer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
 </android.support.constraint.ConstraintLayout>
