@@ -1,13 +1,17 @@
 package com.example.taguirregabiria2016.loc44.location;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.taguirregabiria2016.loc44.R;
@@ -17,9 +21,10 @@ import com.example.taguirregabiria2016.loc44.dao.VehiculeDAO;
 import com.example.taguirregabiria2016.loc44.model.Client;
 import com.example.taguirregabiria2016.loc44.model.Location;
 import com.example.taguirregabiria2016.loc44.model.Vehicule;
-import com.example.taguirregabiria2016.loc44.ui.UserFormActivity;
+import com.example.taguirregabiria2016.loc44.ui.ClientFormActivity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class LocationFormActivity extends AppCompatActivity {
@@ -67,6 +72,119 @@ public class LocationFormActivity extends AppCompatActivity {
         endDate = (EditText) findViewById(R.id.endDate);
         endTime = (EditText) findViewById(R.id.endTime);
 
+        startDate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                //To show current date in the datepicker
+                Calendar mcurrentDate = Calendar.getInstance();
+                int mYear = mcurrentDate.get(Calendar.YEAR);
+                int mMonth = mcurrentDate.get(Calendar.MONTH);
+                int mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog mDatePicker = new DatePickerDialog(LocationFormActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+
+                        String day = String.valueOf(selectedday);
+                        String mounth = String.valueOf(selectedmonth + 1);
+
+                        if (day.length() < 2) day = "0" + day;
+                        if (mounth.length() < 2) mounth = "0" + mounth;
+                        String returnedDate = day + "/" + mounth + "/" + String.valueOf(selectedyear);
+
+                        startDate.setText(returnedDate);
+                    }
+                }, mYear, mMonth, mDay);
+                mDatePicker.setTitle("Select date");
+                mDatePicker.show();
+            }
+        });
+
+
+        endDate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                //To show current date in the datepicker
+                Calendar mcurrentDate = Calendar.getInstance();
+                int mYear = mcurrentDate.get(Calendar.YEAR);
+                int mMonth = mcurrentDate.get(Calendar.MONTH);
+                int mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog mDatePicker = new DatePickerDialog(LocationFormActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+
+                        String day = String.valueOf(selectedday);
+                        String mounth = String.valueOf(selectedmonth + 1);
+
+                        if (day.length() < 2) day = "0" + day;
+                        if (mounth.length() < 2) mounth = "0" + mounth;
+                        String returnedDate = day + "/" + mounth + "/" + String.valueOf(selectedyear);
+
+                        endDate.setText(returnedDate);
+                    }
+                }, mYear, mMonth, mDay);
+                mDatePicker.setTitle("Select date");
+                mDatePicker.show();
+            }
+        });
+
+        startTime.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(LocationFormActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+
+                        String hour = String.valueOf(selectedHour);
+                        String minute = String.valueOf(selectedMinute);
+                        if (hour.length()<2) hour = "0" + hour;
+                        if (minute.length()<2) minute = "0" + minute;
+                        startTime.setText(hour + ":" + minute);
+                    }
+                }, hour, minute, true);
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+
+            }
+        });
+
+        endTime.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(LocationFormActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+
+                        String hour = String.valueOf(selectedHour);
+                        String minute = String.valueOf(selectedMinute);
+                        if (hour.length()<2) hour = "0" + hour;
+                        if (minute.length()<2) minute = "0" + minute;
+                        endTime.setText(hour + ":" + minute);
+                    }
+                }, hour, minute, true);
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+
+            }
+        });
+
     }
 
     @Override
@@ -106,7 +224,7 @@ public class LocationFormActivity extends AppCompatActivity {
         Log.d("Ajout Location", "\t" + client.toSpinnerItem() + " :\n\t\tdu " + debutDate + " à " + debutTime + "\n\t\tau " + finDate + " à " + finTime + "\n\t\t" + vehicule.toSpinnerItem());
 
         Location location = new Location(vehicule, debutDate + " " + debutTime, finDate + " " + finTime, client, new ArrayList<String>(), 0);
-        location.setId((int)LocationDAO.insertLocation(location));
+        location.setId((int) LocationDAO.insertLocation(location));
 
         Log.d("Location ajoutée", location.toString());
         finish();
@@ -114,7 +232,7 @@ public class LocationFormActivity extends AppCompatActivity {
 
     public void addClient(View view) {
 
-        Intent intent = new Intent(LocationFormActivity.this, UserFormActivity.class);
+        Intent intent = new Intent(LocationFormActivity.this, ClientFormActivity.class);
         startActivity(intent);
     }
 }

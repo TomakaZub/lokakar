@@ -44,15 +44,6 @@
                     android:textColor="#fff"
                     android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/pickStartDateTime"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:background="@drawable/calendar_picker_button"
-                    android:onClick="pickStart"
-                    android:text="D"
-                    android:textColor="#fff"
-                    android:textSize="10sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -92,15 +83,6 @@
                     android:textColor="#fff"
                     android:textSize="20sp" />
 
-                <Button
-                    android:id="@+id/pickEndDateTime"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:background="@drawable/calendar_picker_button"
-                    android:onClick="pickEnd"
-                    android:text="F"
-                    android:textColor="#fff"
-                    android:textSize="10sp" />
             </LinearLayout>
 
             <LinearLayout
