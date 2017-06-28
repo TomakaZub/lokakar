@@ -43,6 +43,7 @@
         android:hint="Entrer la date de fin"/>
 
     <TextView
+        android:id="@+id/chiffreAffaire"
         android:layout_marginBottom="20dp"
         android:textColor="#ef3f3f"
         android:textAlignment="center"

@@ -11,4 +11,7 @@
     <style name="LoginTheme" parent="AppTheme">
         <item name="colorAccent">#000</item>
     </style>
+    <style name="caTheme" parent="AppTheme">
+        <item name="colorAccent">#b60808</item>
+    </style>
 </resources>

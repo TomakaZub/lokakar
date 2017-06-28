@@ -269,8 +269,13 @@ public class LocationDAO {
     {
         SQLiteDatabase db = BaseDAO.getDB();
         double result = 0;
-        String rqtLocation = "SELECT id, vehicule_id, debut, fin, client_id, rendu FROM locations WHERE debut = ? AND fin = ?";
+        String rqtLocation = "SELECT id, vehicule_id, debut, fin, client_id, rendu " +
+                "FROM locations " +
+                "WHERE " +
+                "debut >= '"+dateDebut+"' AND fin <= '"+dateFin+"'";
+
         Cursor c = db.rawQuery(rqtLocation,null);
+//        Cursor c = db.rawQuery(rqtLocation,new String[]{dateDebut,dateFin,""});
 
         if (c.getCount() == 0) {
             c.close();
