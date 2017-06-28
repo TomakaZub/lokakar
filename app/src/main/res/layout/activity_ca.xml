@@ -9,57 +9,5 @@
     android:background="#e33f3f"
     tools:context="com.example.taguirregabiria2016.loc44.chiffreAffaire.caActivity">
 
-    <Button
-        android:id="@+id/newClient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#952A2A"
-        android:textColor="#ffffff"
-        android:text="Ajouter un client"
-        android:onClick="ajouterUnClient"/>
 
-    <Button
-        android:id="@+id/listClients"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#661D1D"
-        android:textColor="#ffffff"
-        android:text="Liste clients"
-        android:onClick="listerLesClients"/>
-
-    <Button
-        android:id="@+id/newVehicule"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#411313"
-        android:textColor="#ffffff"
-        android:text="Ajouter un véhicule"
-        android:onClick="ajouterUnVehicule"/>
-
-    <Button
-        android:id="@+id/listVehicules"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#300E0E"
-        android:textColor="#ffffff"
-        android:text="Liste véhicules"
-        android:onClick="listerLesVehicules"/>
-
-    <Button
-        android:id="@+id/newLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#411313"
-        android:textColor="#ffffff"
-        android:text="Ajouter une location"
-        android:onClick="ajouterUneLocation"/>
-
-    <Button
-        android:id="@+id/listLocations"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#300E0E"
-        android:textColor="#ffffff"
-        android:text="Liste locations"
-        android:onClick="listerLesLocations"/>
 </LinearLayout>
