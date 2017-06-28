@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#dac300"
-            android:text="Parcking"
+            android:text="Véhicules"
             android:textColor="#FFF"
             android:textSize="20sp"
             android:onClick="Click_gererParking"/>

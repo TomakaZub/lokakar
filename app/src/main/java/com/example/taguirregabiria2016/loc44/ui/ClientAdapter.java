@@ -52,7 +52,7 @@ public class ClientAdapter extends ArrayAdapter<Client> {
         int color = ((position % 2 == 0) ? R.color.userList1 : R.color.userList2);
         viewHolder.ligne.setBackgroundColor(convertView.getResources().getColor(color));
 
-        viewHolder.nom.setText(client.getNom());
+        viewHolder.nom.setText(client.getNom().toUpperCase());
         viewHolder.prenom.setText(client.getPrenom());
         viewHolder.voie.setText(adresse.getNumero()+" "+adresse.getType()+" "+adresse.getVoie());
         viewHolder.ville.setText(adresse.getVille()+" "+adresse.getPays());

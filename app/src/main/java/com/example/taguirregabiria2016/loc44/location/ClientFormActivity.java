@@ -37,19 +37,18 @@ public class ClientFormActivity extends AppCompatActivity {
 
         clients = ClientDAO.getAllClients();
 
+        adapter = new ClientAdapter(ClientFormActivity.this, clients);
+        mListView.setAdapter(adapter);
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Client a = clients.get(position);
+                Client client = clients.get(position);
                 Intent intent = new Intent(ClientFormActivity.this, LocationFormActivity.class);
-                intent.putExtra("client", a.getId());
+                intent.putExtra("client", client.getId());
                 startActivity(intent);
-
             }
         });
-
-        adapter = new ClientAdapter(ClientFormActivity.this, clients);
-        mListView.setAdapter(adapter);
 
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -65,13 +64,10 @@ public class ClientFormActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-                // TODO Auto-generated method stub
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                // TODO Auto-generated method stub
             }
         });
     }

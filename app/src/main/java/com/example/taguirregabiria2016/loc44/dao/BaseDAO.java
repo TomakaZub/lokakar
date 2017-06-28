@@ -130,39 +130,71 @@ public class BaseDAO extends SQLiteOpenHelper {
                 new Adresse("3", "rue", "des aciéries", "", "42000", "Saint-Etienne", "France"),
                 new Adresse("15", "rue", "Jules Ledin", "4e étage", "42000", "Saint-Etienne", "France"),
                 new Adresse("7", "avenue", "François Mitterand", "", "32000", "Auch", "France"),
-                new Adresse("2", "rue", "Inkermann", "", "59000", "Lille", "France")};
+                new Adresse("2", "rue", "Inkermann", "", "59000", "Lille", "France"),
+                new Adresse("1", "rue", "de Clisson", "2e étage", "35000", "Rennes", "France"),
+                new Adresse("105", "avenue", "Aristide Briand", "Code 27105", "35000", "Rennes", "France"),
+                new Adresse("3", "rue", "Jeannne Malivel", "Appartement 168", "35000", "Rennes", "France"),
+                new Adresse("131", "avenue", "Aristide Briand", "9e étage", "35000", "Rennes", "France"),
+                new Adresse("1", "rue", "d'Uppsalla", "8e étage", "35200", "Rennes", "France"),
+                new Adresse("5", "place", "de l'Église", "", "35230", "Saint-Armel", "France"),
+                new Adresse("17", "rue", "de Saint-Malo", "", "35000", "Rennes", "France")};
 
-        String[] photos_peugeot1 = {"peugeot_208_1_exterieur", "peugeot_208_1_interieur"};
-        String[] photos_polo1 = {"polo_1_exterieur", "polo_1_interieur"};
-        String[] photos_fordgalaxy1 = {"ford_galaxy_1_exterieur", "ford_galaxy_1_coffre"};
+        String[] photos_2081 = {"peugeot_208_1"};
+        String[] photos_3081 = {"peugeot_308_1"};
+        String[] photos_3082 = {"peugeot_308_2"};
+        String[] photos_3083 = {"peugeot_308_3"};
+        String[] photos_polo1 = {"volkswagen_polo_1"};
+        String[] photos_polo2 = {"volkswagen_polo_2"};
+        String[] photos_polo3 = {"volkswagen_polo_3"};
+        String[] photos_golf1 = {"volkswagen_golf_1"};
+        String[] photos_golf2 = {"volkswagen_golf_2"};
+        String[] photos_golf3 = {"volkswagen_golf_3"};
+        String[] photos_golf_71 = {"volkswagen_golf_7_1"};
+        String[] photos_c31 = {"citroen_c3_1"};
+        String[] photos_galaxy1 = {"ford_galaxy_1"};
 
         Vehicule[] vehicules = {
-                new Vehicule("Peugeot", "208", "BH-KJE-FY", Utilisation.ROUTIERE, array2List(photos_peugeot1), 45.0),
-                new Vehicule("Volkswagen", "Polo", "DS-CSR-AS", Utilisation.CITADINE, array2List(photos_polo1), 50.0),
-                new Vehicule("Volkswagen", "Golf", "AC-DFR-FJ", Utilisation.CITADINE+Utilisation.ROUTIERE+Utilisation.FAMILIALE, array2List(photos_polo1), 65.0),
-                new Vehicule("Citroën", "C3", "AQS-PAB-LR", Utilisation.CITADINE+Utilisation.ROUTIERE+Utilisation.FAMILIALE, array2List(photos_polo1), 60.0),
-                new Vehicule("Ford", "Galaxy", "BD-KLM-QS", Utilisation.FAMILIALE, array2List(photos_fordgalaxy1), 60.0)
+                new Vehicule("Peugeot", "208", "BH-638-FY", Utilisation.ROUTIERE, array2List(photos_2081), 45.0),
+                new Vehicule("Volkswagen", "Polo", "DS-747-AS", Utilisation.CITADINE+Utilisation.ROUTIERE, array2List(photos_polo1), 50.0),
+                new Vehicule("Volkswagen", "Polo", "AQ-050-HG", Utilisation.CITADINE+Utilisation.ROUTIERE, array2List(photos_polo1), 50.0),
+                new Vehicule("Volkswagen", "Polo", "AV-458-KS", Utilisation.CITADINE+Utilisation.ROUTIERE, array2List(photos_polo1), 50.0),
+                new Vehicule("Volkswagen", "Golf 7", "AC-157-FJ", Utilisation.CITADINE+Utilisation.ROUTIERE+Utilisation.FAMILIALE, array2List(photos_golf_71), 65.0),
+                new Vehicule("Volkswagen", "Golf", "AM-520-LS", Utilisation.CITADINE+Utilisation.ROUTIERE, array2List(photos_golf1), 65.0),
+                new Vehicule("Volkswagen", "Golf", "AY-648-GT", Utilisation.CITADINE+Utilisation.ROUTIERE, array2List(photos_golf2), 65.0),
+                new Vehicule("Volkswagen", "Golf", "DX-209-FE", Utilisation.CITADINE+Utilisation.ROUTIERE+Utilisation.FAMILIALE, array2List(photos_golf3), 65.0),
+                new Vehicule("Citroën", "C3", "AQS-359-LR", Utilisation.CITADINE+Utilisation.ROUTIERE+Utilisation.FAMILIALE, array2List(photos_c31), 60.0),
+                new Vehicule("Ford", "Galaxy", "BD-754-QS", Utilisation.FAMILIALE, array2List(photos_galaxy1), 60.0),
+                new Vehicule("Peugeot", "308", "AZ-302-DS", Utilisation.CITADINE+Utilisation.ROUTIERE+Utilisation.FAMILIALE, array2List(photos_3081), 60.0),
+                new Vehicule("Peugeot", "308", "AP-402-VV", Utilisation.CITADINE+Utilisation.ROUTIERE+Utilisation.FAMILIALE, array2List(photos_3082), 60.0),
+                new Vehicule("Peugeot", "308", "VH-080-AM", Utilisation.CITADINE+Utilisation.ROUTIERE+Utilisation.FAMILIALE, array2List(photos_3083), 60.0)
         };
 
         Personne[] p = {
                 new Personne("Maujean", "Benoit", "0645782345", "bmaujean@free.fr", adresses[1]),
                 new Personne("Lux", "Guy", "0423568912", "glux@laposte.fr", adresses[2]),
-                new Personne("Sevestre", "Sébastien", "0614658437", "ssevestre@orange.fr", adresses[2]),
-                new Personne("Aubry", "Martine", "0645789412", "maubry@orange.fr", adresses[3])
+                new Personne("Sevestre", "Sébastien", "0614658437", "ssevestre@orange.fr", adresses[3]),
+                new Personne("Aubry", "Martine", "0645789412", "maubry@orange.fr", adresses[4]),
+                new Personne("Henry", "Marc", "0645789412", "marc.henri@free.fr", adresses[5]),
+                new Personne("Stahl", "Robert", "0680452197", "rstahl@orange.fr", adresses[6]),
+                new Personne("Remaud", "Pierre", "0650535521", "pieremaud@gmail.com", adresses[7]),
+                new Personne("Lebrun", "Béatrice", "0622564772", "bealebrun@gmail.com", adresses[8]),
+                new Personne("Mazé", "Benoît", "0687526028", "maze.benoit@yahoo.fr", adresses[9]),
+                new Personne("Téhel", "Marie-Josèphe", "0621767583", "mjtehel@free.fr", adresses[10]),
+                new Personne("Vergne", "Anne-France", "0662679802", "annefrance.vergne@club-internet.fr", adresses[11])
         };
 
         Gerant gerant = new Gerant(p[0], "0620547894", "bmaujean@lokakar.fr", "1234");
 
-        Client[] clients = {
-                new Client(p[1], new ArrayList<Location>()),
-                new Client(p[2], new ArrayList<Location>()),
-                new Client(p[3], new ArrayList<Location>())
-        };
+        Client[] clients = new Client[p.length-1];
+
+        for (int i=0;i<p.length-1;i++) {
+            clients[i] = new Client(p[i+1]);
+        }
 
         Location [] locations = {
-                new Location(vehicules[0], "2017/03/05 09:00", "2017/03/08 18:00", clients[0], new ArrayList<String>(), 1),
-                new Location(vehicules[1], "2017/06/19 09:00", "2017/06/25 18:00", clients[0], new ArrayList<String>(), 1),
-                new Location(vehicules[2], "2017/06/24 12:00", "2017/06/30 12:00", clients[1], new ArrayList<String>(), 0)
+                new Location(vehicules[0], "05/03/2017 09:00", "03/08/2017 18:00", clients[0], new ArrayList<String>(), 1),
+                new Location(vehicules[1], "19/06/2017 09:00", "25/06/2017 18:00", clients[0], new ArrayList<String>(), 1),
+                new Location(vehicules[2], "24/06/2017 12:00", "30/06/2017 12:00", clients[1], new ArrayList<String>(), 0)
         };
         // Archivage des locations effectuées et terminées
 //        clients[0].getLocationList().add(locations[0]);

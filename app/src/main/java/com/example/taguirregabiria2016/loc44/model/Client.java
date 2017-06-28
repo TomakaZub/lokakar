@@ -8,20 +8,9 @@ import java.util.List;
 
 public class Client extends Personne {
 
-    private Adresse adresse;
-    private List<Location> locationList;
 
-    public Client(Personne personne, List<Location> locationList) {
+    public Client(Personne personne) {
         super(personne);
-        this.locationList = locationList;
-    }
-
-    public List<Location> getLocationList() {
-        return locationList;
-    }
-
-    public void setLocationList(List<Location> locationList) {
-        this.locationList = locationList;
     }
 
     @Override
@@ -29,8 +18,9 @@ public class Client extends Personne {
         return "Client{" +
                 "nom=" + getNom() +
                 ", prenom=" + getPrenom() +
-                ", adresse=" + adresse +
-                ", locationList=" + locationList +
+                ", téléphone=" + getTelephone() +
+                ", email=" + getEmail() +
+                ", adresse=" + getAdresse() +
                 '}';
     }
 

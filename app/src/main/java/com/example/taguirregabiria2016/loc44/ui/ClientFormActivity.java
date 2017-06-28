@@ -50,7 +50,7 @@ public class ClientFormActivity extends AppCompatActivity {
         adresse.setId(adresseId);
 
         Personne personne = new Personne(userName.getText().toString(), userForname.getText().toString(), userPhoneNumber.getText().toString(), userEmail.getText().toString(), adresse);
-        Client client = new Client(personne, null);
+        Client client = new Client(personne);
 
         ClientDAO.insertClient(client);
 

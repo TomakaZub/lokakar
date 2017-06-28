@@ -36,16 +36,19 @@ public class LocationFormActivity extends AppCompatActivity {
     private static EditText endTime;
 
     private static Spinner spVehicule;
-    private static TextView etClient;
+    private static TextView tvClient;
 
     private static List<Vehicule> vehiculeList;
-    private static List<Client> clientList;
+    private static Client client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
+        /**
+         * Popupmenu Véhicules
+         */
         spVehicule = (Spinner) findViewById(R.id.vehiculeList);
         vehiculeList = VehiculeDAO.getAllVehicules();
         List<String> spVehiculeItems = new ArrayList<>();
@@ -57,24 +60,35 @@ public class LocationFormActivity extends AppCompatActivity {
         vAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spVehicule.setAdapter(vAdapter);
 
-        etClient = (TextView) findViewById(R.id.client);
-        clientList = ClientDAO.getAllClients();
-        List<String> spClientItems = new ArrayList<>();
+        /**
+         * Hydratation du nom du client
+         */
+        tvClient = (TextView)findViewById(R.id.editText);
+        Bundle bundle = getIntent().getExtras();
+        int id = (int)bundle.get("client");
+        client = ClientDAO.getClient(id);
+        tvClient.setText(client.getPrenom()+" "+client.getNom().toUpperCase());
 
-        for (Client item : clientList) {
-            spClientItems.add(item.toSpinnerItem());
-        }
-
+        /**
+         * Hydratation des champs date et heure
+         */
         startDate = (EditText) findViewById(R.id.startDate);
         startTime = (EditText) findViewById(R.id.startTime);
         endDate = (EditText) findViewById(R.id.endDate);
         endTime = (EditText) findViewById(R.id.endTime);
 
+        Calendar cal = Calendar.getInstance();
+        String today = cal.get(Calendar.DAY_OF_MONTH)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.YEAR);
+        startDate.setText(today);
+        endDate.setText(today);
+        startTime.setText("09:00");
+        endDate.setText("09:00");
+
         startDate.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
+
                 //To show current date in the datepicker
                 Calendar mcurrentDate = Calendar.getInstance();
                 int mYear = mcurrentDate.get(Calendar.YEAR);
@@ -104,7 +118,7 @@ public class LocationFormActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
+
                 //To show current date in the datepicker
                 Calendar mcurrentDate = Calendar.getInstance();
                 int mYear = mcurrentDate.get(Calendar.YEAR);
@@ -133,7 +147,7 @@ public class LocationFormActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
+
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
@@ -160,7 +174,7 @@ public class LocationFormActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
+
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);

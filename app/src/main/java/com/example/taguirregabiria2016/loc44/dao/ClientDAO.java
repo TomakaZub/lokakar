@@ -42,7 +42,7 @@ public class ClientDAO {
         values.put("prenom", c.getPrenom());
         values.put("telephone", c.getTelephone());
         values.put("email", c.getEmail());
-        values.put("adresse_id", c.getAdresse().getId());//AdresseDAO.insertAdresse(c.getAdresse()));
+        values.put("adresse_id", c.getAdresse().getId());
 
         return BaseDAO.getDB().insert(TABLE_NAME, null, values);
     }
@@ -88,13 +88,9 @@ public class ClientDAO {
         String telephone = c.getString(4);
         int adresseId = c.getInt(5);
 
-        Adresse adresse = AdresseDAO.getAdresse(adresseId);
-        Personne p = new Personne(id, nom, prenom, telephone, email, adresse);
+        Personne p = new Personne(id, nom, prenom, telephone, email, AdresseDAO.getAdresse(adresseId));
 
-        //TODO: Récupérer la liste des locations client
-        List<Location> locationList = null;
-
-        client = new Client(p, locationList);
+        client = new Client(p);
 
         c.close();
 
@@ -124,13 +120,9 @@ public class ClientDAO {
             String email = c.getString(4);
             int adresseId = c.getInt(5);
 
-            Adresse adresse = AdresseDAO.getAdresse(adresseId);
-            Personne p = new Personne(id, nom, prenom, telephone, email, adresse);
+            Personne p = new Personne(id, nom, prenom, telephone, email, AdresseDAO.getAdresse(adresseId));
 
-            //TODO: Récupérer la liste des locations client
-            List<Location> locationList = null;
-
-            clients.add(new Client(p, locationList));
+            clients.add(new Client(p));
         }
         c.close();
 
@@ -153,21 +145,18 @@ public class ClientDAO {
 
         while (c.moveToNext()) {
 
-            int id = c.getInt(0);
             String nom = c.getString(1);
-            String prenom = c.getString(2);
-            String telephone = c.getString(3);
-            String email = c.getString(4);
-            int adresseId = c.getInt(5);
-
-            Adresse adresse = AdresseDAO.getAdresse(adresseId);
-            Personne p = new Personne(id, nom, prenom, telephone, email, adresse);
-
-            //TODO: Récupérer la liste des locations client
-            List<Location> locationList = null;
 
             if (nom.toLowerCase().contains(filter.toLowerCase())) {
-                clients.add(new Client(p, locationList));
+
+                int id = c.getInt(0);
+                String prenom = c.getString(2);
+                String telephone = c.getString(3);
+                String email = c.getString(4);
+                int adresseId = c.getInt(5);
+
+                Adresse adresse = AdresseDAO.getAdresse(adresseId);
+                clients.add(new Client(new Personne(id, nom, prenom, telephone, email, adresse)));
             }
         }
         c.close();
