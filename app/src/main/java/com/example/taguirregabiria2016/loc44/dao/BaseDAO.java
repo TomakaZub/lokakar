@@ -160,9 +160,9 @@ public class BaseDAO extends SQLiteOpenHelper {
         };
 
         Location [] locations = {
-                new Location(vehicules[0], "05/03/2017 09:00", "08/03/2017 18:00", clients[0], new ArrayList<String>(), 1),
-                new Location(vehicules[1], "19/06/2017 09:00", "23/06/2017 18:00", clients[0], new ArrayList<String>(), 1),
-                new Location(vehicules[2], "24/06/2017 12:00", "30/06/2017 12:00", clients[1], new ArrayList<String>(), 0)
+                new Location(vehicules[0], "2017/03/05 09:00", "2017/03/08 18:00", clients[0], new ArrayList<String>(), 1),
+                new Location(vehicules[1], "2017/06/19 09:00", "2017/06/25 18:00", clients[0], new ArrayList<String>(), 1),
+                new Location(vehicules[2], "2017/06/24 12:00", "2017/06/30 12:00", clients[1], new ArrayList<String>(), 0)
         };
         // Archivage des locations effectuées et terminées
 //        clients[0].getLocationList().add(locations[0]);

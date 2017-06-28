@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.taguirregabiria2016.loc44.ui.UserListActivity">
+    tools:context="com.example.taguirregabiria2016.loc44.ui.ClientListActivity">
 
     <ListView
         android:id="@+id/userList"

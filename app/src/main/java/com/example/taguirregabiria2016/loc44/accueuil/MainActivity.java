@@ -12,7 +12,7 @@ import com.example.taguirregabiria2016.loc44.location.alouerActivity;
 import com.example.taguirregabiria2016.loc44.chiffreAffaire.caActivity;
 import com.example.taguirregabiria2016.loc44.location.louerActivity;
 import com.example.taguirregabiria2016.loc44.search.searchActivity;
-import com.example.taguirregabiria2016.loc44.ui.UserListActivity;
+import com.example.taguirregabiria2016.loc44.ui.ClientListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 
     /**
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void listerLesClients(View view) {
-        Intent intent = new Intent(MainActivity.this, UserListActivity.class);
+        Intent intent = new Intent(MainActivity.this, ClientListActivity.class);
         startActivity(intent);
     }
 

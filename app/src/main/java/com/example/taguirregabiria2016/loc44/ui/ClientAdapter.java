@@ -21,9 +21,9 @@ import java.util.List;
  * Created by ojeanmarie2016 on 27/06/2017.
  */
 
-public class UserAdapter extends ArrayAdapter<Client> {
+public class ClientAdapter extends ArrayAdapter<Client> {
 
-    public UserAdapter(@NonNull Context context,@NonNull List<Client> objects) {
+    public ClientAdapter(@NonNull Context context, @NonNull List<Client> objects) {
         super(context, 0, objects);
     }
 

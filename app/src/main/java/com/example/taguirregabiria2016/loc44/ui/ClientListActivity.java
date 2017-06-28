@@ -14,7 +14,7 @@ import com.example.taguirregabiria2016.loc44.model.Client;
 
 import java.util.List;
 
-public class UserListActivity extends AppCompatActivity {
+public class ClientListActivity extends AppCompatActivity {
 
     ListView mListView;
     List<Client> clients;
@@ -28,7 +28,7 @@ public class UserListActivity extends AppCompatActivity {
 
         clients = ClientDAO.getAllClients();
 
-       UserAdapter adapter = new UserAdapter(UserListActivity.this, clients);
+       ClientAdapter adapter = new ClientAdapter(ClientListActivity.this, clients);
         mListView.setAdapter(adapter);
     }
 
@@ -48,7 +48,7 @@ public class UserListActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.action_Ajouter:
-                Intent intent = new Intent(UserListActivity.this, UserFormActivity.class);
+                Intent intent = new Intent(ClientListActivity.this, ClientListActivity.class);
                 startActivity(intent);
                 break;
         }

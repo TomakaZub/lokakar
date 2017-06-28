@@ -15,7 +15,7 @@ import com.example.taguirregabiria2016.loc44.model.Adresse;
 import com.example.taguirregabiria2016.loc44.model.Client;
 import com.example.taguirregabiria2016.loc44.model.Personne;
 
-public class UserFormActivity extends AppCompatActivity {
+public class ClientFormActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

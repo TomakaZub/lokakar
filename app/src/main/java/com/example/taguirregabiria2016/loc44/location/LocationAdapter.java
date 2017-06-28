@@ -78,7 +78,7 @@ public class LocationAdapter extends ArrayAdapter<Location> {
 
         double prix = (double) days * location.getVehicule().getPrixJour();
 
-        viewHolder.prix.setText(String.valueOf(prix) + "€");
+        viewHolder.prix.setText(String.valueOf(prix) + "0€");
 
 //        Log.d("*** list adapetr ***", Location.getDebut());
 //        Log.d("*** list adapetr ***", Location.getFin());

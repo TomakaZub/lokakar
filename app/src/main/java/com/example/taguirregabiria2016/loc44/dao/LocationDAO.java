@@ -3,6 +3,7 @@ package com.example.taguirregabiria2016.loc44.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 
 import com.example.taguirregabiria2016.loc44.model.Client;
@@ -48,8 +49,8 @@ public class LocationDAO {
         }
 
         values.put("vehicule_id", l.getVehicule().getId());
-        values.put("debut", l.getDebut());
-        values.put("fin", l.getFin());
+        values.put("debut", convertDate(l.getDebut()));
+        values.put("fin", convertDate(l.getFin()));
         values.put("client_id", l.getClient().getId());
         values.put("album", album);
         values.put("rendu", l.getRendu());
@@ -73,8 +74,8 @@ public class LocationDAO {
         }
 
         values.put("vehicule_id", l.getVehicule().getId());
-        values.put("debut", l.getDebut());
-        values.put("fin", l.getFin());
+        values.put("debut", convertDate(l.getDebut()));
+        values.put("fin", convertDate(l.getFin()));
         values.put("client_id", l.getClient().getId());
         values.put("album", album);
         values.put("rendu", l.getRendu());
@@ -113,7 +114,7 @@ public class LocationDAO {
         Vehicule vehicule = VehiculeDAO.getVehicule(vehiculeId);
         Client client = ClientDAO.getClient(clientID);
 
-        return new Location(id, vehicule, debut, fin, client, album, rendu);
+        return new Location(id, vehicule, convertDate(debut), convertDate(fin), client, album, rendu);
     }
 
     public static List<Location> getAllLocations()
@@ -148,7 +149,51 @@ public class LocationDAO {
             }
             Vehicule vehicule = VehiculeDAO.getVehicule(vehiculeId);
             Client client = ClientDAO.getClient(clientId);
-            locations.add(new Location(id, vehicule, debut, fin, client, photos, rendu));
+            Location location = new Location(id, vehicule, convertDate(debut), convertDate(fin), client, photos, rendu);
+            locations.add(location);
+            Log.d("*** loaded data ***", location.toString());
+        }
+        c.close();
+
+        Log.d("*** loaded data ***", locations.toString());
+        return locations;
+    }
+
+    public static List<Location> getAllOpenLocations()
+    {
+        SQLiteDatabase db = BaseDAO.getDB();
+        // recuperer la liste de toutes les location qui on le statut rendu
+
+        Cursor c = db.query(TABLE_NAME,
+                new String[]{"id", "vehicule_id", "debut", "fin", "client_id", "album", "rendu"},
+                null, null, null, null, null);
+        List<Location> locations = new ArrayList<>();
+
+        if (c.getCount() == 0) {
+            c.close();
+            return locations;
+        }
+
+        while (c.moveToNext()) {
+
+            int id = c.getInt(0);
+            int vehiculeId = c.getInt(1);
+            String debut = c.getString(2);
+            String fin = c.getString(3);
+            int clientId = c.getInt(4);
+            String album = c.getString(5);
+            int rendu = c.getInt(6);
+
+            if (rendu==0) {
+                List<String> photos = new ArrayList<>();
+                String[] dummy = album.split(";");
+                for (String item : dummy) {
+                    photos.add(item);
+                }
+                Vehicule vehicule = VehiculeDAO.getVehicule(vehiculeId);
+                Client client = ClientDAO.getClient(clientId);
+                locations.add(new Location(id, vehicule, convertDate(debut), convertDate(fin), client, photos, rendu));
+            }
         }
         c.close();
 
@@ -217,5 +262,13 @@ public class LocationDAO {
             locations.add(location);
         }
         return locations;
+    }
+
+    private static String convertDate (String date) {
+
+        String[] dummies = date.split(" ");
+        String[] parts = dummies[0].split("/");
+
+        return parts[2]+"/"+parts[1]+"/"+parts[0]+" "+dummies[1];
     }
 }

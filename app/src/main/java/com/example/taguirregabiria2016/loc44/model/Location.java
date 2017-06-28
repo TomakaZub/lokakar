@@ -93,14 +93,15 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Location{" +
+        return "\nLocation {\n\t" +
                 "id=" + id +
                 ", vehicule=" + vehicule +
                 ", debut='" + debut + '\'' +
                 ", fin='" + fin + '\'' +
                 ", client=" + client +
                 ", album=" + albumEdL +
-                '}';
+                ", rendu=" + rendu +
+                "\n}";
     }
 
     public String toSpinner() {

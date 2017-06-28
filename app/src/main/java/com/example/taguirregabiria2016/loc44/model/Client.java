@@ -27,7 +27,9 @@ public class Client extends Personne {
     @Override
     public String toString() {
         return "Client{" +
-                "adresse=" + adresse +
+                "nom=" + getNom() +
+                ", prenom=" + getPrenom() +
+                ", adresse=" + adresse +
                 ", locationList=" + locationList +
                 '}';
     }

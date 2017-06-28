@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FF7E7E"
-    tools:context="com.example.taguirregabiria2016.loc44.ui.UserFormActivity">
+    tools:context="com.example.taguirregabiria2016.loc44.ui.ClientFormActivity">
 
     <ScrollView
         android:layout_width="match_parent"
