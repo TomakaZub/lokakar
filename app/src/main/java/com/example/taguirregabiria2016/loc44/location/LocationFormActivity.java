@@ -11,7 +11,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.taguirregabiria2016.loc44.R;
-import com.example.taguirregabiria2016.loc44.chiffreAffaire.caActivity;
 import com.example.taguirregabiria2016.loc44.dao.ClientDAO;
 import com.example.taguirregabiria2016.loc44.dao.LocationDAO;
 import com.example.taguirregabiria2016.loc44.dao.VehiculeDAO;
@@ -23,7 +22,7 @@ import com.example.taguirregabiria2016.loc44.ui.UserFormActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocationActivity extends AppCompatActivity {
+public class LocationFormActivity extends AppCompatActivity {
 
     private static EditText startDate;
     private static EditText startTime;
@@ -87,12 +86,12 @@ public class LocationActivity extends AppCompatActivity {
 
     public void pickStart(View view) {
 
-        Toast.makeText(LocationActivity.this, "Pick Start", Toast.LENGTH_LONG).show();
+        Toast.makeText(LocationFormActivity.this, "Pick Start", Toast.LENGTH_LONG).show();
     }
 
     public void pickEnd(View view) {
 
-        Toast.makeText(LocationActivity.this, "Pick End", Toast.LENGTH_LONG).show();
+        Toast.makeText(LocationFormActivity.this, "Pick End", Toast.LENGTH_LONG).show();
     }
 
     public void ajouterUneLocationn(View view) {
@@ -115,7 +114,7 @@ public class LocationActivity extends AppCompatActivity {
 
     public void addClient(View view) {
 
-        Intent intent = new Intent(LocationActivity.this, UserFormActivity.class);
+        Intent intent = new Intent(LocationFormActivity.this, UserFormActivity.class);
         startActivity(intent);
     }
 }

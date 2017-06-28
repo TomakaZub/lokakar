@@ -5,10 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.taguirregabiria2016.loc44.Login.LoginActivity;
 import com.example.taguirregabiria2016.loc44.R;
-import com.example.taguirregabiria2016.loc44.accueuil.MainActivity;
-import com.example.taguirregabiria2016.loc44.location.LocationActivity;
+import com.example.taguirregabiria2016.loc44.location.LocationFormActivity;
+import com.example.taguirregabiria2016.loc44.location.LocationListActivity;
 import com.example.taguirregabiria2016.loc44.ui.UserFormActivity;
 import com.example.taguirregabiria2016.loc44.ui.UserListActivity;
 import com.example.taguirregabiria2016.loc44.ui.VehiculeFormActivity;
@@ -43,10 +42,12 @@ public class caActivity extends AppCompatActivity {
     }
 
     public void ajouterUneLocation(View view) {
-        Intent intent = new Intent(caActivity.this, LocationActivity.class);
+        Intent intent = new Intent(caActivity.this, LocationFormActivity.class);
         startActivity(intent);
     }
 
     public void listerLesLocations(View view) {
+        Intent intent = new Intent(caActivity.this, LocationListActivity.class);
+        startActivity(intent);
     }
 }

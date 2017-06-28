@@ -43,7 +43,8 @@
         <activity android:name=".ui.UserListActivity" />
         <activity android:name=".ui.VehiculeFormActivity" />
         <activity android:name=".ui.VehiculeListActivity" />
-        <activity android:name=".location.LocationActivity"></activity>
+        <activity android:name=".location.LocationFormActivity" />
+        <activity android:name=".location.LocationListActivity"></activity>
     </application>
 
 </manifest>

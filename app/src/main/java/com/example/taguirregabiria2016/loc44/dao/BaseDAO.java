@@ -191,6 +191,11 @@ public class BaseDAO extends SQLiteOpenHelper {
             item.setId((int) r);
             Log.d("*** New Data ***", "Inserted Client's id : " + r);
         }
+        for (Location item : locations) {
+            r = LocationDAO.insertLocation(item);
+            item.setId((int) r);
+            Log.d("*** New Data ***", "Inserted Location's id : " + r);
+        }
 
         r = AgenceDAO.insertAgence(agence);
         agence.setId((int) r);

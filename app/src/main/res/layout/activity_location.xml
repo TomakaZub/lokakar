@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#FF7E7E"
     android:orientation="vertical"
-    tools:context="com.example.taguirregabiria2016.loc44.location.LocationActivity">
+    tools:context="com.example.taguirregabiria2016.loc44.location.LocationFormActivity">
 
     <ScrollView
         android:layout_width="match_parent"
