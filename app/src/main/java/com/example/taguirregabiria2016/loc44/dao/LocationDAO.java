@@ -262,6 +262,28 @@ public class LocationDAO {
             locations.add(location);
         }
         return locations;
+
+    }
+
+    public double calculerCA(String dateDebut , String dateFin)
+    {
+        List<Location> locations = null;
+        SQLiteDatabase db = BaseDAO.getDB();
+        double result = 0;
+        String rqtLocation = "SELECT id, vehicule_id, debut, fin, client_id, rendu FROM locations WHERE debut = ? AND fin = ?";
+        Cursor c = db.rawQuery(rqtLocation,null);
+
+        if (c.getCount() == 0) {
+            c.close();
+            locations = null;
+        }
+
+        while (c.moveToNext()) {
+            Vehicule v = VehiculeDAO.getVehicule(c.getInt(c.getColumnIndex("vehicule_id")));
+            double prixVehicule = v.getPrixJour();
+            result = result + prixVehicule;
+        }
+        return result;
     }
 
     private static String convertDate (String date) {

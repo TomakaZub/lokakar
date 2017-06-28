@@ -5,61 +5,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF"
     android:orientation="vertical"
-    android:background="#e33f3f"
+    android:paddingLeft="15sp"
+    android:paddingRight="15sp"
     tools:context="com.example.taguirregabiria2016.loc44.chiffreAffaire.caActivity">
-
-    <Button
-        android:id="@+id/newClient"
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#952A2A"
-        android:textColor="#ffffff"
-        android:text="Ajouter un client"
-        android:onClick="ajouterUnClient"/>
-
-    <Button
-        android:id="@+id/listClients"
+        android:src="@drawable/ca" />
+    <TextView
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#661D1D"
-        android:textColor="#ffffff"
-        android:text="Liste clients"
-        android:onClick="listerLesClients"/>
+        android:text="Calculer votre chiffre d'affaire"
+        android:textSize="25sp"
+        android:textColor="#ef3f3f"
+        android:textAlignment="center"/>
 
-    <Button
-        android:id="@+id/newVehicule"
+    <EditText
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#411313"
-        android:textColor="#ffffff"
-        android:text="Ajouter un véhicule"
-        android:onClick="ajouterUnVehicule"/>
+        android:inputType="date"
+        android:textSize="15sp"
+        android:hint="Entrer la date de début"/>
 
-    <Button
-        android:id="@+id/listVehicules"
+    <EditText
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#300E0E"
-        android:textColor="#ffffff"
-        android:text="Liste véhicules"
-        android:onClick="listerLesVehicules"/>
+        android:inputType="date"
+        android:textSize="15sp"
+        android:hint="Entrer la date de fin"/>
+
+    <TextView
+        android:layout_marginBottom="20dp"
+        android:textColor="#ef3f3f"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Chiffre d'affaire =  00,00 €"/>
 
     <Button
-        android:id="@+id/newLocation"
+        android:layout_gravity="bottom"
+        android:textColor="#FFF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#411313"
-        android:textColor="#ffffff"
-        android:text="Ajouter une location"
-        android:onClick="ajouterUneLocation"/>
+        android:text="Calculer"
+        android:textSize="20sp"
+        android:background="#fd9601"
+        android:onClick="calculerCA"/>
 
-    <Button
-        android:id="@+id/listLocations"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#300E0E"
-        android:textColor="#ffffff"
-        android:text="Liste locations"
-        android:onClick="listerLesLocations"/>
 </LinearLayout>

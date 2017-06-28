@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".gererParking.GererParkingActivity"
+            android:name=".gererParking.GererParkingActivity" android:theme="@style/LoginTheme"
             android:label="Gerer le parking" />
         <activity
             android:name=".search.searchActivity"
