@@ -25,6 +25,7 @@
         android:textAlignment="center"/>
 
     <EditText
+        android:id="@+id/dateDebut"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +34,7 @@
         android:hint="Entrer la date de début"/>
 
     <EditText
+        android:id="@+id/dateFin"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
