@@ -3,6 +3,7 @@ package com.example.taguirregabiria2016.loc44.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.example.taguirregabiria2016.loc44.model.Vehicule;
 

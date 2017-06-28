@@ -2,9 +2,6 @@ package com.example.taguirregabiria2016.loc44.gererParking;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.taguirregabiria2016.loc44.R;
+import com.example.taguirregabiria2016.loc44.model.Location;
 import com.example.taguirregabiria2016.loc44.model.Vehicule;
 
 import java.util.List;
@@ -20,14 +18,14 @@ import java.util.List;
  * Created by spezeron2016 on 27/06/2017.
  */
 
-public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
-    private List<Vehicule> listeVehicule;
+public class louerAdapter extends ArrayAdapter<Location> {
+    private List<Location> locations;
     private int layout;
     private Resources res;
 
-    public VehiculeAdapter(Context context, int resource, List<Vehicule> objects) {
+    public louerAdapter(Context context, int resource, List<Location> objects) {
         super(context, resource, objects);
-        this.listeVehicule = objects;
+        this.locations = objects;
         this.layout = resource;
         this.res = context.getResources();
     }
@@ -43,18 +41,15 @@ public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
             view = convertView;
         }
 
-        Vehicule vehicule = listeVehicule.get(position);
+        Location location = locations.get(position);
 
         TextView modele_vehicule = (TextView) view.findViewById(R.id.modele_vehicule);
         TextView immatriculation_vehicule = (TextView) view.findViewById(R.id.immatriculation_vehicule);
-        TextView tarif_vehicule = (TextView) view.findViewById(R.id.tarif_vehicule);
-        modele_vehicule.setText(vehicule.getModele());
+        TextView infoClient = (TextView) view.findViewById(R.id.infoClient);
 
-
-        modele_vehicule.setText(vehicule.getMarque()+ " "+vehicule.getModele());
-        immatriculation_vehicule.setText(vehicule.getImmatriculation());
-        tarif_vehicule.setText(String.valueOf(vehicule.getPrixJour() + " €/Jours"));
-
+        modele_vehicule.setText(location.getVehicule().getMarque()+ " "+location.getVehicule().getModele());
+        immatriculation_vehicule.setText(location.getVehicule().getImmatriculation());
+        infoClient.setText(location.getClient().getNom() +" "+location.getClient().getPrenom());
         return view;
     }
 }

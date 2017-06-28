@@ -2,8 +2,11 @@ package com.example.taguirregabiria2016.loc44.location;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.taguirregabiria2016.loc44.R;
 import com.example.taguirregabiria2016.loc44.dao.LocationDAO;
@@ -30,9 +33,17 @@ public class alouerActivity extends AppCompatActivity {
 //        liste_vehicule = dao.getALouerVehicules();
         liste_vehicule = daoLocation.getVehicules_ALouer();
 
-        adapter = new VehiculeAdapter(this, R.layout.template_list_a_louer, liste_vehicule);
-        final ListView listView = (ListView) findViewById(R.id.list_alouer);
-        listView.setAdapter(adapter);
+        if(liste_vehicule.isEmpty())
+        {
+//            Toast.makeText(alouerActivity.this,"Aucun véhicules disponible !",Toast.LENGTH_LONG).show();
+            TextView tv = (TextView) findViewById(R.id.msg);
+            tv.setVisibility(View.VISIBLE);
+        }
+        else {
+            adapter = new VehiculeAdapter(alouerActivity.this, R.layout.template_list_a_louer, liste_vehicule);
+            final ListView listView = (ListView) findViewById(R.id.list_alouer);
+            listView.setAdapter(adapter);
+        }
 
     }
 }

@@ -97,11 +97,7 @@ public class GererParkingActivity extends AppCompatActivity {
                 Intent intent = new Intent(GererParkingActivity.this, VehiculeFormActivity.class);
                 startActivity(intent);
                 break;
-            case android.R.id.home:
-                Toast.makeText(GererParkingActivity.this, "Home",Toast.LENGTH_SHORT).show();
-                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

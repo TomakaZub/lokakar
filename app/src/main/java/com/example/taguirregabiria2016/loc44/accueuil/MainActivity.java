@@ -7,10 +7,12 @@ import android.view.View;
 
 import com.example.taguirregabiria2016.loc44.gererParking.GererParkingActivity;
 import com.example.taguirregabiria2016.loc44.R;
+import com.example.taguirregabiria2016.loc44.location.LocationListActivity;
 import com.example.taguirregabiria2016.loc44.location.alouerActivity;
 import com.example.taguirregabiria2016.loc44.chiffreAffaire.caActivity;
 import com.example.taguirregabiria2016.loc44.location.louerActivity;
 import com.example.taguirregabiria2016.loc44.search.searchActivity;
+import com.example.taguirregabiria2016.loc44.ui.UserListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -63,6 +65,16 @@ public class MainActivity extends AppCompatActivity {
      */
     public void Click_ca(View view) {
         Intent intent = new Intent(MainActivity.this, caActivity.class);
+        startActivity(intent);
+    }
+
+    public void listerLesClients(View view) {
+        Intent intent = new Intent(MainActivity.this, UserListActivity.class);
+        startActivity(intent);
+    }
+
+    public void listerLesLocations(View view) {
+        Intent intent = new Intent(MainActivity.this, LocationListActivity.class);
         startActivity(intent);
     }
 }

@@ -21,33 +21,6 @@ public class caActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ca);
     }
 
-    public void ajouterUnClient(View view) {
-        Intent intent = new Intent(caActivity.this, UserFormActivity.class);
-        startActivity(intent);
-    }
 
-    public void listerLesClients(View view) {
-        Intent intent = new Intent(caActivity.this, UserListActivity.class);
-        startActivity(intent);
-    }
 
-    public void ajouterUnVehicule(View view) {
-        Intent intent = new Intent(caActivity.this, VehiculeFormActivity.class);
-        startActivity(intent);
-    }
-
-    public void listerLesVehicules(View view) {
-        Intent intent = new Intent(caActivity.this, VehiculeListActivity.class);
-        startActivity(intent);
-    }
-
-    public void ajouterUneLocation(View view) {
-        Intent intent = new Intent(caActivity.this, LocationFormActivity.class);
-        startActivity(intent);
-    }
-
-    public void listerLesLocations(View view) {
-        Intent intent = new Intent(caActivity.this, LocationListActivity.class);
-        startActivity(intent);
-    }
 }

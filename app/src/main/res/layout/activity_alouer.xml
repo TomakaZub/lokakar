@@ -7,9 +7,21 @@
     android:orientation="vertical"
     tools:context="com.example.taguirregabiria2016.loc44.location.alouerActivity">
 
+    <TextView
+        android:padding="15dp"
+        android:id="@+id/msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aucun véhicules !"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#e33f3f"
+        android:visibility="gone"/>
+
     <ListView
         android:id="@+id/list_alouer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
+
 </LinearLayout>

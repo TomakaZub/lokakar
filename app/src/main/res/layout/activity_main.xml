@@ -17,15 +17,37 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:background="#fde83b"
             android:text="Gerer mon parcking"
             android:textColor="#FFF"
             android:textSize="20sp"
             android:onClick="Click_gererParking"/>
+        <Button
+            android:id="@+id/gererClient"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#9b26af"
+            android:text="Gerer mes clients"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:onClick="listerLesClients"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#01bbd2"
+        android:text="Rechercher un véhicule"
+        android:textColor="#FFF"
+        android:textSize="20sp"
+        android:onClick="Click_search"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,17 +79,14 @@
 
 
     <Button
-        android:id="@+id/button4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#01bbd2"
-        android:text="Rechercher un véhicule"
+        android:background="#3e50b3"
+        android:text="Gerer les locations"
         android:textColor="#FFF"
         android:textSize="20sp"
-        android:onClick="Click_search"/>
-
-
+        android:onClick="listerLesLocations"/>
     <Button
         android:id="@+id/btn"
         android:layout_width="match_parent"

@@ -169,11 +169,53 @@ public class LocationDAO {
 
         // Pour chaque élément de la liste recuperer l'ID du vehicule et faire un getVehiculebyid() et on l'ajoute a la liste
         while (c.moveToNext()) {
-            int idVehicule = c.getColumnIndex("vehicule_id");
+            int idVehicule = c.getInt(c.getColumnIndex("vehicule_id"));
             Vehicule vehicule = VehiculeDAO.getVehicule(idVehicule);
             vehicules_ALouer.add(vehicule);
         }
         //retourner la liste
         return vehicules_ALouer;
+    }
+
+
+    public List<Vehicule> getVehicules_Louer() {
+
+        List<Vehicule> vehicules_Louer = new ArrayList<>();
+        SQLiteDatabase db = BaseDAO.getDB();
+
+        // Recuperer la liste de location avec rendu = true
+        String requette = "SELECT id, vehicule_id, debut, fin, client_id, rendu FROM locations WHERE rendu = 0";
+        Cursor c = db.rawQuery(requette,null);
+        if (c.getCount() == 0) {
+            c.close();
+            return vehicules_Louer;
+        }
+
+        // Pour chaque élément de la liste recuperer l'ID du vehicule et faire un getVehiculebyid() et on l'ajoute a la liste
+        while (c.moveToNext()) {
+            int idVehicule = c.getColumnIndex("vehicule_id");
+            Vehicule vehicule = VehiculeDAO.getVehicule(idVehicule);
+//            Client client
+            vehicules_Louer.add(vehicule);
+        }
+        //retourner la liste
+        return vehicules_Louer;
+    }
+
+    public List<Location> getLocations() {
+        List<Location> locations = new ArrayList<>();
+        SQLiteDatabase db = BaseDAO.getDB();
+        String requette = "SELECT id, vehicule_id, debut, fin, client_id, rendu FROM locations WHERE rendu = 0";
+        Cursor c = db.rawQuery(requette,null);
+        if (c.getCount() == 0) {
+            c.close();
+            return locations;
+        }
+        while (c.moveToNext()) {
+            int idLocation = c.getInt(c.getColumnIndex("id"));
+            Location location = LocationDAO.getLocation(idLocation);
+            locations.add(location);
+        }
+        return locations;
     }
 }

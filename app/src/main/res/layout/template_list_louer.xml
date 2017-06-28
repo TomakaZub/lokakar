@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#019586"
+        android:background="#9c9c9c"
         android:orientation="vertical"
         android:padding="10dp">
         <TextView
@@ -32,12 +32,12 @@
                 android:textSize="20sp"
                 android:text="AB-344-CA" />
             <TextView
-                android:id="@+id/tarif_vehicule"
+                android:id="@+id/infoClient"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.30"
                 android:textSize="20sp"
-                android:text="85€/jours"
+                android:text="Nom prenom"
                 android:textStyle="italic"/>
         </LinearLayout>
 
