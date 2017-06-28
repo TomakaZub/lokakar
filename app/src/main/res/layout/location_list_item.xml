@@ -15,20 +15,20 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/vehiculeBrand"
+            android:id="@+id/debut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="#230A0A"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textSize="12sp"/>
 
         <TextView
-            android:id="@+id/vehiculeRegistration"
+            android:id="@+id/vehicule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#230A0A"
-            android:layout_weight="1" />
+            android:textSize="12sp"
+            android:layout_weight="0.5" />
 
     </LinearLayout>
 
@@ -38,20 +38,20 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/vehiculeModel"
+            android:id="@+id/fin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="#230A0A"
-            android:textSize="20sp"/>
+            android:textSize="12sp"/>
 
         <TextView
-            android:id="@+id/vehiculeUtilisation"
+            android:id="@+id/client"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#230A0A"
-            android:typeface="monospace"
-            android:layout_weight="1" />
+            android:textSize="12sp"
+            android:layout_weight="0.5" />
 
     </LinearLayout>
 </LinearLayout>

@@ -76,14 +76,12 @@ public class LoginActivity extends AppCompatActivity {
             if (g != null) {
                 Log.d("*** Login Gerant ***", g.toString());
                 isCorrect = true;
-//                Toast.makeText(LoginActivity.this, "Bonjour " + g.getPrenom() + " " + g.getNom(), Toast.LENGTH_SHORT).show();
-                showToast(LoginActivity.this, "Bonjour\n" + g.getPrenom() + " " + g.getNom());
+
+                showToast(LoginActivity.this, "Bienvenue\n" + g.getPrenom() + " " + g.getNom());
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
-            }
-            else
-            {
-                Toast.makeText(LoginActivity.this,"Identifiants incorrects !",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(LoginActivity.this, "Identifiants incorrects !", Toast.LENGTH_SHORT).show();
             }
         }
         return isCorrect;
@@ -97,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isEmailValid(String email) {
 
         mEmailView.setError("Email non valide");
-          return email.contains("@");
+        return email.contains("@");
     }
 
     /***
@@ -108,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isPasswordValid(String password) {
 
         mEmailView.setError("Mot de passe non valide");
-        return (password.length()>=4);
+        return (password.length() >= 4);
     }
 
     public void login(View view) {
@@ -125,13 +123,13 @@ public class LoginActivity extends AppCompatActivity {
         // view
         View view = inflater.inflate(R.layout.accueil, null);
 
-        TextView tvMessage = (TextView)view.findViewById(R.id.message);
+        TextView tvMessage = (TextView) view.findViewById(R.id.message);
         tvMessage.setText("« " + message + " »");
 
         Toast toast = new Toast(context);
         toast.setView(view);
         toast.setDuration(Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0,0);
+        toast.setGravity(Gravity.CENTER, 0, 0);
 
         toast.show();
     }

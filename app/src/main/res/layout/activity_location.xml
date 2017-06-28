@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF7E7E"
+    android:orientation="vertical"
+    tools:context="com.example.taguirregabiria2016.loc44.location.LocationFormActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Véhicule"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/vehiculeList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:textColor="#fff" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Début"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/pickStartDateTime"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/calendar_picker_button"
+                    android:onClick="pickStart"
+                    android:text="D"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/startDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="JJ/MM/AAAA"
+                    android:inputType="date"
+                    android:textColor="#fff" />
+
+                <EditText
+                    android:id="@+id/startTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="HH:MM"
+                    android:inputType="time"
+                    android:textColor="#fff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Fin"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/pickEndDateTime"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/calendar_picker_button"
+                    android:onClick="pickEnd"
+                    android:text="F"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/endDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="JJ/MM/AAAA"
+                    android:inputType="date"
+                    android:textColor="#fff" />
+
+                <EditText
+                    android:id="@+id/endTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="HH:MM"
+                    android:inputType="time"
+                    android:textColor="#fff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Client"
+                    android:textColor="#fff"
+                    android:textSize="20sp"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/addClient"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/calendar_picker_button"
+                    android:onClick="addClient"
+                    android:text="+"
+                    android:textColor="#fff"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/clientList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:textColor="#fff" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#952A2A"
+                android:onClick="ajouterUneLocationn"
+                android:text="Ajouter"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

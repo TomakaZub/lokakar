@@ -102,4 +102,9 @@ public class Location {
                 ", album=" + albumEdL +
                 '}';
     }
+
+    public String toSpinner() {
+
+        return client.getPrenom() + " " + client.getNom() + " - " + vehicule.getMarque() + " / " + vehicule.getModele();
+    }
 }

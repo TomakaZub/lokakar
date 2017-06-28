@@ -44,4 +44,22 @@
         android:textColor="#ffffff"
         android:text="Liste véhicules"
         android:onClick="listerLesVehicules"/>
+
+    <Button
+        android:id="@+id/newLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#411313"
+        android:textColor="#ffffff"
+        android:text="Ajouter une location"
+        android:onClick="ajouterUneLocation"/>
+
+    <Button
+        android:id="@+id/listLocations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#300E0E"
+        android:textColor="#ffffff"
+        android:text="Liste locations"
+        android:onClick="listerLesLocations"/>
 </LinearLayout>
