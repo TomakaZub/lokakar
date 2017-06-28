@@ -267,7 +267,6 @@ public class LocationDAO {
 
     public double calculerCA(String dateDebut , String dateFin)
     {
-        List<Location> locations = null;
         SQLiteDatabase db = BaseDAO.getDB();
         double result = 0;
         String rqtLocation = "SELECT id, vehicule_id, debut, fin, client_id, rendu FROM locations WHERE debut = ? AND fin = ?";
@@ -275,7 +274,6 @@ public class LocationDAO {
 
         if (c.getCount() == 0) {
             c.close();
-            locations = null;
         }
 
         while (c.moveToNext()) {
