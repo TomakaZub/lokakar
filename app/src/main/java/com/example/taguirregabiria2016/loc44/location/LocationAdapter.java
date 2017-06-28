@@ -2,6 +2,7 @@ package com.example.taguirregabiria2016.loc44.location;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.example.taguirregabiria2016.loc44.model.Location;
 import com.example.taguirregabiria2016.loc44.model.Utilisation;
 import com.example.taguirregabiria2016.loc44.model.Location;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -25,6 +27,7 @@ public class LocationAdapter extends ArrayAdapter<Location> {
     public LocationAdapter(@NonNull Context context, @NonNull List<Location> objects) {
         super(context, 0, objects);
     }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -41,22 +44,49 @@ public class LocationAdapter extends ArrayAdapter<Location> {
             viewHolder.fin = (TextView) convertView.findViewById(R.id.fin);
             viewHolder.vehicule = (TextView) convertView.findViewById(R.id.vehicule);
             viewHolder.client = (TextView) convertView.findViewById(R.id.client);
+            viewHolder.prix = (TextView) convertView.findViewById(R.id.prix);
             convertView.setTag(viewHolder);
         }
 
-        Location Location = getItem(position);
+        Location location = getItem(position);
 
         int color = ((position % 2 == 0) ? R.color.userList1 : R.color.userList2);
         viewHolder.ligne.setBackgroundColor(convertView.getResources().getColor(color));
 
-        viewHolder.debut.setText(Location.getDebut());
-        viewHolder.fin.setText(Location.getFin());
-        viewHolder.vehicule.setText(Location.getVehicule().getMarque()+" "+Location.getVehicule().getModele());
-        viewHolder.client.setText(Location.getClient().getPrenom()+" "+Location.getClient().getNom());
+        viewHolder.debut.setText(location.getDebut());
+        viewHolder.fin.setText(location.getFin());
+        viewHolder.vehicule.setText(location.getVehicule().getMarque() + " " + location.getVehicule().getModele());
+        viewHolder.client.setText(location.getClient().getPrenom() + " " + location.getClient().getNom());
+
+        Calendar debut = Calendar.getInstance();
+        String[] dummies = location.getDebut().split(" ");
+        String[] debutParts = dummies[0].split("/");
+        int debutYear = Integer.parseInt(debutParts[2]);
+        int debutMounth = Integer.parseInt(debutParts[1]);
+        int debutDay = Integer.parseInt(debutParts[0]);
+        debut.set(debutYear, debutMounth, debutDay);
+
+        Calendar fin = Calendar.getInstance();
+        dummies = location.getFin().split(" ");
+        String[] finParts = dummies[0].split("/");
+        int finYear = Integer.parseInt(finParts[2]);
+        int finMounth = Integer.parseInt(finParts[1]);
+        int finDay = Integer.parseInt(finParts[0]);
+        fin.set(finYear, finMounth, finDay);
+
+        int days = (int) ((fin.getTimeInMillis() - debut.getTimeInMillis()) / (24 * 60 * 60 * 1000));
+
+        double prix = (double) days * location.getVehicule().getPrixJour();
+
+        viewHolder.prix.setText(String.valueOf(prix) + "€");
+
+//        Log.d("*** list adapetr ***", Location.getDebut());
+//        Log.d("*** list adapetr ***", Location.getFin());
+//        Log.d("*** list adapetr ***", Location.getVehicule().getMarque()+" "+Location.getVehicule().getModele());
+//        Log.d("*** list adapetr ***", Location.getClient().getPrenom()+" "+Location.getClient().getNom());
 
         return convertView;
     }
-
 
     private class LocationHolder {
         public LinearLayout ligne;
@@ -64,6 +94,7 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         public TextView fin;
         public TextView vehicule;
         public TextView client;
+        public TextView prix;
     }
 
 
