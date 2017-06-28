@@ -156,8 +156,8 @@ public class BaseDAO extends SQLiteOpenHelper {
         Vehicule[] vehicules = {
                 new Vehicule("Peugeot", "208", "BH-638-FY", Utilisation.ROUTIERE, array2List(photos_2081), 45.0),
                 new Vehicule("Volkswagen", "Polo", "DS-747-AS", Utilisation.CITADINE+Utilisation.ROUTIERE, array2List(photos_polo1), 50.0),
-                new Vehicule("Volkswagen", "Polo", "AQ-050-HG", Utilisation.CITADINE+Utilisation.ROUTIERE, array2List(photos_polo1), 50.0),
-                new Vehicule("Volkswagen", "Polo", "AV-458-KS", Utilisation.CITADINE+Utilisation.ROUTIERE, array2List(photos_polo1), 50.0),
+                new Vehicule("Volkswagen", "Polo", "AQ-050-HG", Utilisation.CITADINE+Utilisation.ROUTIERE, array2List(photos_polo2), 50.0),
+                new Vehicule("Volkswagen", "Polo", "AV-458-KS", Utilisation.CITADINE+Utilisation.ROUTIERE, array2List(photos_polo3), 50.0),
                 new Vehicule("Volkswagen", "Golf 7", "AC-157-FJ", Utilisation.CITADINE+Utilisation.ROUTIERE+Utilisation.FAMILIALE, array2List(photos_golf_71), 65.0),
                 new Vehicule("Volkswagen", "Golf", "AM-520-LS", Utilisation.CITADINE+Utilisation.ROUTIERE, array2List(photos_golf1), 65.0),
                 new Vehicule("Volkswagen", "Golf", "AY-648-GT", Utilisation.CITADINE+Utilisation.ROUTIERE, array2List(photos_golf2), 65.0),

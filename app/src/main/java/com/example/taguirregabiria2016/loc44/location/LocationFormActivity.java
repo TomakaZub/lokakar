@@ -63,7 +63,7 @@ public class LocationFormActivity extends AppCompatActivity {
         /**
          * Hydratation du nom du client
          */
-        tvClient = (TextView)findViewById(R.id.editText);
+        tvClient = (TextView)findViewById(R.id.client);
         Bundle bundle = getIntent().getExtras();
         int id = (int)bundle.get("client");
         client = ClientDAO.getClient(id);
@@ -78,11 +78,13 @@ public class LocationFormActivity extends AppCompatActivity {
         endTime = (EditText) findViewById(R.id.endTime);
 
         Calendar cal = Calendar.getInstance();
-        String today = cal.get(Calendar.DAY_OF_MONTH)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.YEAR);
+        int today_day = cal.get(Calendar.DAY_OF_MONTH);
+        int today_mounth = cal.get(Calendar.MONTH)+1;
+        String today = (today_day<10?"0":"")+today_day+"/"+(today_mounth<10?"0":"")+today_mounth+"/"+cal.get(Calendar.YEAR);
         startDate.setText(today);
         endDate.setText(today);
         startTime.setText("09:00");
-        endDate.setText("09:00");
+        endTime.setText("09:00");
 
         startDate.setOnClickListener(new View.OnClickListener() {
 

@@ -90,7 +90,7 @@ public class LocationListActivity extends AppCompatActivity {
         switch (id) {
             case R.id.action_Ajouter:
                 Intent intent = new Intent(LocationListActivity.this, ClientFormActivity.class);
-                startActivity(intent);
+               startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
