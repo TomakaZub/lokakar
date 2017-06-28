@@ -27,13 +27,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".gererParking.GererParkingActivity"
+            android:name=".gererParking.GererParkingActivity" android:theme="@style/LoginTheme"
             android:label="Gerer le parking" />
         <activity
             android:name=".search.searchActivity"
             android:label="Chercher un véhicule" />
         <activity
             android:name=".chiffreAffaire.caActivity"
+            android:theme="@style/caTheme"
             android:label="Chiffre d&apos;affaire" />
         <activity
             android:name=".location.louerActivity"

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import com.example.taguirregabiria2016.loc44.model.Client;
@@ -262,6 +263,31 @@ public class LocationDAO {
             locations.add(location);
         }
         return locations;
+
+    }
+
+    public double calculerCA(String dateDebut , String dateFin)
+    {
+        SQLiteDatabase db = BaseDAO.getDB();
+        double result = 0;
+        String rqtLocation = "SELECT id, vehicule_id, debut, fin, client_id, rendu " +
+                "FROM locations " +
+                "WHERE " +
+                "debut >= '"+dateDebut+"' AND fin <= '"+dateFin+"'";
+
+        Cursor c = db.rawQuery(rqtLocation,null);
+//        Cursor c = db.rawQuery(rqtLocation,new String[]{dateDebut,dateFin,""});
+
+        if (c.getCount() == 0) {
+            c.close();
+        }
+
+        while (c.moveToNext()) {
+            Vehicule v = VehiculeDAO.getVehicule(c.getInt(c.getColumnIndex("vehicule_id")));
+            double prixVehicule = v.getPrixJour();
+            result = result + prixVehicule;
+        }
+        return result;
     }
 
     private static String convertDate (String date) {
