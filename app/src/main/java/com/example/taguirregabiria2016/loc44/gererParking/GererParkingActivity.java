@@ -24,6 +24,7 @@ public class GererParkingActivity extends AppCompatActivity {
     ArrayAdapter adapter;
     private  List<Vehicule> liste_vehicule;
     VehiculeDAO dao;
+    Vehicule vehicule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class GererParkingActivity extends AppCompatActivity {
 
     public void delete(View view) {
 
-        final Vehicule vehicule = (Vehicule) view.getTag();
+        vehicule = (Vehicule) view.getTag();
 
 //        Log.e(TAG, "vehicule: "+vehicule.getId());
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);

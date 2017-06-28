@@ -137,4 +137,42 @@ public class ClientDAO {
         return clients;
     }
 
+    public static List<Client> getFilteredClients(String filter) {
+
+        SQLiteDatabase db = BaseDAO.getDB();
+
+        Cursor c = db.query(TABLE_NAME,
+                new String[]{"id", "nom", "prenom", "telephone", "email", "adresse_id"},
+                null, null, null, null, null);
+        List<Client> clients = new ArrayList<>();
+
+        if (c.getCount() == 0) {
+            c.close();
+            return clients;
+        }
+
+        while (c.moveToNext()) {
+
+            int id = c.getInt(0);
+            String nom = c.getString(1);
+            String prenom = c.getString(2);
+            String telephone = c.getString(3);
+            String email = c.getString(4);
+            int adresseId = c.getInt(5);
+
+            Adresse adresse = AdresseDAO.getAdresse(adresseId);
+            Personne p = new Personne(id, nom, prenom, telephone, email, adresse);
+
+            //TODO: Récupérer la liste des locations client
+            List<Location> locationList = null;
+
+            if (nom.toLowerCase().contains(filter.toLowerCase())) {
+                clients.add(new Client(p, locationList));
+            }
+        }
+        c.close();
+
+        return clients;
+    }
+
 }

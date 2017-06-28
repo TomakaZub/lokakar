@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.taguirregabiria2016.loc44.R;
@@ -45,6 +46,12 @@ public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
 
         Vehicule vehicule = listeVehicule.get(position);
 
+        Button buttonModify = (Button)view.findViewById(R.id.buttonModify);
+        Button buttonDelete = (Button)view.findViewById(R.id.buttonDelete);
+
+        buttonModify.setTag(vehicule);
+        buttonDelete.setTag(vehicule);
+
         TextView modele_vehicule = (TextView) view.findViewById(R.id.modele_vehicule);
         TextView immatriculation_vehicule = (TextView) view.findViewById(R.id.immatriculation_vehicule);
         TextView tarif_vehicule = (TextView) view.findViewById(R.id.tarif_vehicule);
@@ -53,7 +60,7 @@ public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
 
         modele_vehicule.setText(vehicule.getMarque()+ " "+vehicule.getModele());
         immatriculation_vehicule.setText(vehicule.getImmatriculation());
-        tarif_vehicule.setText(String.valueOf(vehicule.getPrixJour() + " €/Jours"));
+        tarif_vehicule.setText(String.valueOf(vehicule.getPrixJour() + "0€/Jours"));
 
         return view;
     }

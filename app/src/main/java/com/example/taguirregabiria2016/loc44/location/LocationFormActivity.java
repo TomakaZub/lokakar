@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ public class LocationFormActivity extends AppCompatActivity {
     private static EditText endTime;
 
     private static Spinner spVehicule;
-    private static Spinner spClient;
+    private static TextView etClient;
 
     private static List<Vehicule> vehiculeList;
     private static List<Client> clientList;
@@ -56,16 +57,13 @@ public class LocationFormActivity extends AppCompatActivity {
         vAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spVehicule.setAdapter(vAdapter);
 
-        spClient = (Spinner) findViewById(R.id.clientList);
+        etClient = (TextView) findViewById(R.id.client);
         clientList = ClientDAO.getAllClients();
         List<String> spClientItems = new ArrayList<>();
 
         for (Client item : clientList) {
             spClientItems.add(item.toSpinnerItem());
         }
-        ArrayAdapter<String> cAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spClientItems);
-        cAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spClient.setAdapter(cAdapter);
 
         startDate = (EditText) findViewById(R.id.startDate);
         startTime = (EditText) findViewById(R.id.startTime);
@@ -191,15 +189,6 @@ public class LocationFormActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        clientList = ClientDAO.getAllClients();
-        List<String> spClientItems = new ArrayList<>();
-
-        for (Client item : clientList) {
-            spClientItems.add(item.toSpinnerItem());
-        }
-        ArrayAdapter<String> cAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spClientItems);
-        cAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spClient.setAdapter(cAdapter);
     }
 
     public void pickStart(View view) {
@@ -214,8 +203,11 @@ public class LocationFormActivity extends AppCompatActivity {
 
     public void ajouterUneLocationn(View view) {
 
+        Bundle bundle = getIntent().getExtras();
+        int id = (int)bundle.get("client");
+
         Vehicule vehicule = vehiculeList.get(spVehicule.getSelectedItemPosition());
-        Client client = clientList.get(spClient.getSelectedItemPosition());
+        Client client = ClientDAO.getClient(id);
         String debutDate = startDate.getText().toString();
         String debutTime = startTime.getText().toString();
         String finDate = endDate.getText().toString();

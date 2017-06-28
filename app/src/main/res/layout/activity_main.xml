@@ -20,8 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#fde83b"
-            android:text="Gerer mon parcking"
+            android:background="#dac300"
+            android:text="Parcking"
             android:textColor="#FFF"
             android:textSize="20sp"
             android:onClick="Click_gererParking"/>
@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#9b26af"
-            android:text="Gerer mes clients"
+            android:text="Clients"
             android:textColor="#FFF"
             android:textSize="20sp"
             android:onClick="listerLesClients"/>
@@ -61,7 +61,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#e33f3f"
-            android:text="Véhicules a louer"
+            android:text="Véhicules à louer"
             android:textColor="#FFF"
             android:textSize="15sp"
             android:onClick="Click_alouer"/>
@@ -70,8 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#9c9c9c"
-            android:text="Véhicules  louer"
+            android:background="#c75d00"
+            android:text="Véhicules  loués"
             android:textColor="#FFF"
             android:textSize="15sp"
             android:onClick="Click_louer"/>
@@ -83,7 +83,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#3e50b3"
-        android:text="Gerer les locations"
+        android:text="Locations"
         android:textColor="#FFF"
         android:textSize="20sp"
         android:onClick="listerLesLocations"/>
@@ -92,8 +92,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#8ac14a"
-        android:text="Afficher mon chiffre d'affaire"
+        android:background="#5fb100"
+        android:text="Chiffre d'affaire"
         android:textColor="#FFF"
         android:textSize="20sp"
         android:onClick="Click_ca"/>

@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.daimajia.swipe.SwipeLayout;
 import com.example.taguirregabiria2016.loc44.R;
 import com.example.taguirregabiria2016.loc44.model.Location;
 import com.example.taguirregabiria2016.loc44.model.Utilisation;
@@ -39,7 +41,7 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         LocationHolder viewHolder = (LocationHolder) convertView.getTag();
         if (viewHolder == null) {
             viewHolder = new LocationHolder();
-            viewHolder.ligne = (LinearLayout) convertView.findViewById(R.id.fond);
+            viewHolder.ligne = (SwipeLayout) convertView.findViewById(R.id.fond);
             viewHolder.debut = (TextView) convertView.findViewById(R.id.debut);
             viewHolder.fin = (TextView) convertView.findViewById(R.id.fin);
             viewHolder.vehicule = (TextView) convertView.findViewById(R.id.vehicule);
@@ -80,6 +82,15 @@ public class LocationAdapter extends ArrayAdapter<Location> {
 
         viewHolder.prix.setText(String.valueOf(prix) + "0€");
 
+        Button buttonModify = (Button)convertView.findViewById(R.id.buttonModify);
+        Button buttonDelete = (Button)convertView.findViewById(R.id.buttonDelete);
+
+        buttonModify.setTag(location);
+        buttonDelete.setTag(location);
+
+
+        //    convertView.setTag(location);
+
 //        Log.d("*** list adapetr ***", Location.getDebut());
 //        Log.d("*** list adapetr ***", Location.getFin());
 //        Log.d("*** list adapetr ***", Location.getVehicule().getMarque()+" "+Location.getVehicule().getModele());
@@ -89,7 +100,7 @@ public class LocationAdapter extends ArrayAdapter<Location> {
     }
 
     private class LocationHolder {
-        public LinearLayout ligne;
+        public SwipeLayout ligne;
         public TextView debut;
         public TextView fin;
         public TextView vehicule;

@@ -33,6 +33,18 @@ public class ClientListActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        mListView = (ListView) findViewById(R.id.userList);
+
+        clients = ClientDAO.getAllClients();
+
+       ClientAdapter adapter = new ClientAdapter(ClientListActivity.this, clients);
+        mListView.setAdapter(adapter);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_liste, menu);
@@ -48,7 +60,7 @@ public class ClientListActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.action_Ajouter:
-                Intent intent = new Intent(ClientListActivity.this, ClientListActivity.class);
+                Intent intent = new Intent(ClientListActivity.this, ClientFormActivity.class);
                 startActivity(intent);
                 break;
         }

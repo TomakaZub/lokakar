@@ -45,8 +45,9 @@
         <activity android:name=".ui.ClientListActivity" />
         <activity android:name=".ui.VehiculeFormActivity" />
         <activity android:name=".ui.VehiculeListActivity" />
+        <activity android:name=".location.ClientFormActivity" android:theme="@style/LocationTheme"/>
         <activity android:name=".location.LocationFormActivity" android:theme="@style/LocationTheme"/>
-        <activity android:name=".location.LocationListActivity" />
+        <activity android:name=".location.LocationListActivity" android:theme="@style/LocationTheme"/>
     </application>
 
 </manifest>

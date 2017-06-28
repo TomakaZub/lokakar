@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_Ajouter"
         android:title="Ajouter"
-        android:icon="@android:drawable/ic_input_add"
+        android:icon="@android:drawable/ic_menu_add"
         android:orderInCategory="100"
         app:showAsAction="always" />
 </menu>
