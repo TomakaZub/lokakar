@@ -29,8 +29,6 @@ public class louerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_louer);
 
-
-
         this.daoLocation = new LocationDAO();
         locations = daoLocation.getLocations();
         if(locations.isEmpty())
@@ -44,48 +42,6 @@ public class louerActivity extends AppCompatActivity {
             listView.setAdapter(adapter);
         }
 
-
-//        this.daoLocation = new LocationDAO();
-//        liste_vehicule = daoLocation.getVehicules_Louer();
-//        if(liste_vehicule.isEmpty())
-//        {
-////            Toast.makeText(alouerActivity.this,"Aucun véhicules disponible !",Toast.LENGTH_LONG).show();
-//            TextView tv = (TextView) findViewById(R.id.msg);
-//            tv.setVisibility(View.VISIBLE);
-//        }
-//        else {
-//            adapter = new VehiculeAdapter(louerActivity.this, R.layout.template_list_louer, liste_vehicule);
-//            final ListView listView = (ListView) findViewById(R.id.list_alouer);
-//            listView.setAdapter(adapter);
-//        }
-
-
-
-
-//        this.daoLocation = new LocationDAO();
-//        locations = daoLocation.getLocation();
-//        if(locations.isEmpty())
-//        {
-//            TextView tv = (TextView) findViewById(R.id.msg);
-//            tv.setVisibility(View.VISIBLE);
-//        }
-//        else
-//        {
-//
-//            for (Location laLocation : locations) {
-//
-//                Client client = laLocation.getClient();
-//                Vehicule vehicule = laLocation.getVehicule();
-//
-//                TextView modele = (TextView) findViewById(R.id.modele_vehicule);
-//                TextView immatriculation = (TextView) findViewById(R.id.immatriculation_vehicule);
-//                TextView infoClient = (TextView) findViewById(R.id.client);
-//
-//                modele.setText(vehicule.getMarque() + " "+ vehicule.getModele());
-//                immatriculation.setText(vehicule.getImmatriculation());
-//                infoClient.setText(client.getNom() +" "+ client.getPrenom());
-//            }
-//        }
 
 
     }

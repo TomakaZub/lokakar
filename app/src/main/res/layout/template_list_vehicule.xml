@@ -84,22 +84,23 @@
                     android:id="@+id/vehiculeUtilisation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#230A0A"
-                    android:typeface="monospace"
+                    android:layout_weight="1"
                     android:text="-F--R-"
-                    android:layout_weight="1" />
+                    android:textColor="#230A0A"
+                    android:typeface="monospace" />
 
                 <TextView
                     android:id="@+id/tarif_vehicule"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:typeface="monospace"
                     android:text="85€/j"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:typeface="monospace" />
             </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 
     <!-- Surface View End -->
