@@ -94,8 +94,8 @@ public class caActivity extends AppCompatActivity {
 
     public void calculerCA(View view) {
 
-        String d = debut.getText().toString()+" 00:01";
-        String f = fin.getText().toString()+" 00:01";
+        String d = debut.getText().toString();
+        String f = fin.getText().toString();
         if(d.isEmpty() || f.isEmpty())
         {
             if(d.isEmpty()){
@@ -107,6 +107,8 @@ public class caActivity extends AppCompatActivity {
         }
         else
         {
+            d = d+" 00:01";
+            f = f+" 00:01";
             String dateDebut = convertDate(d);
             String dateFin = convertDate(f);
             double total = dao.calculerCA(dateDebut, dateFin);

@@ -1,4 +1,4 @@
-package com.example.taguirregabiria2016.loc44.gererParking;
+package com.example.taguirregabiria2016.loc44.location;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.taguirregabiria2016.loc44.R;
@@ -22,12 +25,14 @@ public class louerAdapter extends ArrayAdapter<Location> {
     private List<Location> locations;
     private int layout;
     private Resources res;
+    private Context context;
 
     public louerAdapter(Context context, int resource, List<Location> objects) {
         super(context, resource, objects);
         this.locations = objects;
         this.layout = resource;
         this.res = context.getResources();
+        this.context = context;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -43,13 +48,29 @@ public class louerAdapter extends ArrayAdapter<Location> {
 
         Location location = locations.get(position);
 
+        Button buttonRendu = (Button)view.findViewById(R.id.buttonRendu);
+        buttonRendu.setTag(location);
+
         TextView modele_vehicule = (TextView) view.findViewById(R.id.modele_vehicule);
         TextView immatriculation_vehicule = (TextView) view.findViewById(R.id.immatriculation_vehicule);
         TextView infoClient = (TextView) view.findViewById(R.id.infoClient);
+        ImageView thumbnail_vehicule = (ImageView) view.findViewById(R.id.thumbnail);
 
         modele_vehicule.setText(location.getVehicule().getMarque()+ " "+location.getVehicule().getModele());
         immatriculation_vehicule.setText(location.getVehicule().getImmatriculation());
         infoClient.setText(location.getClient().getNom() +" "+location.getClient().getPrenom());
+
+        if (location.getVehicule().getAlbum().size()>0) {
+            String dummy = location.getVehicule().getAlbum().get(0);
+            int resId = res.getIdentifier("ic_" + dummy, "drawable", context.getPackageName());
+            thumbnail_vehicule.setImageResource(resId);
+
+        }
+        LinearLayout ligne = (LinearLayout)view.findViewById(R.id.fond);
+        int color = ((position % 2 == 0) ? R.color.userList1 : R.color.userList2);
+        ligne.setBackgroundColor(view.getResources().getColor(color));
+
+
         return view;
     }
 }

@@ -31,7 +31,8 @@
             android:label="Gerer le parking" />
         <activity
             android:name=".search.searchActivity"
-            android:label="Chercher un véhicule" />
+            android:label="Chercher un véhicule"
+            android:theme="@style/LocationTheme"/>
         <activity
             android:name=".chiffreAffaire.caActivity"
             android:theme="@style/caTheme"
