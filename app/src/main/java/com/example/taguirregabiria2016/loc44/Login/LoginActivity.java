@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.taguirregabiria2016.loc44.accueuil.MainActivity;
+import com.example.taguirregabiria2016.loc44.accueil.MainActivity;
 import com.example.taguirregabiria2016.loc44.R;
 import com.example.taguirregabiria2016.loc44.dao.BaseDAO;
 import com.example.taguirregabiria2016.loc44.dao.GerantDAO;

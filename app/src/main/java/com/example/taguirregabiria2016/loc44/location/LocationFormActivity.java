@@ -23,6 +23,7 @@ import com.example.taguirregabiria2016.loc44.model.Client;
 import com.example.taguirregabiria2016.loc44.model.Location;
 import com.example.taguirregabiria2016.loc44.model.Vehicule;
 import com.example.taguirregabiria2016.loc44.ui.ClientFormActivity;
+import com.example.taguirregabiria2016.loc44.utils.Tools;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -84,7 +85,7 @@ public class LocationFormActivity extends AppCompatActivity {
         startDate.setText(today);
         endDate.setText(today);
         startTime.setText("09:00");
-        endTime.setText("09:00");
+        endTime.setText("18:00");
 
         startDate.setOnClickListener(new View.OnClickListener() {
 
@@ -229,13 +230,21 @@ public class LocationFormActivity extends AppCompatActivity {
         String finDate = endDate.getText().toString();
         String finTime = endTime.getText().toString();
 
-        Log.d("Ajout Location", "\t" + client.toSpinnerItem() + " :\n\t\tdu " + debutDate + " à " + debutTime + "\n\t\tau " + finDate + " à " + finTime + "\n\t\t" + vehicule.toSpinnerItem());
+        if (LocationDAO.convertDateOnly(debutDate).compareTo(LocationDAO.convertDateOnly(finDate))<=0 ) {
 
-        Location location = new Location(vehicule, debutDate + " " + debutTime, finDate + " " + finTime, client, new ArrayList<String>(), 0);
-        location.setId((int) LocationDAO.insertLocation(location));
+            Log.d("Ajout Location", "\t" + client.toSpinnerItem() + " :\n\t\tdu " + debutDate + " à " + debutTime + "\n\t\tau " + finDate + " à " + finTime + "\n\t\t" + vehicule.toSpinnerItem());
 
-        Log.d("Location ajoutée", location.toString());
-        finish();
+            Calendar today = Calendar.getInstance();
+            int rendu = (Tools.Cal2Str(today).compareTo(debutDate+" "+debutTime)<=0)?1:0;
+            Location location = new Location(vehicule, debutDate + " " + debutTime, finDate + " " + finTime, client, new ArrayList<String>(), rendu);
+            location.setId((int) LocationDAO.insertLocation(location));
+
+            Log.d("Location ajoutée", location.toString());
+            finish();
+        }
+        else {
+            endDate.requestFocus();
+        }
     }
 
     public void addClient(View view) {

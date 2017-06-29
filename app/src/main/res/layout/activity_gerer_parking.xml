@@ -4,8 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.taguirregabiria2016.loc44.gererParking.GererParkingActivity">
 
+    <TextView
+        android:id="@+id/infos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="14 véhicules"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#FF230A0A"/>
     <ListView
         android:id="@+id/listeVehicule"
         android:layout_width="match_parent"

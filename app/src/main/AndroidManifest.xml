@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".accueuil.MainActivity"
+            android:name=".accueil.MainActivity"
             android:label="Accueuil">
         </activity>
 
@@ -45,7 +45,7 @@
         <activity android:name=".ui.ClientFormActivity" />
         <activity android:name=".ui.ClientListActivity" />
         <activity android:name=".ui.VehiculeFormActivity" />
-        <activity android:name=".ui.VehiculeListActivity" />
+        <activity android:name=".ui.VehiculeListActivity" android:theme="@style/Base.Theme.AppCompat.Dialog.Alert" />
         <activity android:name=".location.ClientFormActivity" android:theme="@style/LocationTheme"/>
         <activity android:name=".location.LocationFormActivity" android:theme="@style/LocationTheme"/>
         <activity android:name=".location.LocationListActivity" android:theme="@style/LocationTheme"/>

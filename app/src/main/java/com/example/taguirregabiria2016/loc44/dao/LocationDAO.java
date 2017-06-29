@@ -211,7 +211,7 @@ public class LocationDAO {
         SQLiteDatabase db = BaseDAO.getDB();
 
         // Recuperer la liste de location avec rendu = true
-        String requette = "SELECT vehicules.id as vid, locations.id, debut, fin, client_id, rendu FROM vehicules LEFT OUTER JOIN locations ON locations.vehicule_id= vehicules.id where locations.rendu = 1 or locations.rendu is null";
+        String requette = "SELECT id, vehicule_id, debut, fin, client_id, rendu FROM locations WHERE rendu = 1";
         Cursor c = db.rawQuery(requette,null);
         if (c.getCount() == 0) {
             c.close();
@@ -220,7 +220,7 @@ public class LocationDAO {
 
         // Pour chaque élément de la liste recuperer l'ID du vehicule et faire un getVehiculebyid() et on l'ajoute a la liste
         while (c.moveToNext()) {
-            int idVehicule = c.getInt(c.getColumnIndex("vid"));
+            int idVehicule = c.getInt(c.getColumnIndex("vehicule_id"));
             Vehicule vehicule = VehiculeDAO.getVehicule(idVehicule);
             vehicules_ALouer.add(vehicule);
         }
@@ -229,12 +229,12 @@ public class LocationDAO {
     }
 
 
-    public List<Vehicule> getVehiculesLouer() {
+    public List<Vehicule> getVehicules_Louer() {
 
         List<Vehicule> vehicules_Louer = new ArrayList<>();
         SQLiteDatabase db = BaseDAO.getDB();
 
-        // Recuperer la liste de location avec rendu = 1 voiture rendu
+        // Recuperer la liste de location avec rendu = true
         String requette = "SELECT id, vehicule_id, debut, fin, client_id, rendu FROM locations WHERE rendu = 0";
         Cursor c = db.rawQuery(requette,null);
         if (c.getCount() == 0) {
@@ -319,7 +319,7 @@ public class LocationDAO {
         return result;
     }
 
-    private static String convertDate (String date) {
+    public static String convertDate (String date) {
 
         String[] dummies = date.split(" ");
         String[] parts = dummies[0].split("/");
@@ -327,4 +327,10 @@ public class LocationDAO {
         return parts[2]+"/"+parts[1]+"/"+parts[0]+" "+dummies[1];
     }
 
+    public static String convertDateOnly (String date) {
+
+        String[] parts = date.split("/");
+
+        return parts[2]+"/"+parts[1]+"/"+parts[0];
+    }
 }

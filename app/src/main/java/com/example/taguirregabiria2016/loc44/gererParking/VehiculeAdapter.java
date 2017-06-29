@@ -65,7 +65,7 @@ public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
 
         modele_vehicule.setText(vehicule.getMarque()+ " "+vehicule.getModele());
         immatriculation_vehicule.setText(vehicule.getImmatriculation());
-        tarif_vehicule.setText(String.valueOf(vehicule.getPrixJour() + "0€/Jours"));
+        tarif_vehicule.setText(String.valueOf(vehicule.getPrixJour() + "0€"));
 
         String utilisation="";
         utilisation += (vehicule.getUtilisation()& Utilisation.CITADINE)==Utilisation.CITADINE ?"C":"-";

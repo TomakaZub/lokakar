@@ -113,4 +113,13 @@ public class Adresse {
                 ", pays='" + pays + '\'' +
                 '}';
     }
+    public String toResume() {
+        return "Adresse : " + numero + ", " + type + '\'' +
+                ", voie='" + voie + '\'' +
+                ", supplement='" + supplement + '\'' +
+                ", codePostal='" + codePostal + '\'' +
+                ", ville='" + ville + '\'' +
+                ", pays='" + pays + '\'' +
+                '}';
+    }
 }

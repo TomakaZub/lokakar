@@ -1,4 +1,4 @@
-package com.example.taguirregabiria2016.loc44.accueuil;
+package com.example.taguirregabiria2016.loc44.accueil;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

@@ -47,6 +47,7 @@ public class ClientFormActivity extends AppCompatActivity {
                 Intent intent = new Intent(ClientFormActivity.this, LocationFormActivity.class);
                 intent.putExtra("client", client.getId());
                 startActivity(intent);
+                finish();
             }
         });
 
