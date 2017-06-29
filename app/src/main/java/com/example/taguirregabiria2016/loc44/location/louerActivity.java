@@ -4,25 +4,23 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.taguirregabiria2016.loc44.R;
 import com.example.taguirregabiria2016.loc44.dao.LocationDAO;
-import com.example.taguirregabiria2016.loc44.gererParking.VehiculeAdapter;
-import com.example.taguirregabiria2016.loc44.gererParking.louerAdapter;
-import com.example.taguirregabiria2016.loc44.model.Client;
 import com.example.taguirregabiria2016.loc44.model.Location;
-import com.example.taguirregabiria2016.loc44.model.Vehicule;
 
 import java.util.List;
-import java.util.ListIterator;
 
 public class louerActivity extends AppCompatActivity {
 
     ArrayAdapter adapter;
     LocationDAO daoLocation;
     private List<Location> locations;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +36,29 @@ public class louerActivity extends AppCompatActivity {
         }
         else {
             adapter = new louerAdapter(louerActivity.this, R.layout.template_list_louer, locations);
-            final ListView listView = (ListView) findViewById(R.id.list_louer);
+            listView = (ListView) findViewById(R.id.list_louer);
             listView.setAdapter(adapter);
         }
 
 
 
     }
+
+    /**
+     * mettre a jour le statut rendu a 0
+     * @param view
+     */
+    public void rendu(View view) {
+        Button buttonRendu = (Button)view.findViewById(R.id.buttonRendu);
+        Location location = (Location) buttonRendu.getTag();
+        location.setRendu(1);
+
+        LocationDAO.updateLocation(location);
+
+        Toast.makeText(louerActivity.this,"Vehicule rendu !",Toast.LENGTH_LONG).show();
+        adapter = (louerAdapter) listView.getAdapter();
+        adapter.remove(location);
+        listView.setAdapter(adapter);
+    }
+
 }
