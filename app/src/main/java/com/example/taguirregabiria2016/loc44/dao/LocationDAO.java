@@ -244,7 +244,7 @@ public class LocationDAO {
 
         // Pour chaque élément de la liste recuperer l'ID du vehicule et faire un getVehiculebyid() et on l'ajoute a la liste
         while (c.moveToNext()) {
-            int idVehicule = c.getColumnIndex("vehicule_id");
+            int idVehicule = c.getInt(c.getColumnIndex("vehicule_id"));
             Vehicule vehicule = VehiculeDAO.getVehicule(idVehicule);
 //            Client client
             vehicules_Louer.add(vehicule);
