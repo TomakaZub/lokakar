@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#e33f3f"
     android:orientation="vertical"
-    tools:context="com.example.taguirregabiria2016.loc44.accueuil.MainActivity">
+    tools:context="com.example.taguirregabiria2016.loc44.accueil.MainActivity">
 
 
     <LinearLayout

@@ -10,8 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.daimajia.swipe.SwipeLayout;
 import com.example.taguirregabiria2016.loc44.R;
 import com.example.taguirregabiria2016.loc44.dao.LocationDAO;
 import com.example.taguirregabiria2016.loc44.model.Location;
@@ -23,12 +23,14 @@ public class LocationListActivity extends AppCompatActivity {
     ListView mListView;
     List<Location> locations;
 
+    SwipeLayout sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_list);
 
         mListView = (ListView) findViewById(R.id.locationList);
+        sp = (SwipeLayout)findViewById(R.id)
 
         locations = LocationDAO.getAllLocations();
 
@@ -54,17 +56,19 @@ public class LocationListActivity extends AppCompatActivity {
 
     }
 
-    public void deleteLocation(View view) {
+    public void deleteLocation(final View view) {
 
-        final Location location = (Location) view.getTag();
+        final Location toBeDeletedLocation = (Location) view.getTag();
 
-//        Log.e(TAG, "vehicule: "+vehicule.getId());
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Souhaiter vraimment supprimer cette voiture !");
         alertDialogBuilder.setPositiveButton("OUI", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-                LocationDAO.removeLocation(location);
+
+                LocationDAO.removeLocation(toBeDeletedLocation);
+                LocationAdapter adapter = (LocationAdapter)mListView.getAdapter();
+                adapter.remove(toBeDeletedLocation);
             }
         });
         alertDialogBuilder.setNegativeButton("NON",new DialogInterface.OnClickListener() {

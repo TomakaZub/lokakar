@@ -15,6 +15,8 @@ public class Vehicule {
     private int utilisation;
     private List<String> album;
     private double prixJour;
+    private boolean dispo;
+    private int jours;
 
     public Vehicule(String marque, String modele, String immatriculation, int utilisation, List<String> album, double prixJour) {
         this.marque = marque;
@@ -23,6 +25,7 @@ public class Vehicule {
         this.utilisation = utilisation;
         this.album = album;
         this.prixJour = prixJour;
+        this.dispo = true;
     }
 
     public Vehicule(int id, String marque, String modele, String immatriculation, int utilisation, List<String> album, double prixJour) {
@@ -33,6 +36,7 @@ public class Vehicule {
         this.utilisation = utilisation;
         this.album = album;
         this.prixJour = prixJour;
+        this.dispo = true;
     }
 
     public int getId() {
@@ -89,6 +93,22 @@ public class Vehicule {
 
     public void setPrixJour(double prixJour) {
         this.prixJour = prixJour;
+    }
+
+    public boolean isDispo() {
+        return dispo;
+    }
+
+    public void setDispo(boolean dispo) {
+        this.dispo = dispo;
+    }
+
+    public int getJours() {
+        return jours;
+    }
+
+    public void setJours(int jours) {
+        this.jours = jours;
     }
 
     @Override

@@ -10,10 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.taguirregabiria2016.loc44.R;
+import com.example.taguirregabiria2016.loc44.dao.LocationDAO;
 import com.example.taguirregabiria2016.loc44.dao.VehiculeDAO;
+import com.example.taguirregabiria2016.loc44.model.Location;
 import com.example.taguirregabiria2016.loc44.model.Vehicule;
 import com.example.taguirregabiria2016.loc44.ui.VehiculeFormActivity;
 
@@ -22,9 +25,11 @@ import java.util.List;
 public class GererParkingActivity extends AppCompatActivity {
 
     ArrayAdapter adapter;
-    private  List<Vehicule> liste_vehicule;
+    private List<Vehicule> vehiculeList;
+    private List<Location> locationList;
     VehiculeDAO dao;
     Vehicule vehicule;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +37,21 @@ public class GererParkingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gerer_parking);
 
         this.dao = new VehiculeDAO();
-        liste_vehicule = dao.getAllVehicules();
+        vehiculeList = dao.getAllVehicules();
 
-        adapter = new VehiculeAdapter(this, R.layout.template_list_vehicule, liste_vehicule);
+        locationList = LocationDAO.getAllOpenLocations();
+
+        for (Location item: locationList) {
+
+            if (vehiculeList.contains(item)) {
+                vehiculeList.remove(item);
+            }
+        }
+
+        int count = vehiculeList.size();
+        TextView tvInfos = (TextView)findViewById(R.id.infos);
+        tvInfos.setText(count+" véhicule" + ((count>1)?"s":""));
+        adapter = new VehiculeAdapter(this, R.layout.template_list_vehicule, vehiculeList);
         final ListView listView = (ListView) findViewById(R.id.listeVehicule);
         listView.setAdapter(adapter);
     }
@@ -42,8 +59,8 @@ public class GererParkingActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        liste_vehicule = dao.getAllVehicules();
-        adapter = new VehiculeAdapter(this, R.layout.template_list_vehicule, liste_vehicule);
+        vehiculeList = dao.getAllVehicules();
+        adapter = new VehiculeAdapter(this, R.layout.template_list_vehicule, vehiculeList);
         final ListView listView = (ListView) findViewById(R.id.listeVehicule);
         listView.setAdapter(adapter);
     }

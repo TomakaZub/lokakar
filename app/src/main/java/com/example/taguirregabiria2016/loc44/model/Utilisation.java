@@ -6,11 +6,11 @@ package com.example.taguirregabiria2016.loc44.model;
 
 public class Utilisation { // Utilisation.CITADINE | Utilisation.FAMILIALE
 
-    public static final int CITADINE=1;
-    public static final int ROUTIERE=2;
-    public static final int FAMILIALE=4;
-    public static final int UTILITAIRE=8;
-    public static final int SPORTIVE=16;
-    public static final int MONOSPACE=32;
+    public static final int CITADINE = 1;
+    public static final int ROUTIERE = 2;
+    public static final int FAMILIALE = 4;
+    public static final int UTILITAIRE = 8;
+    public static final int SPORTIVE = 16;
+    public static final int MONOSPACE = 32;
 
 }

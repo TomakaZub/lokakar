@@ -11,6 +11,11 @@ import java.util.Locale;
 
 public class Tools {
 
+    /**
+     *
+     * @param dateStr chaine de caractère au format "yyyy/mm/dd hh:mm"
+     * @return un objet Calendar
+     */
     public static Calendar Str2Cal(String dateStr) {
 
         Calendar newCal = Calendar.getInstance();
@@ -27,6 +32,11 @@ public class Tools {
         return newCal;
     }
 
+    /**
+     *
+     * @param cal objet Calendar
+     * @return une chaine de caractère au format yyyy/mm/dd hh:mm
+     */
     public static String Cal2Str(Calendar cal) {
 
         String newStr;
@@ -37,11 +47,16 @@ public class Tools {
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute = cal.get(Calendar.MINUTE);
 
-        newStr = String.format(Locale.FRANCE, "%02d/%02d/%d %02d:%02d", year, mounth, day, hour, minute);
+        newStr = String.format(Locale.FRANCE, "%d/%02d/%02d %02d:%02d", year, mounth, day, hour, minute);
 
         return newStr;
     }
 
+    /**
+     *
+     * @param location : objet location
+     * @return double : le coût de la location
+     */
     public static double getPrice(Location location) {
 
         Calendar debut = Tools.Str2Cal(location.getDebut());
