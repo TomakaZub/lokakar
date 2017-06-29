@@ -192,7 +192,7 @@ public class BaseDAO extends SQLiteOpenHelper {
         }
 
         Location [] locations = {
-                new Location(vehicules[0], "05/03/2017 09:00", "03/08/2017 18:00", clients[0], new ArrayList<String>(), 1),
+                new Location(vehicules[0], "05/03/2017 09:00", "03/08/2017 18:00", clients[0], new ArrayList<String>(), 0),
                 new Location(vehicules[1], "19/06/2017 09:00", "25/06/2017 18:00", clients[0], new ArrayList<String>(), 1),
                 new Location(vehicules[2], "24/06/2017 12:00", "30/06/2017 12:00", clients[1], new ArrayList<String>(), 0)
         };
