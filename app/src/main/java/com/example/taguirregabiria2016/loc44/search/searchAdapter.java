@@ -1,4 +1,4 @@
-package com.example.taguirregabiria2016.loc44.location;
+package com.example.taguirregabiria2016.loc44.search;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,15 +20,13 @@ import java.util.List;
  * Created by spezeron2016 on 27/06/2017.
  */
 
-public class alouerAdapter extends ArrayAdapter<Vehicule> {
-    private List<Vehicule> listeVehicule;
+public class searchAdapter extends ArrayAdapter<Vehicule> {
     private int layout;
     private Resources res;
     private Context context;
 
-    public alouerAdapter(Context context, int resource, List<Vehicule> objects) {
+    public searchAdapter(Context context, int resource, List<Vehicule> objects) {
         super(context, resource, objects);
-        this.listeVehicule = objects;
         this.layout = resource;
         this.res = context.getResources();
         this.context = context;
@@ -46,12 +43,7 @@ public class alouerAdapter extends ArrayAdapter<Vehicule> {
             view = convertView;
         }
 
-        Vehicule vehicule = listeVehicule.get(position);
-//
-//        Button buttonModify = (Button)view.findViewById(R.id.buttonModify);
-//        Button buttonDelete = (Button)view.findViewById(R.id.buttonDelete);
-//        buttonModify.setTag(vehicule);
-//        buttonDelete.setTag(vehicule);
+        Vehicule vehicule = getItem(position);
 
         TextView modele_vehicule = (TextView) view.findViewById(R.id.modele_vehicule);
         TextView immatriculation_vehicule = (TextView) view.findViewById(R.id.immatriculation_vehicule);

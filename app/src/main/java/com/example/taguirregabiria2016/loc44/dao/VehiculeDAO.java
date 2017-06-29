@@ -37,12 +37,12 @@ public class VehiculeDAO {
 
         ContentValues values = new ContentValues();
 
-        String album= "";
-        for (String item:v.getAlbum()) {
+        String album = "";
+        for (String item : v.getAlbum()) {
             album += item + ";";
         }
-        if (album.length()>0) {
-            album = album.substring(0, album.length()-1);
+        if (album.length() > 0) {
+            album = album.substring(0, album.length() - 1);
         }
 
         values.put("marque", v.getMarque());
@@ -62,12 +62,12 @@ public class VehiculeDAO {
 
         args[0] = String.valueOf(v.getId());
 
-        String album= "";
-        for (String item:v.getAlbum()) {
+        String album = "";
+        for (String item : v.getAlbum()) {
             album += item + ";";
         }
-        if (album.length()>0) {
-            album = album.substring(0, album.length()-1);
+        if (album.length() > 0) {
+            album = album.substring(0, album.length() - 1);
         }
 
         values.put("marque", v.getMarque());
@@ -105,8 +105,8 @@ public class VehiculeDAO {
         Double prixJour = c.getDouble(6);
 
         String[] tmp = photos.split(";");
-        List<String> album= new ArrayList<>();
-        for (String item:tmp) {
+        List<String> album = new ArrayList<>();
+        for (String item : tmp) {
             album.add(item);
         }
 
@@ -116,7 +116,7 @@ public class VehiculeDAO {
 
     public static List<Vehicule> getAllVehicules() {
 
-       SQLiteDatabase db = BaseDAO.getDB();
+        SQLiteDatabase db = BaseDAO.getDB();
 
         Cursor c = db.query(TABLE_NAME,
                 new String[]{"id", "marque", "modele", "immatriculation", "utilisation", "album", "prix_jour"},
@@ -138,14 +138,48 @@ public class VehiculeDAO {
             String album = c.getString(5);
             Double prixJour = c.getDouble(6);
 
-            List<String>photos = new ArrayList<>();
-            String[]dummy = album.split(";");
-            for (String item:dummy) {
+            List<String> photos = new ArrayList<>();
+            String[] dummy = album.split(";");
+            for (String item : dummy) {
                 photos.add(item);
             }
             vehicules.add(new Vehicule(id, marque, modele, immatriculation, utilisation, photos, prixJour));
         }
         c.close();
+
+        return vehicules;
+    }
+
+
+    /***
+     * retourne une liste de vehicule en fonction de l'utilisation
+     * @param filtre
+     * @return
+     */
+    public static List<Vehicule> getVehiculeByUtilisation(int filtre) {
+        List<Vehicule> vehicules = new ArrayList<>();
+        SQLiteDatabase db = BaseDAO.getDB();
+
+        String requette = "SELECT id, marque, modele, immatriculation, utilisation, album, prix_jour FROM vehicules";
+        Cursor c = db.rawQuery(requette, null);
+        if (c.getCount() == 0) {
+            c.close();
+            return vehicules;
+        }
+
+        while (c.moveToNext()) {
+
+            if((c.getInt(c.getColumnIndex("utilisation")) & filtre) ==  filtre)
+            {
+                int idVehicule = c.getInt(c.getColumnIndex("id"));
+                Vehicule vehicule = VehiculeDAO.getVehicule(idVehicule);
+                if(vehicule != null)
+                {
+                    vehicules.add(vehicule);
+                }
+            }
+
+        }
 
         return vehicules;
     }
