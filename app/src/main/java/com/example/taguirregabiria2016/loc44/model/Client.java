@@ -1,12 +1,13 @@
 package com.example.taguirregabiria2016.loc44.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by ojeanmarie2016 on 26/06/2017.
  */
 
-public class Client extends Personne {
+public class Client extends Personne implements Serializable {
 
 
     public Client(Personne personne) {

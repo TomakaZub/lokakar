@@ -240,6 +240,11 @@ public class LocationFormActivity extends AppCompatActivity {
             location.setId((int) LocationDAO.insertLocation(location));
 
             Log.d("Location ajoutée", location.toString());
+
+            Intent intent = new Intent(LocationFormActivity.this, ResumeLocationActivity.class);
+            intent.putExtra("resume", location);
+            startActivity(intent);
+
             finish();
         }
         else {

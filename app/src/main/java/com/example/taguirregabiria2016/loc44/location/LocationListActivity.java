@@ -30,7 +30,8 @@ public class LocationListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_location_list);
 
         mListView = (ListView) findViewById(R.id.locationList);
-        sp = (SwipeLayout)findViewById(R.id)
+//        sp = (SwipeLayout)findViewById(R.id.fond);
+//        sp.
 
         locations = LocationDAO.getAllLocations();
 

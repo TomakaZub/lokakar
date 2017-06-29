@@ -50,6 +50,11 @@ public class VehiculeFormActivity extends AppCompatActivity {
         utilisation |= (utilisationSport.isChecked() ? Utilisation.SPORTIVE : 0);
         utilisation |= (utilisationMonospace.isChecked() ? Utilisation.MONOSPACE : 0);
 
+//        int filtre = Utilisation.CITADINE + Utilisation.FAMILIALE;
+//
+//        if ((utilisation | filtre)==filtre) {
+//
+//        }
         List<String> album = new ArrayList<>();
 
         Vehicule vehicule = new Vehicule(

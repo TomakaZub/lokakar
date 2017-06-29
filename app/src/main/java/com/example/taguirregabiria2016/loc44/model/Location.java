@@ -1,12 +1,13 @@
 package com.example.taguirregabiria2016.loc44.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by ojeanmarie2016 on 26/06/2017.
  */
 
-public class Location {
+public class Location implements Serializable{
 
     private int id;
     private Vehicule vehicule;

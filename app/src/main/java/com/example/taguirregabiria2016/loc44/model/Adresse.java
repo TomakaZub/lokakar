@@ -1,10 +1,12 @@
 package com.example.taguirregabiria2016.loc44.model;
 
+import java.io.Serializable;
+
 /**
  * Created by ojeanmarie2016 on 26/06/2017.
  */
 
-public class Adresse {
+public class Adresse implements Serializable {
 
     private int id;
     private String numero;

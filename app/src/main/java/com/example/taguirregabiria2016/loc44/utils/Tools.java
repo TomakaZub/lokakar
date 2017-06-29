@@ -13,7 +13,7 @@ public class Tools {
 
     /**
      *
-     * @param dateStr chaine de caractère au format "yyyy/mm/dd hh:mm"
+     * @param dateStr chaine de caractère au format "dd/mm/yyyy hh:mm"
      * @return un objet Calendar
      */
     public static Calendar Str2Cal(String dateStr) {
@@ -25,6 +25,26 @@ public class Tools {
         int year = Integer.parseInt(dParts[2]);
         int mounth = Integer.parseInt(dParts[1]);
         int day = Integer.parseInt(dParts[0]);
+        int hour = Integer.parseInt(hParts[0]);
+        int minute = Integer.parseInt(hParts[1]);
+        newCal.set(year, mounth, day, hour, minute);
+
+        return newCal;
+    }
+    /**
+     *
+     * @param dateStr chaine de caractère au format "yyyy/mm/dd hh:mm"
+     * @return un objet Calendar
+     */
+    public static Calendar StrBDD2Cal(String dateStr) {
+
+        Calendar newCal = Calendar.getInstance();
+        String[] dummies = dateStr.split(" ");
+        String[] dParts = dummies[0].split("/");
+        String[] hParts = dummies[1].split(":");
+        int year = Integer.parseInt(dParts[0]);
+        int mounth = Integer.parseInt(dParts[1]);
+        int day = Integer.parseInt(dParts[2]);
         int hour = Integer.parseInt(hParts[0]);
         int minute = Integer.parseInt(hParts[1]);
         newCal.set(year, mounth, day, hour, minute);
@@ -70,6 +90,30 @@ public class Tools {
 
         if (days == 0) days = 1;
         double prix = (double) days * location.getVehicule().getPrixJour();
+
+        return prix;
+    }
+
+    /**
+     *
+     * @param debutStr date de début au format yyyy/mm/dd hh:mm
+     * @param finStr date de fin au format yyyy/mm/dd hh:mm
+     * @param prixJour
+     * @return
+     */
+    public static double getPrice(String debutStr, String finStr, double prixJour) {
+
+        Calendar debut = Tools.StrBDD2Cal(debutStr);
+        Calendar fin = Tools.StrBDD2Cal(finStr);
+
+        double ddays = ((fin.getTimeInMillis() - debut.getTimeInMillis()) / (double) (24 * 60 * 60 * 1000));
+
+        int days = (int) ddays;
+
+        if (ddays - (double) days > 0.5) days++;
+
+        if (days == 0) days = 1;
+        double prix = (double) days * prixJour;
 
         return prix;
     }

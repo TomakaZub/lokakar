@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.taguirregabiria2016.loc44.model.Client;
 import com.example.taguirregabiria2016.loc44.model.Location;
 import com.example.taguirregabiria2016.loc44.model.Vehicule;
+import com.example.taguirregabiria2016.loc44.utils.Tools;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -286,7 +287,6 @@ public class LocationDAO {
                 "debut >= '"+dateDebut+"' AND fin <= '"+dateFin+"'";
 
         Cursor c = db.rawQuery(rqtLocation,null);
-//        Cursor c = db.rawQuery(rqtLocation,new String[]{dateDebut,dateFin,""});
 
         if (c.getCount() == 0) {
             c.close();
@@ -295,26 +295,11 @@ public class LocationDAO {
         while (c.moveToNext()) {
             Vehicule v = VehiculeDAO.getVehicule(c.getInt(c.getColumnIndex("vehicule_id")));
 
-            Calendar debut = Calendar.getInstance();
-            String[] dummies = c.getString(c.getColumnIndex("debut")).split(" ");
-            String[] debutParts = dummies[0].split("/");
-            int debutYear = Integer.parseInt(debutParts[0]);
-            int debutMounth = Integer.parseInt(debutParts[1]);
-            int debutDay = Integer.parseInt(debutParts[2]);
-            debut.set(debutYear, debutMounth, debutDay);
+            String debut = c.getString(c.getColumnIndex("debut"));
+            String fin = c.getString(c.getColumnIndex("fin"));
+            double prix = v.getPrixJour();
 
-            Calendar fin = Calendar.getInstance();
-            dummies = c.getString(c.getColumnIndex("fin")).split(" ");
-            String[] finParts = dummies[0].split("/");
-            int finYear = Integer.parseInt(finParts[0]);
-            int finMounth = Integer.parseInt(finParts[1]);
-            int finDay = Integer.parseInt(finParts[2]);
-            fin.set(finYear, finMounth, finDay);
-
-            int days = (int) ((fin.getTimeInMillis() - debut.getTimeInMillis()) / (24 * 60 * 60 * 1000));
-
-            double prixVehicule = v.getPrixJour() * days;
-            result = result + prixVehicule;
+            result = result + Tools.getPrice(debut, fin, prix);
         }
         return result;
     }

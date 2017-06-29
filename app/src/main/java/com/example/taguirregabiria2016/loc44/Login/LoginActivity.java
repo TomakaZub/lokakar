@@ -92,13 +92,13 @@ public class LoginActivity extends AppCompatActivity {
         email = mEmailView.getText().toString();
         mdp = mPasswordView.getText().toString();
 
-        Log.d("*** Login email ***", email);
-        Log.d("*** Login mdp ***", mdp);
-
-        Log.d("*** Login gérants ***", GerantDAO.getAllGerants().toString());
+//        Log.d("*** Login email ***", email);
+//        Log.d("*** Login mdp ***", mdp);
+//
+//        Log.d("*** Login gérants ***", GerantDAO.getAllGerants().toString());
 
         if (BaseDAO.isDBEmpty()) {
-            Log.d("*** Login ***", "Génération BDD");
+//            Log.d("*** Login ***", "Génération BDD");
             BaseDAO.generateData();
         }
 
@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean isEmailValid(String email) {
 
-        mEmailView.setError("Email non valide");
+//        mEmailView.setError("Email non valide");
         return email.contains("@");
     }
 
@@ -137,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private boolean isPasswordValid(String password) {
 
-        mEmailView.setError("Mot de passe non valide");
+//        mEmailView.setError("Mot de passe non valide");
         return (password.length() >= 4);
     }
 
