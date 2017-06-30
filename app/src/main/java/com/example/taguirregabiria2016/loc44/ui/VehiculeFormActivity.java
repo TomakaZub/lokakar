@@ -38,6 +38,8 @@ import java.util.List;
 public class VehiculeFormActivity extends AppCompatActivity {
 
     ImageView imgView;
+    Bitmap bp;
+    String chemin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,7 @@ public class VehiculeFormActivity extends AppCompatActivity {
 
         List<String> album = new ArrayList<>();
 
+
         Vehicule vehicule = new Vehicule(
                 vehiculeBrand.getText().toString(),
                 vehiculeModel.getText().toString(),
@@ -79,7 +82,13 @@ public class VehiculeFormActivity extends AppCompatActivity {
                 album,
                 Double.valueOf(vehiculeDailyRate.getText().toString()));
 
-        VehiculeDAO.insertVehicule(vehicule);
+        int id = (int) VehiculeDAO.insertVehicule(vehicule);
+        vehicule.setId(id);
+
+        //On ajoute l'image
+        savePicture(vehicule.getId());
+        vehicule.getAlbum().add(vehicule.getId()+".jpg");
+        VehiculeDAO.updateVehicule(vehicule);
 
         finish();
 
@@ -110,41 +119,50 @@ public class VehiculeFormActivity extends AppCompatActivity {
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (resultCode== Activity.RESULT_OK) {
 
+
+        if (resultCode== Activity.RESULT_OK) {
             //Utilisateur a pris un foto
             Toast.makeText(VehiculeFormActivity.this, "Une photo a été prise !", Toast.LENGTH_LONG).show();
-            Bitmap bp = (Bitmap) data.getExtras().get("data");
+            bp = (Bitmap) data.getExtras().get("data");
             imgView.setImageBitmap(bp);
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-            bp.compress(Bitmap.CompressFormat.JPEG,70,out);
-
-            // enregistrer le fichier
-            FileOutputStream fos = null;
-            try {
-                //TODO: nom de l'image id du vehicule
-                fos = new FileOutputStream (new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"/fichier.jpg"));
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-                // Put data in your baos
-                baos.write(out.toByteArray());
-
-                baos.writeTo(fos);
-            } catch(IOException ioe) {
-                // Handle exception here
-                ioe.printStackTrace();
-            } finally {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-//            Uri uriDeFoto=data.getData();
-//            InputStream inputStream=getContentResolver().openInputStream(uriDeFoto);//*
         } else {
             Toast.makeText(VehiculeFormActivity.this, "Annulé !", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void savePicture(int idVehicule)
+    {
+        // image name
+        String file_name = String.valueOf(idVehicule);
+
+        // on compresse image format JPEG
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        bp.compress(Bitmap.CompressFormat.JPEG,80,out);
+
+        // enregistrer le l'image dans la memoire du phone
+        FileOutputStream fos = null;
+        try {
+            //TODO: nom de l'image id du vehicule
+            fos = new FileOutputStream (new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES)+file_name+".jpg"));
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            // Put data in your baos
+            baos.write(out.toByteArray());
+
+            baos.writeTo(fos);
+        } catch(IOException ioe) {
+            // Handle exception here
+            ioe.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+//            Uri uriDeFoto=data.getData();
+//            InputStream inputStream=getContentResolver().openInputStream(uriDeFoto);//*
     }
 }
