@@ -2,9 +2,12 @@ package com.example.taguirregabiria2016.loc44.gererParking;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +16,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.taguirregabiria2016.loc44.R;
 import com.example.taguirregabiria2016.loc44.model.Utilisation;
 import com.example.taguirregabiria2016.loc44.model.Vehicule;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -25,6 +32,7 @@ import java.util.List;
  */
 
 public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
+    private static final String TAG = "Picasso";
     private List<Vehicule> listeVehicule;
     private int layout;
     private Resources res;
@@ -61,7 +69,7 @@ public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
         TextView immatriculation_vehicule = (TextView) view.findViewById(R.id.immatriculation_vehicule);
         TextView tarif_vehicule = (TextView) view.findViewById(R.id.tarif_vehicule);
         TextView utilsation_vehicule = (TextView) view.findViewById(R.id.vehiculeUtilisation);
-        ImageView thumbnail_vehicule = (ImageView) view.findViewById(R.id.thumbnail);
+        final ImageView thumbnail_vehicule = (ImageView) view.findViewById(R.id.thumbnail);
 
         modele_vehicule.setText(vehicule.getMarque()+ " "+vehicule.getModele());
         immatriculation_vehicule.setText(vehicule.getImmatriculation());
@@ -76,12 +84,25 @@ public class VehiculeAdapter extends ArrayAdapter<Vehicule> {
         utilisation += (vehicule.getUtilisation()& Utilisation.UTILITAIRE)==Utilisation.UTILITAIRE ?"U":"-";
         utilsation_vehicule.setText(utilisation);
 
+        final String filePath = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"/"+vehicule.getId()+".jpg";
         if (vehicule.getAlbum().size()>0) {
-            String dummy = vehicule.getAlbum().get(0);
-            int resId = res.getIdentifier("ic_" + dummy, "drawable", context.getPackageName());
-            thumbnail_vehicule.setImageResource(resId);
+            Uri uri = Uri.fromFile(new File(filePath));
 
+            Picasso.with(getContext()).load(uri).into(thumbnail_vehicule, new Callback() {
+                @Override
+                public void onSuccess() {
+                    Log.e(TAG, "OK "+filePath);
+                }
+
+                @Override
+                public void onError() {
+                    Log.e(TAG, "ERROR "+filePath);
+                    thumbnail_vehicule.setImageResource(R.drawable.car);
+
+                }
+            });
         }
+
         LinearLayout ligne = (LinearLayout)view.findViewById(R.id.fond);
         int color = ((position % 2 == 0) ? R.color.userList1 : R.color.userList2);
         ligne.setBackgroundColor(view.getResources().getColor(color));

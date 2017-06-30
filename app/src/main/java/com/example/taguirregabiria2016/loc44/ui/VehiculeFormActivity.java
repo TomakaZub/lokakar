@@ -16,22 +16,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.taguirregabiria2016.loc44.R;
-import com.example.taguirregabiria2016.loc44.dao.AdresseDAO;
-import com.example.taguirregabiria2016.loc44.dao.ClientDAO;
 import com.example.taguirregabiria2016.loc44.dao.VehiculeDAO;
-import com.example.taguirregabiria2016.loc44.model.Adresse;
-import com.example.taguirregabiria2016.loc44.model.Client;
-import com.example.taguirregabiria2016.loc44.model.Personne;
 import com.example.taguirregabiria2016.loc44.model.Utilisation;
 import com.example.taguirregabiria2016.loc44.model.Vehicule;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -145,7 +137,7 @@ public class VehiculeFormActivity extends AppCompatActivity {
         FileOutputStream fos = null;
         try {
             //TODO: nom de l'image id du vehicule
-            fos = new FileOutputStream (new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES)+file_name+".jpg"));
+            fos = new FileOutputStream (new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"/"+file_name+".jpg"));
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
             // Put data in your baos
@@ -162,7 +154,5 @@ public class VehiculeFormActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-//            Uri uriDeFoto=data.getData();
-//            InputStream inputStream=getContentResolver().openInputStream(uriDeFoto);//*
     }
 }

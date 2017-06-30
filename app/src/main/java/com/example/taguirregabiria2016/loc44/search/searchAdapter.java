@@ -2,6 +2,9 @@ package com.example.taguirregabiria2016.loc44.search;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.net.Uri;
+import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +16,10 @@ import android.widget.TextView;
 import com.example.taguirregabiria2016.loc44.R;
 import com.example.taguirregabiria2016.loc44.model.Utilisation;
 import com.example.taguirregabiria2016.loc44.model.Vehicule;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -49,7 +55,7 @@ public class searchAdapter extends ArrayAdapter<Vehicule> {
         TextView immatriculation_vehicule = (TextView) view.findViewById(R.id.immatriculation_vehicule);
         TextView tarif_vehicule = (TextView) view.findViewById(R.id.tarif_vehicule);
         TextView utilsation_vehicule = (TextView) view.findViewById(R.id.vehiculeUtilisation);
-        ImageView thumbnail_vehicule = (ImageView) view.findViewById(R.id.thumbnail);
+        final ImageView thumbnail_vehicule = (ImageView) view.findViewById(R.id.thumbnail);
 
         modele_vehicule.setText(vehicule.getMarque()+ " "+vehicule.getModele());
         immatriculation_vehicule.setText(vehicule.getImmatriculation());
@@ -64,11 +70,21 @@ public class searchAdapter extends ArrayAdapter<Vehicule> {
         utilisation += (vehicule.getUtilisation()& Utilisation.UTILITAIRE)==Utilisation.UTILITAIRE ?"U":"-";
         utilsation_vehicule.setText(utilisation);
 
-        if (vehicule.getAlbum().size()>0) {
-            String dummy = vehicule.getAlbum().get(0);
-            int resId = res.getIdentifier("ic_" + dummy, "drawable", context.getPackageName());
-            thumbnail_vehicule.setImageResource(resId);
 
+        final String filePath = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"/"+vehicule.getId()+".jpg";
+        if (vehicule.getAlbum().size()>0) {
+            Uri uri = Uri.fromFile(new File(filePath));
+
+            Picasso.with(getContext()).load(uri).into(thumbnail_vehicule, new Callback() {
+                @Override
+                public void onSuccess() {}
+
+                @Override
+                public void onError() {
+                    thumbnail_vehicule.setImageResource(R.drawable.car);
+
+                }
+            });
         }
         LinearLayout ligne = (LinearLayout)view.findViewById(R.id.fond);
         int color = ((position % 2 == 0) ? R.color.userList1 : R.color.userList2);
