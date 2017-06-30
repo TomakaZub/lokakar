@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.taguirregabiria2016.loc44.R;
 
 import com.example.taguirregabiria2016.loc44.accueil.MainActivity;
+import com.example.taguirregabiria2016.loc44.dao.LocationDAO;
 import com.example.taguirregabiria2016.loc44.model.Location;
 import com.example.taguirregabiria2016.loc44.utils.Tools;
 
@@ -50,11 +51,11 @@ public class ResumeLocationActivity extends AppCompatActivity {
         textViewPrixTotal = (TextView) findViewById(R.id.idPrixTotal);
 
         Bundle bundle = getIntent().getExtras();
-        location = (Location) bundle.get("resume");
+        location = LocationDAO.getLocation((int)bundle.get("resume"));
 
         TextViewNom.setText(location.getClient().getNom());
         textViewPrenom.setText(location.getClient().getPrenom());
-        textViewAdresse.setText(location.getClient().getAdresse().toString());
+        textViewAdresse.setText(location.getClient().getAdresse().toResume());
         textViewMarque.setText(location.getVehicule().getMarque());
         textViewModele.setText(location.getVehicule().getModele());
         textViewImmat.setText(location.getVehicule().getImmatriculation());
@@ -64,7 +65,7 @@ public class ResumeLocationActivity extends AppCompatActivity {
 
         textViewDateDebut.setText(dateDebut[0]);
         textViewDateFin.setText(dateFin[0]);
-        textViewHeureDebut.setText(dateDebut[0]);
+        textViewHeureDebut.setText(dateDebut[1]);
         textViewHeurefin.setText(dateFin[1]);
 
         textViewPrixTotal.setText(String.valueOf(Tools.getPrice(location)));
@@ -74,8 +75,8 @@ public class ResumeLocationActivity extends AppCompatActivity {
 
         switch (view.getId()) {
             case R.id.idRetour:
-                Intent intent = new Intent(ResumeLocationActivity.this, MainActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(ResumeLocationActivity.this, MainActivity.class);
+//                startActivity(intent);
                 finish();
                 break;
 

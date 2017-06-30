@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -41,12 +42,19 @@ public class LocationFormActivity extends AppCompatActivity {
 
     private static List<Vehicule> vehiculeList;
     private static Client client;
+    private static Location location = null;
+    private static Vehicule vehicule = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle.get("location") != null) {
+            location = LocationDAO.getLocation((int) bundle.get("location"));
+            vehicule = location.getVehicule();
+        }
         /**
          * Popupmenu Véhicules
          */
@@ -60,32 +68,59 @@ public class LocationFormActivity extends AppCompatActivity {
         ArrayAdapter<String> vAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spVehiculeItems);
         vAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spVehicule.setAdapter(vAdapter);
+        if (vehicule != null) {
+            spVehicule.setSelection(vAdapter.getPosition(vehicule.toSpinnerItem()));
+        }
 
         /**
          * Hydratation du nom du client
          */
-        tvClient = (TextView)findViewById(R.id.client);
-        Bundle bundle = getIntent().getExtras();
-        int id = (int)bundle.get("client");
-        client = ClientDAO.getClient(id);
-        tvClient.setText(client.getPrenom()+" "+client.getNom().toUpperCase());
-
-        /**
-         * Hydratation des champs date et heure
-         */
+        tvClient = (TextView) findViewById(R.id.client);
         startDate = (EditText) findViewById(R.id.startDate);
         startTime = (EditText) findViewById(R.id.startTime);
         endDate = (EditText) findViewById(R.id.endDate);
         endTime = (EditText) findViewById(R.id.endTime);
 
-        Calendar cal = Calendar.getInstance();
-        int today_day = cal.get(Calendar.DAY_OF_MONTH);
-        int today_mounth = cal.get(Calendar.MONTH)+1;
-        String today = (today_day<10?"0":"")+today_day+"/"+(today_mounth<10?"0":"")+today_mounth+"/"+cal.get(Calendar.YEAR);
-        startDate.setText(today);
-        endDate.setText(today);
-        startTime.setText("09:00");
-        endTime.setText("18:00");
+//        Bundle bundle = getIntent().getExtras();
+        if (location != null) {
+            client = location.getClient();
+        } else {
+            int id = (int) bundle.get("client");
+            client = ClientDAO.getClient(id);
+        }
+        tvClient.setText(client.getPrenom() + " " + client.getNom().toUpperCase());
+
+        /**
+         * Hydratation des champs date et heure
+         */
+
+        if (location != null) {
+
+            String[] debut = location.getDebut().split(" ");
+            String[] fin = location.getFin().split(" ");
+
+            startDate.setText(debut[0]);
+            startTime.setText(debut[1]);
+            endDate.setText(fin[0]);
+            endTime.setText(fin[1]);
+        } else {
+
+            Calendar cal = Calendar.getInstance();
+            int today_day = cal.get(Calendar.DAY_OF_MONTH);
+            int today_mounth = cal.get(Calendar.MONTH) + 1;
+            String today = (today_day < 10 ? "0" : "") + today_day + "/" + (today_mounth < 10 ? "0" : "") + today_mounth + "/" + cal.get(Calendar.YEAR);
+
+            startDate.setText(today);
+            endDate.setText(today);
+            startTime.setText("09:00");
+            endTime.setText("18:00");
+        }
+
+        if (location != null) {
+            Button validate = (Button) findViewById(R.id.validate);
+            validate.setText("Mettre à jour");
+//            getIntent().putExtra("client", client.getId());
+        }
 
         startDate.setOnClickListener(new View.OnClickListener() {
 
@@ -162,8 +197,8 @@ public class LocationFormActivity extends AppCompatActivity {
 
                         String hour = String.valueOf(selectedHour);
                         String minute = String.valueOf(selectedMinute);
-                        if (hour.length()<2) hour = "0" + hour;
-                        if (minute.length()<2) minute = "0" + minute;
+                        if (hour.length() < 2) hour = "0" + hour;
+                        if (minute.length() < 2) minute = "0" + minute;
                         startTime.setText(hour + ":" + minute);
                     }
                 }, hour, minute, true);
@@ -189,8 +224,8 @@ public class LocationFormActivity extends AppCompatActivity {
 
                         String hour = String.valueOf(selectedHour);
                         String minute = String.valueOf(selectedMinute);
-                        if (hour.length()<2) hour = "0" + hour;
-                        if (minute.length()<2) minute = "0" + minute;
+                        if (hour.length() < 2) hour = "0" + hour;
+                        if (minute.length() < 2) minute = "0" + minute;
                         endTime.setText(hour + ":" + minute);
                     }
                 }, hour, minute, true);
@@ -208,53 +243,47 @@ public class LocationFormActivity extends AppCompatActivity {
 
     }
 
-    public void pickStart(View view) {
-
-        Toast.makeText(LocationFormActivity.this, "Pick Start", Toast.LENGTH_LONG).show();
-    }
-
-    public void pickEnd(View view) {
-
-        Toast.makeText(LocationFormActivity.this, "Pick End", Toast.LENGTH_LONG).show();
-    }
-
     public void ajouterUneLocationn(View view) {
 
+        Client localClient = null;
         Bundle bundle = getIntent().getExtras();
-        int id = (int)bundle.get("client");
 
+        if (location == null) {
+            int id = (int) bundle.get("client");
+            localClient = ClientDAO.getClient(id);
+        }
         Vehicule vehicule = vehiculeList.get(spVehicule.getSelectedItemPosition());
-        Client client = ClientDAO.getClient(id);
         String debutDate = startDate.getText().toString();
         String debutTime = startTime.getText().toString();
         String finDate = endDate.getText().toString();
         String finTime = endTime.getText().toString();
 
-        if (LocationDAO.convertDateOnly(debutDate).compareTo(LocationDAO.convertDateOnly(finDate))<=0 ) {
-
-            Log.d("Ajout Location", "\t" + client.toSpinnerItem() + " :\n\t\tdu " + debutDate + " à " + debutTime + "\n\t\tau " + finDate + " à " + finTime + "\n\t\t" + vehicule.toSpinnerItem());
+        if (Tools.convertDateOnly(debutDate).compareTo(Tools.convertDateOnly(finDate)) <= 0) {
 
             Calendar today = Calendar.getInstance();
-            int rendu = (Tools.Cal2Str(today).compareTo(debutDate+" "+debutTime)<=0)?1:0;
-            Location location = new Location(vehicule, debutDate + " " + debutTime, finDate + " " + finTime, client, new ArrayList<String>(), rendu);
-            location.setId((int) LocationDAO.insertLocation(location));
+            int rendu = (Tools.Cal2StrBDD(today).compareTo(debutDate + " " + debutTime) <= 0) ? 0 : 1;
 
-            Log.d("Location ajoutée", location.toString());
+            if (location != null) {
+
+                rendu = (Tools.Cal2StrBDD(today).compareTo(finDate + " " + finTime) <= 0) ? 1 : 0;
+                location.setVehicule(vehicule);
+                location.setDebut(debutDate + " " + debutTime);
+                location.setFin(finDate + " " + finTime);
+                location.setRendu(rendu);
+                LocationDAO.updateLocation(location);
+            } else {
+
+                Location location = new Location(vehicule, debutDate + " " + debutTime, finDate + " " + finTime, localClient, new ArrayList<String>(), rendu);
+                location.setId((int) LocationDAO.insertLocation(location));
+            }
 
             Intent intent = new Intent(LocationFormActivity.this, ResumeLocationActivity.class);
-            intent.putExtra("resume", location);
+            intent.putExtra("resume", location.getId());
             startActivity(intent);
 
             finish();
-        }
-        else {
+        } else {
             endDate.requestFocus();
         }
-    }
-
-    public void addClient(View view) {
-
-        Intent intent = new Intent(LocationFormActivity.this, ClientFormActivity.class);
-        startActivity(intent);
     }
 }

@@ -27,6 +27,7 @@ public class GererParkingActivity extends AppCompatActivity {
     ArrayAdapter adapter;
     private List<Vehicule> vehiculeList;
     private List<Location> locationList;
+    ListView listView;
     VehiculeDAO dao;
     Vehicule vehicule;
     
@@ -52,7 +53,7 @@ public class GererParkingActivity extends AppCompatActivity {
         TextView tvInfos = (TextView)findViewById(R.id.infos);
         tvInfos.setText(count+" véhicule" + ((count>1)?"s":""));
         adapter = new VehiculeAdapter(this, R.layout.template_list_vehicule, vehiculeList);
-        final ListView listView = (ListView) findViewById(R.id.listeVehicule);
+        listView = (ListView) findViewById(R.id.listeVehicule);
         listView.setAdapter(adapter);
     }
 
@@ -68,9 +69,10 @@ public class GererParkingActivity extends AppCompatActivity {
 
     public void edit(View view) {
 
+        Toast.makeText(GererParkingActivity.this, "Edit", Toast.LENGTH_SHORT);
     }
 
-    public void delete(View view) {
+    public void delete(final View view) {
 
         vehicule = (Vehicule) view.getTag();
 
@@ -82,13 +84,14 @@ public class GererParkingActivity extends AppCompatActivity {
             public void onClick(DialogInterface arg0, int arg1) {
                 dao.removeVehicule(vehicule);
                 Toast.makeText(GererParkingActivity.this, "Véhicule supprimé", Toast.LENGTH_LONG).show();
-                finish();
+                VehiculeAdapter adapter = (VehiculeAdapter)listView.getAdapter();
+                adapter.remove(vehicule);
+
             }
         });
         alertDialogBuilder.setNegativeButton("NON",new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
             }
         });
         AlertDialog alertDialog = alertDialogBuilder.create();

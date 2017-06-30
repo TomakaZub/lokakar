@@ -4,11 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.taguirregabiria2016.loc44.location.LocationListActivity">
+
+    <CheckBox
+        android:id="@+id/archived"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="reload"
+        android:text="Masquer les dossiers archivés" />
 
     <ListView
         android:id="@+id/locationList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

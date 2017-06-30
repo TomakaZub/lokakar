@@ -13,9 +13,10 @@
     <string name="error_field_required">Champ requis</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="volkswagen_scirocco_2_0_tsi">Volkswagen Scirocco</string>
-    <string name="modifier">Modifier</string>
-    <string name="supprimer">Supprimer</string>
+    <string name="modifier">Éditer</string>
+    <string name="supprimer">Archiver</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="resume">Résumé</string>
 </resources>

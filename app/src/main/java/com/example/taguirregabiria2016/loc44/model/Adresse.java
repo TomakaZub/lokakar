@@ -116,12 +116,9 @@ public class Adresse implements Serializable {
                 '}';
     }
     public String toResume() {
-        return "Adresse : " + numero + ", " + type + '\'' +
-                ", voie='" + voie + '\'' +
-                ", supplement='" + supplement + '\'' +
-                ", codePostal='" + codePostal + '\'' +
-                ", ville='" + ville + '\'' +
-                ", pays='" + pays + '\'' +
-                '}';
+        return numero + ", " + type + " " + voie + '\n' +
+                supplement + '\n' +
+                codePostal + " " + ville.toUpperCase() + '\n' +
+                pays.toUpperCase();
     }
 }

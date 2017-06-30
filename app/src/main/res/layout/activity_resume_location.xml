@@ -350,7 +350,7 @@
             android:layout_marginRight="8dp"
             android:background="@color/userList1"
             android:onClick="onClickBtn"
-            android:text="MENU"
+            android:text="retour"
             android:textColor="#5b4f4f" />
 
         <Button
@@ -360,7 +360,7 @@
             android:layout_marginLeft="8dp"
             android:background="@color/userList1"
             android:onClick="onClickBtn"
-            android:text="ENVOYER PAR SMS"
+            android:text=" SMS"
             android:textColor="#5b4f4f" />
 
     </LinearLayout>

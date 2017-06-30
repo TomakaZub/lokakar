@@ -28,7 +28,7 @@
         </activity>
         <activity
             android:name=".gererParking.GererParkingActivity" android:theme="@style/LoginTheme"
-            android:label="Gerer le parking" />
+            android:label="Lokakar : Gerer le parking" />
         <activity
             android:name=".search.searchActivity"
             android:label="Chercher un véhicule"
@@ -49,7 +49,11 @@
         <activity android:name=".ui.VehiculeListActivity" android:theme="@style/Base.Theme.AppCompat.Dialog.Alert" />
         <activity android:name=".location.ClientFormActivity" android:theme="@style/LocationTheme"/>
         <activity android:name=".location.LocationFormActivity" android:theme="@style/LocationTheme"/>
-        <activity android:name=".location.LocationListActivity" android:theme="@style/LocationTheme"/>
+        <activity
+            android:name=".location.LocationListActivity"
+            android:theme="@style/LocationTheme"
+            android:label="Lokakar : locations"/>
+        <activity android:name=".location.ResumeLocationActivity" android:theme="@style/LocationTheme"/>
     </application>
 
 </manifest>

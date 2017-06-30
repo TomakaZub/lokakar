@@ -52,8 +52,8 @@ public class LocationDAO {
         }
 
         values.put("vehicule_id", l.getVehicule().getId());
-        values.put("debut", convertDate(l.getDebut()));
-        values.put("fin", convertDate(l.getFin()));
+        values.put("debut", Tools.convertDate(l.getDebut()));
+        values.put("fin", Tools.convertDate(l.getFin()));
         values.put("client_id", l.getClient().getId());
         values.put("album", album);
         values.put("rendu", l.getRendu());
@@ -77,11 +77,13 @@ public class LocationDAO {
         }
 
         values.put("vehicule_id", l.getVehicule().getId());
-        values.put("debut", convertDate(l.getDebut()));
-        values.put("fin", convertDate(l.getFin()));
+        values.put("debut", Tools.convertDate(l.getDebut()));
+        values.put("fin", Tools.convertDate(l.getFin()));
         values.put("client_id", l.getClient().getId());
         values.put("album", album);
         values.put("rendu", l.getRendu());
+
+        VehiculeDAO.updateVehicule(l.getVehicule());
 
         return BaseDAO.getDB().update(TABLE_NAME, values, "id=?", args);
     }
@@ -117,17 +119,17 @@ public class LocationDAO {
         Vehicule vehicule = VehiculeDAO.getVehicule(vehiculeId);
         Client client = ClientDAO.getClient(clientID);
 
-        return new Location(id, vehicule, convertDate(debut), convertDate(fin), client, album, rendu);
+        return new Location(id, vehicule, Tools.convertDate(debut), Tools.convertDate(fin), client, album, rendu);
     }
 
-    public static List<Location> getAllLocations()
+    public static List<Location> getAllLocations(String orderBy)
     {
         SQLiteDatabase db = BaseDAO.getDB();
         // recuperer la liste de toutes les location qui on le statut rendu
 
         Cursor c = db.query(TABLE_NAME,
                 new String[]{"id", "vehicule_id", "debut", "fin", "client_id", "album", "rendu"},
-                null, null, null, null, null);
+                null, null, null, null, orderBy);
         List<Location> locations = new ArrayList<>();
 
         if (c.getCount() == 0) {
@@ -152,17 +154,23 @@ public class LocationDAO {
             }
             Vehicule vehicule = VehiculeDAO.getVehicule(vehiculeId);
             Client client = ClientDAO.getClient(clientId);
-            Location location = new Location(id, vehicule, convertDate(debut), convertDate(fin), client, photos, rendu);
+            Location location = new Location(id, vehicule, Tools.convertDate(debut), Tools.convertDate(fin), client, photos, rendu);
             locations.add(location);
-            Log.d("*** loaded data ***", location.toString());
+//            Log.d("*** loaded data ***", location.toString());
         }
         c.close();
 
-        Log.d("*** loaded data ***", locations.toString());
+//        Log.d("*** loaded data ***", locations.toString());
         return locations;
     }
 
-    public static List<Location> getAllOpenLocations()
+
+    public static List<Location> getAllLocations()
+    {
+        return getAllLocations(null);
+    }
+
+        public static List<Location> getAllOpenLocations()
     {
         SQLiteDatabase db = BaseDAO.getDB();
         // recuperer la liste de toutes les location qui on le statut rendu
@@ -195,7 +203,7 @@ public class LocationDAO {
                 }
                 Vehicule vehicule = VehiculeDAO.getVehicule(vehiculeId);
                 Client client = ClientDAO.getClient(clientId);
-                locations.add(new Location(id, vehicule, convertDate(debut), convertDate(fin), client, photos, rendu));
+                locations.add(new Location(id, vehicule, Tools.convertDate(debut), Tools.convertDate(fin), client, photos, rendu));
             }
         }
         c.close();
@@ -302,20 +310,5 @@ public class LocationDAO {
             result = result + Tools.getPrice(debut, fin, prix);
         }
         return result;
-    }
-
-    public static String convertDate (String date) {
-
-        String[] dummies = date.split(" ");
-        String[] parts = dummies[0].split("/");
-
-        return parts[2]+"/"+parts[1]+"/"+parts[0]+" "+dummies[1];
-    }
-
-    public static String convertDateOnly (String date) {
-
-        String[] parts = date.split("/");
-
-        return parts[2]+"/"+parts[1]+"/"+parts[0];
     }
 }
