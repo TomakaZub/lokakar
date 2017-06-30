@@ -10,7 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.example.taguirregabiria2016.loc44.R;
@@ -21,45 +23,56 @@ import com.example.taguirregabiria2016.loc44.utils.Tools;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class LocationListActivity extends AppCompatActivity {
 
     ListView mListView;
     List<Location> locations;
+    TextView locationCount;
+    CheckBox locationArchived;
 
-    SwipeLayout sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_list);
 
         mListView = (ListView) findViewById(R.id.locationList);
+        locationArchived = (CheckBox) findViewById(R.id.locationArchived);
+        locationCount = (TextView) findViewById(R.id.locationCount);
+
         locations = LocationDAO.getAllLocations("debut DESC");
 
         LocationAdapter adapter = new LocationAdapter(LocationListActivity.this, locations);
         mListView.setAdapter(adapter);
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Location location = locations.get(position);
-                Intent intent = new Intent(LocationListActivity.this, ResumeLocationActivity.class);
-                intent.putExtra("resume", location.getId());
-                startActivity(intent);
-            }
-        });
+        locationCount.setText(String.format(Locale.FRANCE, "%d élément%s",locations.size(), (locations.size()>1?"s":"")));
+
+//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Location location = locations.get(position);
+//                Intent intent = new Intent(LocationListActivity.this, ResumeLocationActivity.class);
+//                intent.putExtra("resume", location.getId());
+//                startActivity(intent);
+//            }
+//        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setContentView(R.layout.activity_location_list);
 
-        mListView = (ListView) findViewById(R.id.locationList);
         locations = LocationDAO.getAllLocations();
 
         LocationAdapter adapter = new LocationAdapter(LocationListActivity.this, locations);
         mListView.setAdapter(adapter);
+        if (locationArchived.isChecked()) {
+            locations = LocationDAO.getAllOpenLocations();
+        } else {
+            locations = LocationDAO.getAllLocations();
+        }
+        locationCount.setText(String.format(Locale.FRANCE, "%d élément%s",locations.size(), (locations.size()>1?"s":"")));
     }
 
     public void editLocation(View view) {
@@ -93,8 +106,8 @@ public class LocationListActivity extends AppCompatActivity {
                 toBeDeletedLocation.setRendu(1);
                 toBeDeletedLocation.setFin(fin);
                 LocationDAO.updateLocation(toBeDeletedLocation);
-//                LocationAdapter adapter = (LocationAdapter)mListView.getAdapter();
-//                adapter. .remove(toBeDeletedLocation);
+                LocationAdapter adapter = (LocationAdapter)mListView.getAdapter();
+                adapter.notifyDataSetChanged();// .remove(toBeDeletedLocation);
             }
         });
         alertDialogBuilder.setNegativeButton("NON",new DialogInterface.OnClickListener() {
@@ -187,7 +200,6 @@ public class LocationListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setContentView(R.layout.activity_location_list);
 
         if (archived.isChecked()) {
             locations = LocationDAO.getAllOpenLocations();

@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".accueil.MainActivity"
-            android:label="Accueuil">
+            android:label="Accueil">
         </activity>
 
         <activity android:name=".Login.LoginActivity">
@@ -28,32 +28,49 @@
         </activity>
         <activity
             android:name=".gererParking.GererParkingActivity" android:theme="@style/LoginTheme"
-            android:label="Lokakar : Gerer le parking" />
+            android:label="Lokakar : Véhicules" />
         <activity
             android:name=".search.searchActivity"
-            android:label="Chercher un véhicule"
+            android:label="Lokakar : Rechercher un véhicule"
             android:theme="@style/LocationTheme"/>
         <activity
             android:name=".chiffreAffaire.caActivity"
             android:theme="@style/caTheme"
-            android:label="Chiffre d&apos;affaire" />
+            android:label="Lokakar : Chiffre d&apos;affaire" />
         <activity
             android:name=".location.louerActivity"
-            android:label="Véhicules en cours de location" />
+            android:label="Lokakar : Véhicules loués" />
         <activity
             android:name=".location.alouerActivity"
-            android:label="Véhicules prêts à être loué" />
-        <activity android:name=".ui.ClientFormActivity" />
-        <activity android:name=".ui.ClientListActivity" />
-        <activity android:name=".ui.VehiculeFormActivity" />
-        <activity android:name=".ui.VehiculeListActivity" android:theme="@style/Base.Theme.AppCompat.Dialog.Alert" />
-        <activity android:name=".location.ClientFormActivity" android:theme="@style/LocationTheme"/>
-        <activity android:name=".location.LocationFormActivity" android:theme="@style/LocationTheme"/>
+            android:label="Lokakar : Véhicules disponibles" />
+        <activity
+            android:name=".ui.ClientFormActivity"
+            android:label="Lokakar : Nouveau client" />
+        <activity
+            android:name=".ui.ClientListActivity"
+            android:label="Lokakar : Clients"/>
+        <activity
+            android:name=".ui.VehiculeFormActivity"
+            android:label="Lokakar : Nouveau véhicule" />
+        <activity
+            android:name=".ui.VehiculeListActivity"
+            android:theme="@style/Base.Theme.AppCompat.Dialog.Alert" />
+        <activity
+            android:name=".location.ClientFormActivity"
+            android:theme="@style/LocationTheme"
+            android:label="Lokakar : Nouveau client"/>
+        <activity
+            android:name=".location.LocationFormActivity"
+            android:theme="@style/LocationTheme"
+            android:label="Lokakar : Nouvelle locations"/>
         <activity
             android:name=".location.LocationListActivity"
             android:theme="@style/LocationTheme"
             android:label="Lokakar : locations"/>
-        <activity android:name=".location.ResumeLocationActivity" android:theme="@style/LocationTheme"/>
+        <activity
+            android:name=".location.ResumeLocationActivity"
+            android:theme="@style/LocationTheme"
+            android:label="Lokakar : Résumé"/>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.taguirregabiria2016.loc44.R;
 import com.example.taguirregabiria2016.loc44.dao.AdresseDAO;
@@ -50,24 +51,33 @@ public class VehiculeFormActivity extends AppCompatActivity {
         utilisation |= (utilisationSport.isChecked() ? Utilisation.SPORTIVE : 0);
         utilisation |= (utilisationMonospace.isChecked() ? Utilisation.MONOSPACE : 0);
 
-//        int filtre = Utilisation.CITADINE + Utilisation.FAMILIALE;
-//
-//        if ((utilisation | filtre)==filtre) {
-//
-//        }
-        List<String> album = new ArrayList<>();
+        if (vehiculeBrand.getText().length() > 0 &&
+                vehiculeModel.getText().length() > 0 &&
+                vehiculeRegistration.getText().length() > 0 &&
+                utilisation > 0) {
 
-        Vehicule vehicule = new Vehicule(
-                vehiculeBrand.getText().toString(),
-                vehiculeModel.getText().toString(),
-                vehiculeRegistration.getText().toString(),
-                utilisation,
-                album,
-                Double.valueOf(vehiculeDailyRate.getText().toString()));
+            List<String> album = new ArrayList<>();
 
-        VehiculeDAO.insertVehicule(vehicule);
+            Double dailyRate;
+            if (vehiculeDailyRate.getText().toString().length() > 0) {
+                dailyRate = Double.valueOf(vehiculeDailyRate.getText().toString());
+            } else {
+                dailyRate = 0.0;
+            }
+            Vehicule vehicule = new Vehicule(
+                    vehiculeBrand.getText().toString(),
+                    vehiculeModel.getText().toString(),
+                    vehiculeRegistration.getText().toString(),
+                    utilisation,
+                    album,
+                    dailyRate);
 
-        finish();
+            VehiculeDAO.insertVehicule(vehicule);
+
+            finish();
+        } else {
+            Toast.makeText(view.getContext(), "Tous les champs sont obligatoires.", Toast.LENGTH_LONG).show();
+        }
 
     }
 }

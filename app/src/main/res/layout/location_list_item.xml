@@ -124,7 +124,7 @@
                     android:background="@drawable/pellet_green"
                     android:textAlignment="center"
                     android:gravity="center"
-                    android:textColor="#230A0A"
+                    android:textColor="#fff"
                     android:textSize="12sp" />
 
             </LinearLayout>

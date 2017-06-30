@@ -43,12 +43,12 @@ public class LocationDAO {
 
         ContentValues values = new ContentValues();
 
-        String album= "";
-        for (String item:l.getAlbum()) {
+        String album = "";
+        for (String item : l.getAlbum()) {
             album += item + ";";
         }
-        if (album.length()>0) {
-            album = album.substring(0, album.length()-1);
+        if (album.length() > 0) {
+            album = album.substring(0, album.length() - 1);
         }
 
         values.put("vehicule_id", l.getVehicule().getId());
@@ -68,12 +68,12 @@ public class LocationDAO {
 
         args[0] = String.valueOf(l.getId());
 
-        String album= "";
-        for (String item:l.getAlbum()) {
+        String album = "";
+        for (String item : l.getAlbum()) {
             album += item + ";";
         }
-        if (album.length()>0) {
-            album = album.substring(0, album.length()-1);
+        if (album.length() > 0) {
+            album = album.substring(0, album.length() - 1);
         }
 
         values.put("vehicule_id", l.getVehicule().getId());
@@ -87,10 +87,12 @@ public class LocationDAO {
 
         return BaseDAO.getDB().update(TABLE_NAME, values, "id=?", args);
     }
+
     public static long removeLocation(Location l) {
 
         return BaseDAO.getDB().delete(TABLE_NAME, "id=" + l.getId(), null);
     }
+
     public static Location getLocation(int id) {
 
         Cursor c = BaseDAO.getDB().query(TABLE_NAME,
@@ -111,8 +113,8 @@ public class LocationDAO {
         int rendu = c.getInt(6);
 
         String[] tmp = photos.split(";");
-        List<String> album= new ArrayList<>();
-        for (String item:tmp) {
+        List<String> album = new ArrayList<>();
+        for (String item : tmp) {
             album.add(item);
         }
 
@@ -122,8 +124,7 @@ public class LocationDAO {
         return new Location(id, vehicule, Tools.convertDate(debut), Tools.convertDate(fin), client, album, rendu);
     }
 
-    public static List<Location> getAllLocations(String orderBy)
-    {
+    public static List<Location> getAllLocations(String orderBy) {
         SQLiteDatabase db = BaseDAO.getDB();
         // recuperer la liste de toutes les location qui on le statut rendu
 
@@ -147,9 +148,9 @@ public class LocationDAO {
             String album = c.getString(5);
             int rendu = c.getInt(6);
 
-            List<String>photos = new ArrayList<>();
-            String[]dummy = album.split(";");
-            for (String item:dummy) {
+            List<String> photos = new ArrayList<>();
+            String[] dummy = album.split(";");
+            for (String item : dummy) {
                 photos.add(item);
             }
             Vehicule vehicule = VehiculeDAO.getVehicule(vehiculeId);
@@ -165,13 +166,11 @@ public class LocationDAO {
     }
 
 
-    public static List<Location> getAllLocations()
-    {
+    public static List<Location> getAllLocations() {
         return getAllLocations(null);
     }
 
-        public static List<Location> getAllOpenLocations()
-    {
+    public static List<Location> getAllOpenLocations() {
         SQLiteDatabase db = BaseDAO.getDB();
         // recuperer la liste de toutes les location qui on le statut rendu
 
@@ -195,7 +194,7 @@ public class LocationDAO {
             String album = c.getString(5);
             int rendu = c.getInt(6);
 
-            if (rendu==0) {
+            if (rendu == 0) {
                 List<String> photos = new ArrayList<>();
                 String[] dummy = album.split(";");
                 for (String item : dummy) {
@@ -213,6 +212,7 @@ public class LocationDAO {
 
     /**
      * retourne une liste de vehicule a louer
+     *
      * @return
      */
     public List<Vehicule> getVehicules_ALouer() {
@@ -220,8 +220,9 @@ public class LocationDAO {
         SQLiteDatabase db = BaseDAO.getDB();
 
         // Recuperer la liste de location avec rendu = true
-        String requette = "SELECT id, vehicule_id, debut, fin, client_id, rendu FROM locations WHERE rendu = 1";
-        Cursor c = db.rawQuery(requette,null);
+        // id, loc.debut, loc.fin, loc.client_id, loc.rendu, v.marque, v.modele, v.immatriculation,v.prix_jour,v.album
+        String requette = "SELECT v.* FROM vehicules v LEFT OUTER JOIN locations loc ON loc.vehicule_id=v.id where loc.rendu=1 or loc.rendu is null";
+        Cursor c = db.rawQuery(requette, null);
         if (c.getCount() == 0) {
             c.close();
             return vehicules_ALouer;
@@ -229,8 +230,23 @@ public class LocationDAO {
 
         // Pour chaque élément de la liste recuperer l'ID du vehicule et faire un getVehiculebyid() et on l'ajoute a la liste
         while (c.moveToNext()) {
-            int idVehicule = c.getInt(c.getColumnIndex("vehicule_id"));
-            Vehicule vehicule = VehiculeDAO.getVehicule(idVehicule);
+            Log.d("*** véhicules dispo ***", c.toString());
+            int idVehicule = c.getInt(c.getColumnIndex("id"));
+//            Vehicule vehicule = VehiculeDAO.getVehicule(idVehicule);
+            int id = c.getInt(0);
+            String marque = c.getString(1);
+            String modele = c.getString(2);
+            String immatriculation = c.getString(3);
+            int utilisation = c.getInt(4);
+            String photos = c.getString(5);
+            Double prixJour = c.getDouble(6);
+
+            String[] tmp = photos.split(";");
+            List<String> album = new ArrayList<>();
+            for (String item : tmp) {
+                album.add(item);
+            }
+            Vehicule vehicule = new Vehicule(id, marque, modele, immatriculation, utilisation, album, prixJour);
             vehicules_ALouer.add(vehicule);
         }
         //retourner la liste
@@ -245,7 +261,7 @@ public class LocationDAO {
 
         // Recuperer la liste de location avec rendu = true
         String requette = "SELECT id, vehicule_id, debut, fin, client_id, rendu FROM locations WHERE rendu = 0";
-        Cursor c = db.rawQuery(requette,null);
+        Cursor c = db.rawQuery(requette, null);
         if (c.getCount() == 0) {
             c.close();
             return vehicules_Louer;
@@ -265,13 +281,14 @@ public class LocationDAO {
 
     /**
      * retourne une liste de vehicule loués
+     *
      * @return
      */
     public List<Location> getLocations() {
         List<Location> locations = new ArrayList<>();
         SQLiteDatabase db = BaseDAO.getDB();
         String requette = "SELECT id, vehicule_id, debut, fin, client_id, rendu FROM locations WHERE rendu = 0";
-        Cursor c = db.rawQuery(requette,null);
+        Cursor c = db.rawQuery(requette, null);
         if (c.getCount() == 0) {
             c.close();
             return locations;
@@ -285,16 +302,15 @@ public class LocationDAO {
 
     }
 
-    public double calculerCA(String dateDebut , String dateFin)
-    {
+    public double calculerCA(String dateDebut, String dateFin) {
         SQLiteDatabase db = BaseDAO.getDB();
         double result = 0;
         String rqtLocation = "SELECT id, vehicule_id, debut, fin, client_id, rendu " +
                 "FROM locations " +
                 "WHERE " +
-                "debut >= '"+dateDebut+"' AND fin <= '"+dateFin+"'";
+                "debut >= '" + dateDebut + "' AND fin <= '" + dateFin + "'";
 
-        Cursor c = db.rawQuery(rqtLocation,null);
+        Cursor c = db.rawQuery(rqtLocation, null);
 
         if (c.getCount() == 0) {
             c.close();

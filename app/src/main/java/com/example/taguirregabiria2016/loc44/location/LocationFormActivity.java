@@ -273,7 +273,7 @@ public class LocationFormActivity extends AppCompatActivity {
                 LocationDAO.updateLocation(location);
             } else {
 
-                Location location = new Location(vehicule, debutDate + " " + debutTime, finDate + " " + finTime, localClient, new ArrayList<String>(), rendu);
+                location = new Location(vehicule, debutDate + " " + debutTime, finDate + " " + finTime, localClient, new ArrayList<String>(), rendu);
                 location.setId((int) LocationDAO.insertLocation(location));
             }
 
